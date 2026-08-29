@@ -998,3 +998,266 @@ def simulate_portfolio(
         "daily_equity": daily_equity,
         "final_equity": final_equity,
     }
+
+
+# == crypto_xsec_momentum_v1 ===================================================
+#
+# Cross-sectional momentum, added alongside crypto_trend_momentum_v1 and
+# crypto_trend_daily_v1 (both untouched). Structurally different from every
+# strategy above: it ranks the WHOLE universe together and holds a fixed
+# number of positions between weekly rebalances, rather than admitting
+# candidates one at a time off an independent per-symbol gate. Forcing that
+# shape through simulate_portfolio()/simulate_order_outcome() (built for
+# independent per-symbol admission against a shared capacity limit) would
+# have needed sizing/exit tricks layered on top of machinery that doesn't
+# fit - a dedicated, purpose-built simulator below is simpler and less
+# error-prone than that. Reuses the daily-bar frame and helpers from the
+# crypto_trend_daily_v1 work (fetch_daily_crypto_frames,
+# build_daily_crypto_indicator_frames, daily_completed_bar_cutoff,
+# _btc_macro_ok, ResearchCost) rather than duplicating them.
+
+XSEC_REBALANCE_WEEKDAY_DEFAULT = 0  # Monday. Config, not hardcoded - see XsecMomentumConfig.
+
+
+@dataclass(frozen=True)
+class XsecMomentumConfig:
+    lookback_days: int = 90          # trailing-return ranking window
+    top_n: int = 3
+    rebalance_weekday: int = XSEC_REBALANCE_WEEKDAY_DEFAULT
+    vol_lookback_days: int = 30      # realized-vol window for position sizing
+    target_daily_vol_pct: float = 0.005   # 0.5% of equity, per position, per day
+    catastrophic_atr_mult: float = 3.0    # fixed stop, set at entry, never trailed
+    target_atr_mult: float = 10.0         # wide - see module note below
+    btc_macro_gate: bool = True
+    max_position_pct: float = 0.20
+
+
+def _trailing_return(frame: pd.DataFrame, day: date, lookback_days: int):
+    """(close at day's completed prior-day bar) / (close lookback_days
+    bars earlier) - 1. None if either bar is unavailable."""
+    cutoff = daily_completed_bar_cutoff(day)
+    if cutoff not in frame.index:
+        return None
+    pos = frame.index.get_loc(cutoff)
+    lookback_pos = pos - lookback_days
+    if lookback_pos < 0:
+        return None
+    recent = frame.iloc[pos]["close"]
+    past = frame.iloc[lookback_pos]["close"]
+    if pd.isna(recent) or pd.isna(past) or past <= 0:
+        return None
+    return float(recent / past - 1.0)
+
+
+def _realized_vol(frame: pd.DataFrame, day: date, vol_lookback_days: int):
+    """Standard deviation of daily pct-change returns over the trailing
+    vol_lookback_days bars ending at day's completed prior-day bar."""
+    cutoff = daily_completed_bar_cutoff(day)
+    if cutoff not in frame.index:
+        return None
+    pos = frame.index.get_loc(cutoff)
+    start_pos = pos - vol_lookback_days + 1
+    if start_pos < 0:
+        return None
+    closes = frame.iloc[start_pos:pos + 1]["close"]
+    if len(closes) < vol_lookback_days or closes.isna().any():
+        return None
+    returns = closes.pct_change().dropna()
+    if returns.empty:
+        return None
+    vol = float(returns.std())
+    return vol if vol > 0 else None
+
+
+def _xsec_bar(frame: pd.DataFrame, day: date):
+    """The completed prior-day bar itself (close/low/atr_14), for entry
+    pricing, stop-hit checks, and sizing - None if unavailable."""
+    cutoff = daily_completed_bar_cutoff(day)
+    if cutoff not in frame.index:
+        return None
+    row = frame.loc[cutoff]
+    if pd.isna(row.get("close")) or pd.isna(row.get("low")) or pd.isna(row.get("atr_14")):
+        return None
+    return row
+
+
+@dataclass
+class _XsecPosition:
+    symbol: str
+    entry_date: date
+    entry_price: float
+    quantity: float
+    stop: float          # fixed at entry, never trailed
+    target: float
+    entry_notional: float
+
+
+def simulate_xsec_momentum_portfolio(
+    daily_ind: dict[str, pd.DataFrame],
+    hourly_crypto_frames: dict[str, pd.DataFrame],
+    start_date: date,
+    end_date: date,
+    portfolio: ResearchPortfolio,
+    cost: ResearchCost,
+    config: XsecMomentumConfig = XsecMomentumConfig(),
+) -> dict:
+    """Weekly cross-sectional rebalance, daily stop monitoring in between.
+    Reuses portfolio.starting_equity/max_position_pct (portfolio.risk_per_trade
+    and max_new_trades_per_day are NOT used here - sizing is vol-targeted,
+    not risk-per-trade, and admission isn't a per-day-count-limited gate;
+    both fields are simply irrelevant to this strategy's shape)."""
+    equity = portfolio.starting_equity
+    cash = portfolio.starting_equity
+    open_positions: dict[str, _XsecPosition] = {}
+    trades: list[dict] = []
+    daily_equity: list[dict] = []
+    rejected: list[dict] = []
+
+    day = start_date
+    while day <= end_date:
+        # -- 1. Daily catastrophic-stop check on every open position ------
+        for symbol in list(open_positions.keys()):
+            frame = daily_ind.get(symbol)
+            bar = _xsec_bar(frame, day) if frame is not None else None
+            if bar is None:
+                continue
+            pos = open_positions[symbol]
+            if float(bar["low"]) <= pos.stop:
+                exit_price = pos.stop
+                trades.append(_xsec_close_trade(pos, day, exit_price, "catastrophic_stop", cost))
+                net = pos.quantity * (exit_price - pos.entry_price) - _xsec_transaction_cost(pos, exit_price, cost)
+                cash += pos.entry_notional + net
+                del open_positions[symbol]
+
+        # -- 2. Weekly rebalance --------------------------------------------
+        if day.weekday() == config.rebalance_weekday:
+            macro = _btc_macro_ok(hourly_crypto_frames, day) if config.btc_macro_gate else True
+            ranked: list[tuple[str, float]] = []
+            if not config.btc_macro_gate or macro:
+                for symbol, frame in daily_ind.items():
+                    ret = _trailing_return(frame, day, config.lookback_days)
+                    if ret is None:
+                        continue
+                    ranked.append((symbol, ret))
+            ranked.sort(key=lambda t: (-t[1], t[0]))
+            target_symbols = {s for s, _ in ranked[:config.top_n]}
+
+            # Exit anything that dropped out of the top N.
+            for symbol in list(open_positions.keys()):
+                if symbol in target_symbols:
+                    continue
+                frame = daily_ind.get(symbol)
+                bar = _xsec_bar(frame, day) if frame is not None else None
+                if bar is None:
+                    rejected.append({"date": day, "symbol": symbol, "reason": "no_bar_for_rebalance_exit"})
+                    continue
+                pos = open_positions[symbol]
+                exit_price = float(bar["close"])
+                trades.append(_xsec_close_trade(pos, day, exit_price, "dropped_from_top_n", cost))
+                gross = pos.quantity * (exit_price - pos.entry_price)
+                net = gross - _xsec_transaction_cost(pos, exit_price, cost)
+                cash += pos.entry_notional + net
+                del open_positions[symbol]
+
+            # Enter anything newly in the top N that isn't already held.
+            for symbol in target_symbols:
+                if symbol in open_positions:
+                    continue
+                frame = daily_ind[symbol]
+                bar = _xsec_bar(frame, day)
+                vol = _realized_vol(frame, day, config.vol_lookback_days)
+                if bar is None or vol is None:
+                    rejected.append({"date": day, "symbol": symbol, "reason": "insufficient_data_for_entry"})
+                    continue
+                price = float(bar["close"])
+                atr_14 = float(bar["atr_14"])
+                target_dollar_vol = equity * config.target_daily_vol_pct
+                notional = target_dollar_vol / vol
+                notional = min(notional, equity * config.max_position_pct, cash)
+                quantity = math.floor(notional / price * 1_000_000_000) / 1_000_000_000
+                if quantity <= 0:
+                    rejected.append({"date": day, "symbol": symbol, "reason": "insufficient_cash_or_quantity"})
+                    continue
+                entry_notional = quantity * price
+                stop = price - config.catastrophic_atr_mult * atr_14
+                target = price + config.target_atr_mult * atr_14
+                # No separate entry-side cost deduction here - the full
+                # round-trip fee (entry leg + exit leg) is applied exactly
+                # once, at close time, via _xsec_transaction_cost() below
+                # (matching _transaction_cost()'s existing pattern in
+                # simulate_portfolio() above). Deducting it here too would
+                # double-count the entry leg.
+                cash -= entry_notional
+                open_positions[symbol] = _XsecPosition(
+                    symbol=symbol, entry_date=day, entry_price=price,
+                    quantity=quantity, stop=stop, target=target, entry_notional=entry_notional,
+                )
+
+        # -- 3. Mark-to-market equity for the day ----------------------------
+        unrealized = 0.0
+        for symbol, pos in open_positions.items():
+            frame = daily_ind.get(symbol)
+            bar = _xsec_bar(frame, day) if frame is not None else None
+            if bar is None:
+                continue
+            unrealized += pos.quantity * (float(bar["close"]) - pos.entry_price)
+        equity = cash + sum(p.entry_notional for p in open_positions.values()) + unrealized
+        daily_equity.append({"date": day, "equity": equity})
+
+        day += timedelta(days=1)
+
+    # Realize all still-open positions at end of test for final equity.
+    final_equity = cash
+    for symbol, pos in open_positions.items():
+        frame = daily_ind.get(symbol)
+        bar = _xsec_bar(frame, end_date) if frame is not None else None
+        exit_price = float(bar["close"]) if bar is not None else pos.entry_price
+        trades.append(_xsec_close_trade(pos, end_date, exit_price, "end_of_test", cost))
+        gross = pos.quantity * (exit_price - pos.entry_price)
+        net = gross - _xsec_transaction_cost(pos, exit_price, cost)
+        final_equity += pos.entry_notional + net
+    if daily_equity:
+        daily_equity[-1]["equity"] = final_equity
+
+    return {
+        "mode": "crypto_xsec_momentum",
+        "portfolio": portfolio.name,
+        "cost_model": cost.name,
+        "config": asdict(config),
+        "trades": trades,
+        "rejected": rejected,
+        "missing_outcomes": [],
+        "daily_equity": daily_equity,
+        "final_equity": final_equity,
+    }
+
+
+def _xsec_transaction_cost(pos: _XsecPosition, exit_price: float, cost: ResearchCost) -> float:
+    entry_notional = pos.quantity * pos.entry_price
+    exit_notional = pos.quantity * exit_price
+    return (entry_notional + exit_notional) * cost.crypto_bps_per_leg / 10_000.0
+
+
+def _xsec_close_trade(pos: _XsecPosition, exit_date: date, exit_price: float, reason: str, cost: ResearchCost) -> dict:
+    gross = pos.quantity * (exit_price - pos.entry_price)
+    transaction_cost = _xsec_transaction_cost(pos, exit_price, cost)
+    net = gross - transaction_cost
+    risk_amount = pos.quantity * (pos.entry_price - pos.stop)
+    return {
+        "symbol": pos.symbol,
+        "market": "crypto",
+        "strategy_version": "crypto_xsec_momentum_v1",
+        "timeframe": "daily",
+        "entry_date": pos.entry_date,
+        "exit_date": exit_date,
+        "entry_price": pos.entry_price,
+        "exit_price": exit_price,
+        "quantity": pos.quantity,
+        "stop": pos.stop,
+        "target": pos.target,
+        "exit_reason": reason,
+        "gross_pnl": gross,
+        "transaction_cost": transaction_cost,
+        "net_pnl": net,
+        "pnl_r": net / risk_amount if risk_amount else None,
+    }

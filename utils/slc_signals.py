@@ -155,8 +155,36 @@ def session_anchored_4h_bars(five_minute_bars: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("end")
 
 
+# Performance only (Phase 6 - profiled: classify_structure() is called
+# once per bar reaching the confirmation check in generate_signals()'s
+# inner loop, always with the SAME trend_bars frame object for the whole
+# call - previously this recomputed confirmed_pivots() over that entire,
+# unchanging frame from scratch every single time (1,171 full rescans for
+# just a 5-month/14.5k-bar AAPL window in profiling, ~45% of total
+# runtime). Cached by object IDENTITY (`is`, not equality) with a strong
+# reference held to the cached frame itself - this can never return a
+# stale result for a different frame no matter how Python reuses freed
+# objects' ids, because the cached frame object is kept alive and
+# compared directly. side_bars is part of the key too, even though every
+# real call site uses the default - defensive, not exercised today.
+# Zero behavior change: same inputs always produce the same output as an
+# uncached call: confirmed_pivots()'s own logic is untouched below.
+_confirmed_pivots_cache: dict = {"frame": None, "side_bars": None, "result": None}
+
+
 def confirmed_pivots(four_hour_bars: pd.DataFrame, *, side_bars: int = 2) -> list[dict]:
     """Return strict pivots and the timestamp each one became knowable."""
+    cache = _confirmed_pivots_cache
+    if cache["frame"] is four_hour_bars and cache["side_bars"] == side_bars:
+        return cache["result"]
+    result = _confirmed_pivots_uncached(four_hour_bars, side_bars=side_bars)
+    cache["frame"] = four_hour_bars
+    cache["side_bars"] = side_bars
+    cache["result"] = result
+    return result
+
+
+def _confirmed_pivots_uncached(four_hour_bars: pd.DataFrame, *, side_bars: int = 2) -> list[dict]:
     frame = _frame(four_hour_bars)
     if side_bars < 1:
         raise ValueError("side_bars must be positive")
@@ -283,6 +311,30 @@ def generate_signals(
     ordinal = {day: i for i, day in enumerate(sessions)}
     candidates: list[SlcSignal] = []
 
+    # Performance only (Phase 6 - profiled: this loop's body ran millions
+    # of individual .iloc[]/DatetimeIndex[] scalar lookups, each carrying
+    # real pandas per-call overhead - see confirmed_pivots()'s cache note
+    # above for the profiling numbers). Every array below is derived
+    # ONCE, up front, from the exact same frame/stochastic/atr objects the
+    # loop already used - positional access into a plain numpy array
+    # (index i -> value) is mathematically identical to the .iloc[i]/
+    # DataFrame[i] access it replaces, just without pandas' per-call
+    # dispatch cost. No control flow, threshold, or ordering below
+    # changed - only how each already-computed value is fetched.
+    index_arr = frame.index.to_numpy()
+    close_arr = frame["close"].to_numpy(dtype=float)
+    open_arr = frame["open"].to_numpy(dtype=float)
+    low_arr = frame["low"].to_numpy(dtype=float)
+    high_arr = frame["high"].to_numpy(dtype=float)
+    k_arr = stochastic["k"].to_numpy(dtype=float)
+    d_arr = stochastic["d"].to_numpy(dtype=float)
+    atr_num_arr = atr.to_numpy(dtype=float)
+    # frame.index is always tz-naive UTC (see _frame()'s docstring) -
+    # _local_day() on a tz-naive input always takes its tz_localize("UTC")
+    # branch, so this vectorized form is exactly equivalent to calling
+    # _local_day() on each index position individually.
+    local_day_arr = frame.index.tz_localize("UTC").tz_convert(EASTERN).date
+
     for level in levels:
         state = "fresh"
         eligible_after: pd.Timestamp | None = level.active_time
@@ -291,12 +343,11 @@ def generate_signals(
         prior_k: float | None = None
         indices = np.flatnonzero(frame.index >= level.active_time)
         for position in indices:
-            ts = pd.Timestamp(frame.index[position])
-            day = _local_day(ts)
+            ts = pd.Timestamp(index_arr[position])
+            day = local_day_arr[position]
             if ordinal.get(day, 0) - ordinal.get(level.activation_session, 0) > max_level_sessions:
                 break
-            row = frame.iloc[position]
-            close = float(row["close"])
+            close = float(close_arr[position])
 
             wrong_break = (
                 (level.direction == "long" and close < level.low)
@@ -323,9 +374,9 @@ def generate_signals(
             if eligible_after is not None and ts < eligible_after:
                 continue
 
-            overlaps = _overlaps(row, level)
-            current_k = stochastic.iloc[position]["k"]
-            current_d = stochastic.iloc[position]["d"]
+            overlaps = low_arr[position] <= level.high and high_arr[position] >= level.low
+            current_k = k_arr[position]
+            current_d = d_arr[position]
             current_k_value = float(current_k) if pd.notna(current_k) else None
             if not overlaps:
                 if touch_started:
@@ -358,13 +409,13 @@ def generate_signals(
             required_structure = "uptrend" if level.direction == "long" else "downtrend"
             if structure != required_structure:
                 continue
-            entry_time = pd.Timestamp(frame.index[position + 1])
-            if _local_day(entry_time) != day or entry_time - ts != timedelta(minutes=5):
+            entry_time = pd.Timestamp(index_arr[position + 1])
+            if local_day_arr[position + 1] != day or entry_time - ts != timedelta(minutes=5):
                 break
             if not _entry_not_late(entry_time):
                 break
-            entry = float(frame.iloc[position + 1]["open"])
-            atr_value = float(atr.iloc[position]) if pd.notna(atr.iloc[position]) else float("nan")
+            entry = float(open_arr[position + 1])
+            atr_value = float(atr_num_arr[position]) if pd.notna(atr_num_arr[position]) else float("nan")
             if not isfinite(atr_value) or atr_value <= 0:
                 break
             buffer = max(0.01, 0.10 * atr_value)

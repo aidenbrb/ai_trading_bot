@@ -1,0 +1,3747 @@
+{
+  "config": {
+    "start": "2026-06-01",
+    "end": "2026-06-30",
+    "decision_time": "11:16 America/New_York",
+    "stock_symbols": [
+      "AAPL",
+      "MSFT",
+      "SPY"
+    ],
+    "crypto_symbols": [
+      "BTC-USD",
+      "ETH-USD"
+    ],
+    "include_crypto_7day": true,
+    "label": "api_smoke",
+    "portfolios": {
+      "current_1pct": {
+        "name": "current_1pct",
+        "starting_equity": 100000.0,
+        "risk_per_trade": 0.01,
+        "max_positions": 5,
+        "max_new_trades_per_day": 2,
+        "max_position_pct": 0.2,
+        "daily_loss_limit": 0.02
+      },
+      "safe_0_25pct": {
+        "name": "safe_0_25pct",
+        "starting_equity": 100000.0,
+        "risk_per_trade": 0.0025,
+        "max_positions": 5,
+        "max_new_trades_per_day": 2,
+        "max_position_pct": 0.2,
+        "daily_loss_limit": 0.02
+      }
+    },
+    "cost_models": {
+      "zero": {
+        "name": "zero",
+        "stock_bps_per_leg": 0.0,
+        "crypto_bps_per_leg": 0.0
+      },
+      "baseline": {
+        "name": "baseline",
+        "stock_bps_per_leg": 5.0,
+        "crypto_bps_per_leg": 35.0
+      },
+      "stressed": {
+        "name": "stressed",
+        "stock_bps_per_leg": 13.0,
+        "crypto_bps_per_leg": 50.0
+      }
+    },
+    "strategy_registry": {
+      "stock_trend_momentum_v1": {
+        "version": "stock_trend_momentum_v1",
+        "market": "stock",
+        "mode": "swing",
+        "execution_eligible": true,
+        "evidence_status": "unqualified",
+        "reason": "Awaiting evidence-first whole-bot validation."
+      },
+      "crypto_trend_momentum_v1": {
+        "version": "crypto_trend_momentum_v1",
+        "market": "crypto",
+        "mode": "swing",
+        "execution_eligible": true,
+        "evidence_status": "unqualified",
+        "reason": "Awaiting evidence-first whole-bot validation."
+      },
+      "orb_v1": {
+        "version": "orb_v1",
+        "market": "stock",
+        "mode": "day",
+        "execution_eligible": false,
+        "evidence_status": "rejected",
+        "reason": "Out-of-sample baseline/stressed performance failed and IEX/SIP overlap was 48.1%."
+      }
+    },
+    "historical_scope": "Historical results are the technical strategy before the RSS news and earnings vetoes; those point-in-time vetoes are validated only in forward paper trading.",
+    "data_policy": {
+      "stocks": "Alpaca SIP, split-adjusted, no fallback",
+      "crypto": "Alpaca US, no fallback"
+    },
+    "config_sha256": "8a5c21f90273dd449e23abab7c8bca6c9f9af986d3684838be985352f2f37f53"
+  },
+  "data_coverage": {
+    "stock": {
+      "attempted": 63,
+      "usable": 63,
+      "coverage_rate": 1.0
+    },
+    "crypto": {
+      "attempted": 60,
+      "usable": 60,
+      "coverage_rate": 1.0
+    }
+  },
+  "benchmarks": {
+    "stock": {
+      "symbol": "SPY",
+      "total_return": -0.013587459356578346,
+      "sharpe": -0.8704046124689844,
+      "max_drawdown": -0.04837881600252758
+    },
+    "crypto": {
+      "symbol": "BTC-USD",
+      "total_return": -0.17918776504442657,
+      "sharpe": -5.4646344558398114,
+      "max_drawdown": -0.17918776504442657
+    }
+  },
+  "summaries": {
+    "stock_only": {
+      "current_1pct": {
+        "zero": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "SPY",
+            "total_return": -0.013587459356578346,
+            "sharpe": -0.8704046124689844,
+            "max_drawdown": -0.04837881600252758
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        },
+        "baseline": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "SPY",
+            "total_return": -0.013587459356578346,
+            "sharpe": -0.8704046124689844,
+            "max_drawdown": -0.04837881600252758
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        },
+        "stressed": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "SPY",
+            "total_return": -0.013587459356578346,
+            "sharpe": -0.8704046124689844,
+            "max_drawdown": -0.04837881600252758
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        }
+      },
+      "safe_0_25pct": {
+        "zero": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "SPY",
+            "total_return": -0.013587459356578346,
+            "sharpe": -0.8704046124689844,
+            "max_drawdown": -0.04837881600252758
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        },
+        "baseline": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "SPY",
+            "total_return": -0.013587459356578346,
+            "sharpe": -0.8704046124689844,
+            "max_drawdown": -0.04837881600252758
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        },
+        "stressed": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "SPY",
+            "total_return": -0.013587459356578346,
+            "sharpe": -0.8704046124689844,
+            "max_drawdown": -0.04837881600252758
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "crypto_weekends": {
+      "current_1pct": {
+        "zero": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        },
+        "baseline": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        },
+        "stressed": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        }
+      },
+      "safe_0_25pct": {
+        "zero": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        },
+        "baseline": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        },
+        "stressed": {
+          "mode": "unknown",
+          "portfolio": null,
+          "cost_model": null,
+          "approved_count": 0,
+          "closed_count": 0,
+          "win_rate": null,
+          "net_expectancy": null,
+          "average_pnl_r": null,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 0.0,
+          "total_return": 0.0,
+          "annualized_return": 0.0,
+          "profit_factor": null,
+          "sharpe": null,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 0.0,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": null,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 0.0
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 0.0
+            }
+          ],
+          "per_symbol_net_pnl": {},
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "crypto_7day": {
+      "current_1pct": {
+        "zero": {
+          "mode": "crypto_7day",
+          "portfolio": "current_1pct",
+          "cost_model": "zero",
+          "approved_count": 1,
+          "closed_count": 1,
+          "win_rate": 1.0,
+          "net_expectancy": 5.751432124031416,
+          "average_pnl_r": 0.01887002615008482,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 5.751432124031416,
+          "total_return": 5.7514321240314154e-05,
+          "annualized_return": 0.0007246245429644027,
+          "profit_factor": 999999.0,
+          "sharpe": 3.488074922742725,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 5.751432124031416,
+          "positive_quarter_fraction": 1.0,
+          "max_symbol_profit_contribution": 1.0,
+          "break_even_cost_bps_per_leg_pool": 1.4370202780471988,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 5.751432124031416
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 5.751432124031416
+            }
+          ],
+          "per_symbol_net_pnl": {
+            "BTC-USD": 5.751432124031416
+          },
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100005.75143212403,
+              "drawdown": 0.0
+            }
+          ]
+        },
+        "baseline": {
+          "mode": "crypto_7day",
+          "portfolio": "current_1pct",
+          "cost_model": "baseline",
+          "approved_count": 1,
+          "closed_count": 1,
+          "win_rate": 0.0,
+          "net_expectancy": -134.3301849667525,
+          "average_pnl_r": -0.44072746550846803,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": -134.3301849667525,
+          "total_return": -0.001343301849667525,
+          "annualized_return": -0.01678752122457272,
+          "profit_factor": 0.0,
+          "sharpe": -3.488074922742725,
+          "sortino": null,
+          "max_drawdown": -0.0013433018496674665,
+          "recent_12m_net_pnl": -134.3301849667525,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": 1.4370202780471988,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": -134.3301849667525
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": -134.3301849667525
+            }
+          ],
+          "per_symbol_net_pnl": {
+            "BTC-USD": -134.3301849667525
+          },
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 99865.66981503325,
+              "drawdown": -0.0013433018496674665
+            }
+          ]
+        },
+        "stressed": {
+          "mode": "crypto_7day",
+          "portfolio": "current_1pct",
+          "cost_model": "stressed",
+          "approved_count": 1,
+          "closed_count": 1,
+          "win_rate": 0.0,
+          "net_expectancy": -194.36516371994563,
+          "average_pnl_r": -0.6376978190764193,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": -194.36516371994563,
+          "total_return": -0.0019436516371994562,
+          "annualized_return": -0.024205998013325236,
+          "profit_factor": 0.0,
+          "sharpe": -3.488074922742724,
+          "sortino": null,
+          "max_drawdown": -0.0019436516371995616,
+          "recent_12m_net_pnl": -194.36516371994563,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": 1.4370202780471988,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": -194.36516371994563
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": -194.36516371994563
+            }
+          ],
+          "per_symbol_net_pnl": {
+            "BTC-USD": -194.36516371994563
+          },
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 99805.63483628005,
+              "drawdown": -0.0019436516371995616
+            }
+          ]
+        }
+      },
+      "safe_0_25pct": {
+        "zero": {
+          "mode": "crypto_7day",
+          "portfolio": "safe_0_25pct",
+          "cost_model": "zero",
+          "approved_count": 1,
+          "closed_count": 1,
+          "win_rate": 1.0,
+          "net_expectancy": 4.717506532904565,
+          "average_pnl_r": 0.01887002615008482,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": 4.717506532904565,
+          "total_return": 4.717506532904565e-05,
+          "annualized_return": 0.0005943243405828191,
+          "profit_factor": 999999.0,
+          "sharpe": 3.488074922742725,
+          "sortino": null,
+          "max_drawdown": 0.0,
+          "recent_12m_net_pnl": 4.717506532904565,
+          "positive_quarter_fraction": 1.0,
+          "max_symbol_profit_contribution": 1.0,
+          "break_even_cost_bps_per_leg_pool": 1.4370202780471988,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": 4.717506532904565
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": 4.717506532904565
+            }
+          ],
+          "per_symbol_net_pnl": {
+            "BTC-USD": 4.717506532904565
+          },
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 100004.7175065329,
+              "drawdown": 0.0
+            }
+          ]
+        },
+        "baseline": {
+          "mode": "crypto_7day",
+          "portfolio": "safe_0_25pct",
+          "cost_model": "baseline",
+          "approved_count": 1,
+          "closed_count": 1,
+          "win_rate": 0.0,
+          "net_expectancy": -110.18186626929096,
+          "average_pnl_r": -0.44072746550846803,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": -110.18186626929096,
+          "total_return": -0.0011018186626929097,
+          "annualized_return": -0.013788916631505832,
+          "profit_factor": 0.0,
+          "sharpe": -3.488074922742724,
+          "sortino": null,
+          "max_drawdown": -0.0011018186626929882,
+          "recent_12m_net_pnl": -110.18186626929096,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": 1.4370202780471988,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": -110.18186626929096
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": -110.18186626929096
+            }
+          ],
+          "per_symbol_net_pnl": {
+            "BTC-USD": -110.18186626929096
+          },
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 99889.8181337307,
+              "drawdown": -0.0011018186626929882
+            }
+          ]
+        },
+        "stressed": {
+          "mode": "crypto_7day",
+          "portfolio": "safe_0_25pct",
+          "cost_model": "stressed",
+          "approved_count": 1,
+          "closed_count": 1,
+          "win_rate": 0.0,
+          "net_expectancy": -159.42445461308907,
+          "average_pnl_r": -0.6376978190764193,
+          "bootstrap_95pct_lower_mean_r": null,
+          "total_net_pnl": -159.42445461308907,
+          "total_return": -0.0015942445461308906,
+          "annualized_return": -0.019894693840829647,
+          "profit_factor": 0.0,
+          "sharpe": -3.4880749227427255,
+          "sortino": null,
+          "max_drawdown": -0.0015942445461308852,
+          "recent_12m_net_pnl": -159.42445461308907,
+          "positive_quarter_fraction": 0.0,
+          "max_symbol_profit_contribution": null,
+          "break_even_cost_bps_per_leg_pool": 1.4370202780471988,
+          "missing_outcome_count": 0,
+          "missing_outcome_rate": 0.0,
+          "ambiguous_count": 0,
+          "benchmark": {
+            "symbol": "BTC-USD",
+            "total_return": -0.17918776504442657,
+            "sharpe": -5.4646344558398114,
+            "max_drawdown": -0.17918776504442657
+          },
+          "quarterly": [
+            {
+              "period": "2026Q2",
+              "net_pnl": -159.42445461308907
+            }
+          ],
+          "yearly": [
+            {
+              "period": "2026",
+              "net_pnl": -159.42445461308907
+            }
+          ],
+          "per_symbol_net_pnl": {
+            "BTC-USD": -159.42445461308907
+          },
+          "equity_curve": [
+            {
+              "date": "2026-06-01",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-02",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-03",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-04",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-05",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-06",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-07",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-08",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-09",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-10",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-11",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-12",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-13",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-14",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-15",
+              "equity": 100000.0,
+              "drawdown": 0.0
+            },
+            {
+              "date": "2026-06-16",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-17",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-18",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-19",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-20",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-21",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-22",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-23",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-24",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-25",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-26",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-27",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-28",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-29",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            },
+            {
+              "date": "2026-06-30",
+              "equity": 99840.5755453869,
+              "drawdown": -0.0015942445461308852
+            }
+          ]
+        }
+      }
+    }
+  },
+  "qualifications": {
+    "stock_only": {
+      "passed": false,
+      "checks": {
+        "closed_trades_at_least_100": false,
+        "data_coverage_at_least_95pct": true,
+        "missing_outcomes_below_1pct": true,
+        "baseline_expectancy_positive": false,
+        "stressed_expectancy_positive": false,
+        "baseline_profit_factor_at_least_1_15": false,
+        "sharpe_at_least_1": false,
+        "sharpe_beats_benchmark": false,
+        "max_drawdown_no_more_than_15pct": true,
+        "recent_12m_positive": false,
+        "positive_quarters_at_least_60pct": false,
+        "bootstrap_lower_mean_r_positive": false,
+        "single_symbol_profit_no_more_than_25pct": false
+      },
+      "failed_checks": [
+        "closed_trades_at_least_100",
+        "baseline_expectancy_positive",
+        "stressed_expectancy_positive",
+        "baseline_profit_factor_at_least_1_15",
+        "sharpe_at_least_1",
+        "sharpe_beats_benchmark",
+        "recent_12m_positive",
+        "positive_quarters_at_least_60pct",
+        "bootstrap_lower_mean_r_positive",
+        "single_symbol_profit_no_more_than_25pct"
+      ]
+    },
+    "crypto_weekends": {
+      "passed": false,
+      "checks": {
+        "closed_trades_at_least_100": false,
+        "data_coverage_at_least_95pct": true,
+        "missing_outcomes_below_1pct": true,
+        "baseline_expectancy_positive": false,
+        "stressed_expectancy_positive": false,
+        "baseline_profit_factor_at_least_1_15": false,
+        "sharpe_at_least_1": false,
+        "sharpe_beats_benchmark": false,
+        "max_drawdown_no_more_than_15pct": true,
+        "recent_12m_positive": false,
+        "positive_quarters_at_least_60pct": false,
+        "bootstrap_lower_mean_r_positive": false,
+        "single_symbol_profit_no_more_than_25pct": false
+      },
+      "failed_checks": [
+        "closed_trades_at_least_100",
+        "baseline_expectancy_positive",
+        "stressed_expectancy_positive",
+        "baseline_profit_factor_at_least_1_15",
+        "sharpe_at_least_1",
+        "sharpe_beats_benchmark",
+        "recent_12m_positive",
+        "positive_quarters_at_least_60pct",
+        "bootstrap_lower_mean_r_positive",
+        "single_symbol_profit_no_more_than_25pct"
+      ]
+    }
+  },
+  "passing_markets": [],
+  "historical_qualification_passed": false,
+  "paper_rollout_candidate": false,
+  "automatic_entry_eligible": false,
+  "automatic_entry_note": "Historical qualification alone does not satisfy the required 90-day/30-closed-trade forward paper gate.",
+  "combined_simulated": false,
+  "historical_scope": "Historical results are the technical strategy before the RSS news and earnings vetoes; those point-in-time vetoes are validated only in forward paper trading.",
+  "determinism": {
+    "passed": true,
+    "first_sha256": "ec78d6121e9f2d551bca79b15750c5fdf498644db3844b0f10f5ca246363b975",
+    "second_sha256": "ec78d6121e9f2d551bca79b15750c5fdf498644db3844b0f10f5ca246363b975"
+  }
+}

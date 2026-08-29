@@ -1,0 +1,210 @@
+{
+  "report_date": "2026-08-28",
+  "generated_at": "2026-08-28T23:51:44.646701",
+  "overall_market_risk": "medium",
+  "macro_summary": "Volatility=low  VIX=14.430000305175781",
+  "stock_market_summary": "",
+  "crypto_market_summary": "",
+  "commodity_summary": "",
+  "items": [
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Analysis: Kevin Warsh sharpens inflation warning at Jackson Hole, signaling possible rate hike"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Fed Chairman Warsh expresses concern about inflation, advocates for 'quieter' central bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "2-year Treasury yield jumps as Warsh says Fed may 'have work to do'"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Fed Chairman Warsh expresses concern about inflation, advocates for 'quieter' central bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Fed's Hammack says 'now is the time to act' on raising interest rates"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Fed\u2019s preferred inflation gauge shows core prices rose 3.3% annually in July"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Singapore inflation hits highest in nearly two years, but undershoots expectations"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Bessent's bond gambit aimed at calming markets is instead stirring inflation worries"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Trump bemoans Fed interest rate policy, says U.S. should be paying much less"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with former employee of Banco Popular de Puerto Rico"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces approval of application by National Westminster Bank Plc"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement actions with former employee of Regions Bank and former employee of United Community Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with SouthPoint Bancshares, Inc. and announces termination of enforcement action with Deutsche Bank AG, DB USA Corporation, and Deutsche Bank AG New York Branch"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with former employee of Regions Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces approval of the application by Coastal Bend Bancshares, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces approval of the application by FS Bancorp, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces approval of the application by Banco Santander, S.A. and Santander Holdings USA, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board requests comment on a proposal to modernize rules for mutual banking organizations"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board requests comment on a proposal to modernize its rule governing the extension of credit to bank \"insiders\"\u2014bank executives, board members and major shareholders who could potentially influence a bank's lending decisions"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement actions with former employee of Regions Bank and former employee of First Interstate Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with Iuka Bancshares, Inc. and The Iuka State Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve issues FOMC statement"
+    }
+  ],
+  "source_errors": []
+}

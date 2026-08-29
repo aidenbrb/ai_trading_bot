@@ -1,0 +1,18 @@
+{
+  "strategy_version": "slc_4h_5m_stock_v1",
+  "frozen_at_utc": "2026-08-12T00:00:00Z",
+  "source_video": "https://youtu.be/ExvoIqNglOk",
+  "document": {
+    "path": "research/slc_4h_5m_stock_v1_preregistration.md",
+    "sha256": "d453ae039c3d9145e986ff6cf27ce98af7418b7b5ea6da0d2ddb728e801c3e9d"
+  },
+  "frozen_inputs": {
+    "utils/market_calendar.py": "e016e0eff92b9820bba99c6d174c7b3fb6534acca94f7edc14470e6ae4fdd964",
+    "backtest/data_cache.py": "4be4ee8c0780a2b39a17ebc483d821719e881477b0f7fd04a6bb2ec4bcaf1958",
+    "utils/cost_model.py": "ba2ba8dc56e8b3af9ea178ae3ef2b7fc29f51830e7c33424e1b90b12deccf990",
+    "utils/alpaca_bars.py": "5359a86b14bde5b1cad551b0103ec34a82f422a449f13ac599f7d4cc29ee3e44",
+    "backtest/whole_bot_metrics.py": "64a5835a755c648d6b595e8d150fbbb781596cf0dc8d884554966d40d1fcc4ea",
+    "backtest/cache/bars_cache.db": "2aa39029331c7dea6c620c8a23a43b70764fe40ad6761eda901da6775d83d841"
+  },
+  "governance": "Append-immutable. Rule changes require a new version or separately hashed amendment."
+}

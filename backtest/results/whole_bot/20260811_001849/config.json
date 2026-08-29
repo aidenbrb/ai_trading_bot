@@ -1,0 +1,85 @@
+{
+  "start": "2026-06-01",
+  "end": "2026-06-30",
+  "decision_time": "11:16 America/New_York",
+  "stock_symbols": [
+    "AAPL",
+    "MSFT",
+    "SPY"
+  ],
+  "crypto_symbols": [
+    "BTC-USD",
+    "ETH-USD"
+  ],
+  "include_crypto_7day": true,
+  "label": "api_smoke",
+  "portfolios": {
+    "current_1pct": {
+      "name": "current_1pct",
+      "starting_equity": 100000.0,
+      "risk_per_trade": 0.01,
+      "max_positions": 5,
+      "max_new_trades_per_day": 2,
+      "max_position_pct": 0.2,
+      "daily_loss_limit": 0.02
+    },
+    "safe_0_25pct": {
+      "name": "safe_0_25pct",
+      "starting_equity": 100000.0,
+      "risk_per_trade": 0.0025,
+      "max_positions": 5,
+      "max_new_trades_per_day": 2,
+      "max_position_pct": 0.2,
+      "daily_loss_limit": 0.02
+    }
+  },
+  "cost_models": {
+    "zero": {
+      "name": "zero",
+      "stock_bps_per_leg": 0.0,
+      "crypto_bps_per_leg": 0.0
+    },
+    "baseline": {
+      "name": "baseline",
+      "stock_bps_per_leg": 5.0,
+      "crypto_bps_per_leg": 35.0
+    },
+    "stressed": {
+      "name": "stressed",
+      "stock_bps_per_leg": 13.0,
+      "crypto_bps_per_leg": 50.0
+    }
+  },
+  "strategy_registry": {
+    "stock_trend_momentum_v1": {
+      "version": "stock_trend_momentum_v1",
+      "market": "stock",
+      "mode": "swing",
+      "execution_eligible": true,
+      "evidence_status": "unqualified",
+      "reason": "Awaiting evidence-first whole-bot validation."
+    },
+    "crypto_trend_momentum_v1": {
+      "version": "crypto_trend_momentum_v1",
+      "market": "crypto",
+      "mode": "swing",
+      "execution_eligible": true,
+      "evidence_status": "unqualified",
+      "reason": "Awaiting evidence-first whole-bot validation."
+    },
+    "orb_v1": {
+      "version": "orb_v1",
+      "market": "stock",
+      "mode": "day",
+      "execution_eligible": false,
+      "evidence_status": "rejected",
+      "reason": "Out-of-sample baseline/stressed performance failed and IEX/SIP overlap was 48.1%."
+    }
+  },
+  "historical_scope": "Historical results are the technical strategy before the RSS news and earnings vetoes; those point-in-time vetoes are validated only in forward paper trading.",
+  "data_policy": {
+    "stocks": "Alpaca SIP, split-adjusted, no fallback",
+    "crypto": "Alpaca US, no fallback"
+  },
+  "config_sha256": "8a5c21f90273dd449e23abab7c8bca6c9f9af986d3684838be985352f2f37f53"
+}

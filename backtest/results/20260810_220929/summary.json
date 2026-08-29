@@ -1,0 +1,194 @@
+{
+  "summaries": [
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "zero",
+      "admitted_count": 692,
+      "triggered_count": 559,
+      "closed_count": 559,
+      "win_rate": 0.15026833631484796,
+      "avg_pnl_r": -0.07097778040433483,
+      "expectancy": -21.17184462675438,
+      "total_pnl": -11835.061146355698,
+      "ambiguous_count": 145,
+      "reservation_overrun_count": 88,
+      "exposure_cap_exceeded_sessions": 54
+    },
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "baseline",
+      "admitted_count": 694,
+      "triggered_count": 556,
+      "closed_count": 556,
+      "win_rate": 0.1366906474820144,
+      "avg_pnl_r": -1.152029706550044,
+      "expectancy": -44.805824317444085,
+      "total_pnl": -24912.038320498912,
+      "ambiguous_count": 146,
+      "reservation_overrun_count": 90,
+      "exposure_cap_exceeded_sessions": 56
+    },
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "stressed",
+      "admitted_count": 692,
+      "triggered_count": 556,
+      "closed_count": 556,
+      "win_rate": 0.1223021582733813,
+      "avg_pnl_r": -2.1913318668994846,
+      "expectancy": -44.962849998533244,
+      "total_pnl": -24999.344599184482,
+      "ambiguous_count": 147,
+      "reservation_overrun_count": 86,
+      "exposure_cap_exceeded_sessions": 51
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "zero",
+      "admitted_count": 2913,
+      "triggered_count": 2399,
+      "closed_count": 2399,
+      "win_rate": 0.1713213839099625,
+      "avg_pnl_r": 0.013622664720848953,
+      "expectancy": 3.2498977795259436,
+      "total_pnl": 7796.504773082738,
+      "ambiguous_count": 472,
+      "reservation_overrun_count": 457,
+      "exposure_cap_exceeded_sessions": 69
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "baseline",
+      "admitted_count": 3016,
+      "triggered_count": 2482,
+      "closed_count": 2482,
+      "win_rate": 0.15390813859790492,
+      "avg_pnl_r": -1.126679979759483,
+      "expectancy": -28.48199546244689,
+      "total_pnl": -70692.31273779318,
+      "ambiguous_count": 481,
+      "reservation_overrun_count": 473,
+      "exposure_cap_exceeded_sessions": 82
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "stressed",
+      "admitted_count": 3014,
+      "triggered_count": 2486,
+      "closed_count": 2486,
+      "win_rate": 0.13395012067578438,
+      "avg_pnl_r": -2.2878998980762066,
+      "expectancy": -37.03681937925718,
+      "total_pnl": -92073.53297683335,
+      "ambiguous_count": 488,
+      "reservation_overrun_count": 479,
+      "exposure_cap_exceeded_sessions": 83
+    }
+  ],
+  "by_direction": {
+    "research_fidelity/zero": {
+      "long": {
+        "admitted_count": 347,
+        "closed_count": 280,
+        "win_rate": 0.17857142857142858,
+        "expectancy": 18.920950908799295
+      },
+      "short": {
+        "admitted_count": 345,
+        "closed_count": 279,
+        "win_rate": 0.12186379928315412,
+        "expectancy": -61.408341938421145
+      }
+    },
+    "research_fidelity/baseline": {
+      "long": {
+        "admitted_count": 349,
+        "closed_count": 278,
+        "win_rate": 0.17266187050359713,
+        "expectancy": -12.402692234525711
+      },
+      "short": {
+        "admitted_count": 345,
+        "closed_count": 278,
+        "win_rate": 0.10071942446043165,
+        "expectancy": -77.20895640036245
+      }
+    },
+    "research_fidelity/stressed": {
+      "long": {
+        "admitted_count": 347,
+        "closed_count": 278,
+        "win_rate": 0.1510791366906475,
+        "expectancy": -14.41765062857341
+      },
+      "short": {
+        "admitted_count": 345,
+        "closed_count": 278,
+        "win_rate": 0.09352517985611511,
+        "expectancy": -75.50804936849308
+      }
+    },
+    "intended_deployment/zero": {
+      "long": {
+        "admitted_count": 1487,
+        "closed_count": 1225,
+        "win_rate": 0.1926530612244898,
+        "expectancy": 6.624824018419354
+      },
+      "short": {
+        "admitted_count": 1426,
+        "closed_count": 1174,
+        "win_rate": 0.14906303236797275,
+        "expectancy": -0.27163939478787924
+      }
+    },
+    "intended_deployment/baseline": {
+      "long": {
+        "admitted_count": 1543,
+        "closed_count": 1268,
+        "win_rate": 0.17034700315457413,
+        "expectancy": -25.788751023346055
+      },
+      "short": {
+        "admitted_count": 1473,
+        "closed_count": 1214,
+        "win_rate": 0.13673805601317957,
+        "expectancy": -31.295038253863574
+      }
+    },
+    "intended_deployment/stressed": {
+      "long": {
+        "admitted_count": 1549,
+        "closed_count": 1278,
+        "win_rate": 0.14945226917057902,
+        "expectancy": -34.296706676630464
+      },
+      "short": {
+        "admitted_count": 1465,
+        "closed_count": 1208,
+        "win_rate": 0.11754966887417219,
+        "expectancy": -39.93571344710233
+      }
+    }
+  },
+  "missing_data": {
+    "excluded_count": 17571,
+    "excluded_rate": 0.189784411993433,
+    "reasons": {
+      "missing opening bar or reference stats": 17571
+    }
+  },
+  "missing_outcome_data_count": 0,
+  "iex_sip_overlap": {
+    "total_sessions": 652,
+    "valid_sessions": 652,
+    "invalid_sessions": 0,
+    "both_empty_sessions": 0,
+    "comparable_sessions": 652,
+    "avg_overlap_rate": 0.4813088521604471,
+    "avg_jaccard": 0.3359845613993933
+  },
+  "universe_caveat": "This backtest evaluates the bot's own static 142-symbol universe (config/universe.py::UNIVERSE), NOT the ~7,000-symbol universe the original ORB research used. Results characterize whether this works for THIS bot's existing symbol list - a materially narrower claim than 'this is a generally profitable market-wide strategy.'",
+  "long_only_note": "Only long stock orders are executable live by this codebase today. Short-side results above are informational only.",
+  "portfolio_model_note": "Admission is a rank-order reservation model at each session's shared 9:35 decision point, not full trigger-time event simulation - see backtest/engine.py's module docstring."
+}

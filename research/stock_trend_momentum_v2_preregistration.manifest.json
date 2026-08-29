@@ -1,0 +1,17 @@
+{
+  "preregistration_document": "research/stock_trend_momentum_v2_preregistration.md",
+  "frozen_at_utc": "2026-08-12T01:30:30.020027+00:00",
+  "document_sha256": "44e5d562353934edd57fec7dbe31303499ed977ea879c8780d668ddc73b7f5ba",
+  "source_file_sha256": {
+    "utils/strategy_signals.py": "92d6f6dd149b4ee75d7aa28ba8929438cb20a9360a4e37132d5b0911d9059151",
+    "utils/indicators.py": "d244a858d49ba48de7e6b5f897300adabb5c815e13297f73c82fc1a7cdd4c47a",
+    "backtest/whole_bot_engine.py": "59e62c21c249f35a0896992c3742d6b02b3badf85651b0aedb167bb4a92350df",
+    "backtest/whole_bot_metrics.py": "64a5835a755c648d6b595e8d150fbbb781596cf0dc8d884554966d40d1fcc4ea",
+    "config/universe.py": "b756bb8b34452619e22b6eeef8a49cfeeda0238847c4b41970ab1a7e7337f979",
+    "utils/market_calendar.py": "e016e0eff92b9820bba99c6d174c7b3fb6534acca94f7edc14470e6ae4fdd964"
+  },
+  "cache_db_path": "backtest/cache/bars_cache.db",
+  "cache_db_sha256": "2aa39029331c7dea6c620c8a23a43b70764fe40ad6761eda901da6775d83d841",
+  "cache_db_sha256_note": "Identical to the hash recorded in backtest/results/failure_analysis/20260811_142144_20260811_203512/manifest.json - confirms no market data changed between that analysis and this freeze.",
+  "usage": "The eventual implementation/ablation/temporal-stability run's own results manifest must include this file's document_sha256 and a fresh cache_db_sha256, and must explicitly compare the fresh cache hash against cache_db_sha256 above. A mismatch invalidates the qualification run (hard-stop or invalid/non-qualifying result) - see the preregistration document, Section 12."
+}

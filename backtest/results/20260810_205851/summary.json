@@ -1,0 +1,194 @@
+{
+  "summaries": [
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "zero",
+      "admitted_count": 27,
+      "triggered_count": 21,
+      "closed_count": 21,
+      "win_rate": 0.14285714285714285,
+      "avg_pnl_r": -0.10062387485904675,
+      "expectancy": -42.013662168458985,
+      "total_pnl": -882.2869055376386,
+      "ambiguous_count": 4,
+      "reservation_overrun_count": 4,
+      "exposure_cap_exceeded_sessions": 1
+    },
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "baseline",
+      "admitted_count": 27,
+      "triggered_count": 22,
+      "closed_count": 22,
+      "win_rate": 0.13636363636363635,
+      "avg_pnl_r": -0.9424037479070371,
+      "expectancy": -221.5969959580487,
+      "total_pnl": -4875.133911077071,
+      "ambiguous_count": 5,
+      "reservation_overrun_count": 4,
+      "exposure_cap_exceeded_sessions": 1
+    },
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "stressed",
+      "admitted_count": 27,
+      "triggered_count": 22,
+      "closed_count": 22,
+      "win_rate": 0.13636363636363635,
+      "avg_pnl_r": -1.7433028879940446,
+      "expectancy": -367.66423065619716,
+      "total_pnl": -8088.613074436338,
+      "ambiguous_count": 5,
+      "reservation_overrun_count": 4,
+      "exposure_cap_exceeded_sessions": 1
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "zero",
+      "admitted_count": 100,
+      "triggered_count": 84,
+      "closed_count": 84,
+      "win_rate": 0.17857142857142858,
+      "avg_pnl_r": -0.324988678106119,
+      "expectancy": -0.4039887696619815,
+      "total_pnl": -33.935056651606445,
+      "ambiguous_count": 18,
+      "reservation_overrun_count": 23,
+      "exposure_cap_exceeded_sessions": 6
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "baseline",
+      "admitted_count": 102,
+      "triggered_count": 85,
+      "closed_count": 85,
+      "win_rate": 0.12941176470588237,
+      "avg_pnl_r": -1.2806310753502657,
+      "expectancy": -53.13602002757756,
+      "total_pnl": -4516.561702344093,
+      "ambiguous_count": 20,
+      "reservation_overrun_count": 21,
+      "exposure_cap_exceeded_sessions": 4
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "stressed",
+      "admitted_count": 100,
+      "triggered_count": 83,
+      "closed_count": 83,
+      "win_rate": 0.14457831325301204,
+      "avg_pnl_r": -2.130134772315284,
+      "expectancy": -93.90526484770574,
+      "total_pnl": -7794.136982359576,
+      "ambiguous_count": 17,
+      "reservation_overrun_count": 21,
+      "exposure_cap_exceeded_sessions": 5
+    }
+  ],
+  "by_direction": {
+    "research_fidelity/zero": {
+      "long": {
+        "admitted_count": 11,
+        "closed_count": 10,
+        "win_rate": 0.0,
+        "expectancy": -314.2705938284352
+      },
+      "short": {
+        "admitted_count": 16,
+        "closed_count": 11,
+        "win_rate": 0.2727272727272727,
+        "expectancy": 205.49263934061034
+      }
+    },
+    "research_fidelity/baseline": {
+      "long": {
+        "admitted_count": 11,
+        "closed_count": 11,
+        "win_rate": 0.0,
+        "expectancy": -487.9052675462797
+      },
+      "short": {
+        "admitted_count": 16,
+        "closed_count": 11,
+        "win_rate": 0.2727272727272727,
+        "expectancy": 44.71127563018229
+      }
+    },
+    "research_fidelity/stressed": {
+      "long": {
+        "admitted_count": 11,
+        "closed_count": 11,
+        "win_rate": 0.0,
+        "expectancy": -637.3618301202953
+      },
+      "short": {
+        "admitted_count": 16,
+        "closed_count": 11,
+        "win_rate": 0.2727272727272727,
+        "expectancy": -97.9666311920991
+      }
+    },
+    "intended_deployment/zero": {
+      "long": {
+        "admitted_count": 50,
+        "closed_count": 43,
+        "win_rate": 0.13953488372093023,
+        "expectancy": -37.643420236088176
+      },
+      "short": {
+        "admitted_count": 50,
+        "closed_count": 41,
+        "win_rate": 0.21951219512195122,
+        "expectancy": 38.6520003292728
+      }
+    },
+    "intended_deployment/baseline": {
+      "long": {
+        "admitted_count": 49,
+        "closed_count": 41,
+        "win_rate": 0.0975609756097561,
+        "expectancy": -91.72051102524743
+      },
+      "short": {
+        "admitted_count": 53,
+        "closed_count": 44,
+        "win_rate": 0.1590909090909091,
+        "expectancy": -17.182289779748814
+      }
+    },
+    "intended_deployment/stressed": {
+      "long": {
+        "admitted_count": 49,
+        "closed_count": 41,
+        "win_rate": 0.12195121951219512,
+        "expectancy": -125.94432418243358
+      },
+      "short": {
+        "admitted_count": 51,
+        "closed_count": 42,
+        "win_rate": 0.16666666666666666,
+        "expectancy": -62.629040259042846
+      }
+    }
+  },
+  "missing_data": {
+    "excluded_count": 339,
+    "excluded_rate": 0.10851472471190782,
+    "reasons": {
+      "missing opening bar or reference stats": 339
+    }
+  },
+  "missing_outcome_data_count": 0,
+  "iex_sip_overlap": {
+    "total_sessions": 22,
+    "valid_sessions": 22,
+    "invalid_sessions": 0,
+    "both_empty_sessions": 0,
+    "comparable_sessions": 22,
+    "avg_overlap_rate": 0.527020202020202,
+    "avg_jaccard": 0.37446966421971334
+  },
+  "universe_caveat": "This backtest evaluates the bot's own static 142-symbol universe (config/universe.py::UNIVERSE), NOT the ~7,000-symbol universe the original ORB research used. Results characterize whether this works for THIS bot's existing symbol list - a materially narrower claim than 'this is a generally profitable market-wide strategy.'",
+  "long_only_note": "Only long stock orders are executable live by this codebase today. Short-side results above are informational only.",
+  "portfolio_model_note": "Admission is a rank-order reservation model at each session's shared 9:35 decision point, not full trigger-time event simulation - see backtest/engine.py's module docstring."
+}

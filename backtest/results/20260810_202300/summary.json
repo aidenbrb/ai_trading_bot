@@ -1,0 +1,179 @@
+{
+  "summaries": [
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "zero",
+      "admitted_count": 1,
+      "triggered_count": 0,
+      "closed_count": 0,
+      "win_rate": null,
+      "avg_pnl_r": null,
+      "expectancy": null,
+      "total_pnl": null,
+      "reservation_overrun_count": 0
+    },
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "baseline",
+      "admitted_count": 1,
+      "triggered_count": 0,
+      "closed_count": 0,
+      "win_rate": null,
+      "avg_pnl_r": null,
+      "expectancy": null,
+      "total_pnl": null,
+      "reservation_overrun_count": 0
+    },
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "stressed",
+      "admitted_count": 1,
+      "triggered_count": 0,
+      "closed_count": 0,
+      "win_rate": null,
+      "avg_pnl_r": null,
+      "expectancy": null,
+      "total_pnl": null,
+      "reservation_overrun_count": 0
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "zero",
+      "admitted_count": 1,
+      "triggered_count": 0,
+      "closed_count": 0,
+      "win_rate": null,
+      "avg_pnl_r": null,
+      "expectancy": null,
+      "total_pnl": null,
+      "reservation_overrun_count": 0
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "baseline",
+      "admitted_count": 1,
+      "triggered_count": 0,
+      "closed_count": 0,
+      "win_rate": null,
+      "avg_pnl_r": null,
+      "expectancy": null,
+      "total_pnl": null,
+      "reservation_overrun_count": 0
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "stressed",
+      "admitted_count": 1,
+      "triggered_count": 0,
+      "closed_count": 0,
+      "win_rate": null,
+      "avg_pnl_r": null,
+      "expectancy": null,
+      "total_pnl": null,
+      "reservation_overrun_count": 0
+    }
+  ],
+  "by_direction": {
+    "research_fidelity/zero": {
+      "long": {
+        "admitted_count": 1,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      },
+      "short": {
+        "admitted_count": 0,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      }
+    },
+    "research_fidelity/baseline": {
+      "long": {
+        "admitted_count": 1,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      },
+      "short": {
+        "admitted_count": 0,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      }
+    },
+    "research_fidelity/stressed": {
+      "long": {
+        "admitted_count": 1,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      },
+      "short": {
+        "admitted_count": 0,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      }
+    },
+    "intended_deployment/zero": {
+      "long": {
+        "admitted_count": 1,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      },
+      "short": {
+        "admitted_count": 0,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      }
+    },
+    "intended_deployment/baseline": {
+      "long": {
+        "admitted_count": 1,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      },
+      "short": {
+        "admitted_count": 0,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      }
+    },
+    "intended_deployment/stressed": {
+      "long": {
+        "admitted_count": 1,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      },
+      "short": {
+        "admitted_count": 0,
+        "closed_count": 0,
+        "win_rate": null,
+        "expectancy": null
+      }
+    }
+  },
+  "missing_data": {
+    "excluded_count": 0,
+    "excluded_rate": 0.0,
+    "reasons": {}
+  },
+  "iex_sip_overlap": {
+    "total_sessions": 3,
+    "valid_sessions": 3,
+    "invalid_sessions": 0,
+    "both_empty_sessions": 2,
+    "comparable_sessions": 1,
+    "avg_overlap_rate": 0.0,
+    "avg_jaccard": 0.0
+  },
+  "universe_caveat": "This backtest evaluates the bot's own static 142-symbol universe (config/universe.py::UNIVERSE), NOT the ~7,000-symbol universe the original ORB research used. Results characterize whether this works for THIS bot's existing symbol list - a materially narrower claim than 'this is a generally profitable market-wide strategy.'",
+  "long_only_note": "Only long stock orders are executable live by this codebase today. Short-side results above are informational only.",
+  "portfolio_model_note": "Admission is a rank-order reservation model at each session's shared 9:35 decision point, not full trigger-time event simulation - see backtest/engine.py's module docstring."
+}

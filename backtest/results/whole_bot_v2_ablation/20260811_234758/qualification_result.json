@@ -1,0 +1,32 @@
+{
+  "passed": false,
+  "checks": {
+    "closed_trades_at_least_100": false,
+    "data_coverage_at_least_95pct": true,
+    "missing_outcomes_below_1pct": false,
+    "baseline_expectancy_positive": false,
+    "stressed_expectancy_positive": false,
+    "baseline_profit_factor_at_least_1_15": false,
+    "sharpe_at_least_1": false,
+    "sharpe_beats_benchmark": false,
+    "max_drawdown_no_more_than_15pct": true,
+    "recent_12m_positive": false,
+    "positive_quarters_at_least_60pct": false,
+    "bootstrap_lower_mean_r_positive": false,
+    "single_symbol_profit_no_more_than_25pct": false
+  },
+  "failed_checks": [
+    "closed_trades_at_least_100",
+    "missing_outcomes_below_1pct",
+    "baseline_expectancy_positive",
+    "stressed_expectancy_positive",
+    "baseline_profit_factor_at_least_1_15",
+    "sharpe_at_least_1",
+    "sharpe_beats_benchmark",
+    "recent_12m_positive",
+    "positive_quarters_at_least_60pct",
+    "bootstrap_lower_mean_r_positive",
+    "single_symbol_profit_no_more_than_25pct"
+  ],
+  "qualification_status": "evaluated"
+}

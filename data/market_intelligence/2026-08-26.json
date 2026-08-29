@@ -1,0 +1,842 @@
+{
+  "report_date": "2026-08-26",
+  "generated_at": "2026-08-26T15:31:36.869962",
+  "overall_market_risk": "medium",
+  "macro_summary": "Volatility=low  VIX=15.510000228881836",
+  "stock_market_summary": "",
+  "crypto_market_summary": "",
+  "commodity_summary": "",
+  "items": [
+    {
+      "symbol": "AMAT",
+      "related_symbols": [
+        "SMTC",
+        "AMAT",
+        "NVDA",
+        "LRCX"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Semtech's Q2 Earnings Surpass Estimates, Revenues Increase Y/Y",
+      "pub_date": "2026-08-26T13:45:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "ARM",
+      "related_symbols": [
+        "CDNS",
+        "SNPS",
+        "ARM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "ARM's 93X Earnings Multiple Overshadows Its Growth Potential",
+      "pub_date": "2026-08-25T17:35:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "AVGO",
+      "related_symbols": [
+        "NVDA",
+        "AVGO",
+        "CLS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "OpenAI Says Its New Chip Outperforms Nvidia\u2019s Blackwell As Nvidia Prepares Earnings Release",
+      "pub_date": "2026-08-26T10:17:53+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "AXON",
+      "related_symbols": [
+        "NVDA",
+        "^GSPC",
+        "^DJI",
+        "AXON",
+        "ERO",
+        "LLY"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Dow Jones AI Giant Nvidia Tests Key Support Level As Pivotal Earnings Report Looms",
+      "pub_date": "2026-08-25T20:41:22+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "AXP",
+      "related_symbols": [
+        "AFRM",
+        "SYF",
+        "SYF-PB",
+        "V",
+        "AXP"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Higher GMV, More Consumers: What Could Drive Affirm's Q4 Earnings?",
+      "pub_date": "2026-08-25T15:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "AXP",
+      "related_symbols": [
+        "AXP"
+      ],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Amex\u2019s low fraud rate turns on its closed system",
+      "pub_date": "2026-08-25T10:38:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "BAC",
+      "related_symbols": [
+        "INTU",
+        "BAC",
+        "BCS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "INTU Stock Plummets After Q4 Results Leave Wall Street Divided: \u2018Unsatisfying Growth\u2019 Meets \u2018Foundations Take Time\u2019",
+      "pub_date": "2026-08-26T12:03:14+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "C",
+      "related_symbols": [
+        "ORCL",
+        "C",
+        "ORCL-PD"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Citi Sees a New Opening After Oracle's Brutal Selloff",
+      "pub_date": "2026-08-26T14:48:53+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CRM",
+      "related_symbols": [
+        "CRM",
+        "TSM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CRM's Q2 Earnings Coming Up: Rising Agentforce Adoption to Aid Sales",
+      "pub_date": "2026-08-25T14:15:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CRM",
+      "related_symbols": [
+        "CRM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What To Expect From Salesforce\u2019s (CRM) Q2 Earnings",
+      "pub_date": "2026-08-25T10:38:44+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CRM",
+      "related_symbols": [
+        "NVDA",
+        "CRWD",
+        "CRM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Nvidia earnings, PCE data: What investors need to watch Wednesday",
+      "pub_date": "2026-08-26T12:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CRWD",
+      "related_symbols": [
+        "NVDA",
+        "CRWD",
+        "CRM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Nvidia earnings, PCE data: What investors need to watch Wednesday",
+      "pub_date": "2026-08-26T12:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "HD",
+      "related_symbols": [
+        "WMT",
+        "COST",
+        "HD",
+        "AMZN",
+        "TGT",
+        "KR"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "The Questions That Defined WMT's Earnings Call",
+      "pub_date": "2026-08-25T20:31:20+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "HD",
+      "related_symbols": [
+        "HD"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Home Depot (HD) Q2 2027 Earnings Call Transcript",
+      "pub_date": "2026-08-25T11:43:42+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "KHC",
+      "related_symbols": [
+        "KHC",
+        "MDLZ",
+        "CPB"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Kraft Heinz Q2 Earnings Beat as 2026 Organic Sales Outlook Improves",
+      "pub_date": "2026-08-25T15:40:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "LOW",
+      "related_symbols": [
+        "LOW"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Lowe's (LOW) Q2 2027 Earnings Call Transcript",
+      "pub_date": "2026-08-26T14:43:30+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "LULU",
+      "related_symbols": [
+        "LULU",
+        "UAA",
+        "UA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Lululemon Athletica Set to Top Second Quarter Earnings Expectations on Cost Control, Share Repurchases, UBS Says",
+      "pub_date": "2026-08-25T15:20:24+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "LULU",
+      "related_symbols": [
+        "LULU"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Lululemon May Cut Annual Earnings Outlook Amid Weak US, China Sales, Warns UBS",
+      "pub_date": "2026-08-25T16:04:51+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MDLZ",
+      "related_symbols": [
+        "KHC",
+        "MDLZ",
+        "CPB"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Kraft Heinz Q2 Earnings Beat as 2026 Organic Sales Outlook Improves",
+      "pub_date": "2026-08-25T15:40:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MDT",
+      "related_symbols": [
+        "MDT",
+        "BSX",
+        "EW"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "MDT's Q1 Earnings on Deck: How Should You Play the Stock Now?",
+      "pub_date": "2026-08-26T13:53:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MRVL",
+      "related_symbols": [
+        "MRVL"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Marvell Technology (MRVL) Reports Earnings Tomorrow: What To Expect",
+      "pub_date": "2026-08-26T03:48:49+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MRVL",
+      "related_symbols": [
+        "MRVL",
+        "AMD",
+        "GOOGL",
+        "AVGO",
+        "ALAB",
+        "NVDA",
+        "AMZN",
+        "GOOG",
+        "MSFT"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Is Marvell (MRVL) Stock Poised for Another AI-Fueled Rally as Q2 Earnings Approach?",
+      "pub_date": "2026-08-25T22:08:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MRVL",
+      "related_symbols": [
+        "MRVL",
+        "NVDA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "MRVL Stock Gains Ahead Of Q2 Earnings \u2013 Wall Street Hikes Price Target, Betting On AI Networking Upside",
+      "pub_date": "2026-08-25T14:45:38+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MRVL",
+      "related_symbols": [
+        "NVDA",
+        "^IXIC",
+        "^GSPC",
+        "^DJI",
+        "MRVL"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Market Braces for Crunch Nvidia Earnings, PCE Report. Stock Futures Fall.",
+      "pub_date": "2026-08-26T11:40:51+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MSFT",
+      "related_symbols": [
+        "META",
+        "NVDA",
+        "CL=F",
+        "MSFT",
+        "BSX",
+        "ZM",
+        "ZS",
+        "FIGS",
+        "SNDK"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Stocks in holding pattern ahead of Nvidia earnings: AlphaCheck",
+      "pub_date": "2026-08-26T14:15:58+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MU",
+      "related_symbols": [
+        "NVDA",
+        "OPAI.PVT",
+        "ANTH.PVT",
+        "^GSPC",
+        "SNDK",
+        "MU"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Why the sustainability of the AI boom could be in focus after Nvidia's earnings call",
+      "pub_date": "2026-08-26T13:59:59+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "NKE",
+      "related_symbols": [
+        "NKE",
+        "DKS",
+        "ADS.DE"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Dick's Sporting Goods stock crash reveals a major problem for struggling Nike",
+      "pub_date": "2026-08-26T11:44:09+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "NVDA",
+      "related_symbols": [
+        "NVDA",
+        "KLSH.PVT",
+        "POLA.PVT"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Nvidia Earnings Prediction Market Preview: What Will Jensen Huang Say?",
+      "pub_date": "2026-08-26T13:51:33+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "NVDA",
+      "related_symbols": [
+        "NVDA",
+        "GOOG",
+        "OPAI.PVT"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Nvidia earnings countdown: 2 things investors need to see for the stock to climb higher",
+      "pub_date": "2026-08-26T15:02:46+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "NVDA",
+      "related_symbols": [
+        "NVDA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Nvidia earnings keep Wall Street futures subdued ahead of key results: Dow Jones, S&P, Nasdaq",
+      "pub_date": "2026-08-26T13:19:10+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "NVDA",
+      "related_symbols": [
+        "NVDA",
+        "OPAI.PVT",
+        "ANTH.PVT",
+        "^GSPC",
+        "SNDK",
+        "MU"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Why the sustainability of the AI boom could be in focus after Nvidia's earnings call",
+      "pub_date": "2026-08-26T13:59:59+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "ORCL",
+      "related_symbols": [
+        "ORCL",
+        "C",
+        "ORCL-PD"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Citi Sees a New Opening After Oracle's Brutal Selloff",
+      "pub_date": "2026-08-26T14:48:53+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PANW",
+      "related_symbols": [
+        "CRWD",
+        "OKTA",
+        "S",
+        "PANW",
+        "ZS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Cybersecurity Stocks Are Priced For Big AI Growth. Why Earnings Could Bring Fireworks.",
+      "pub_date": "2026-08-26T12:49:45+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "REGN",
+      "related_symbols": [
+        "TFC",
+        "VEEV",
+        "BIIB",
+        "LLY",
+        "REGN",
+        "CRM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Veeva's Vault CRM Wins Reinforce Market-Leader Status Ahead of Earnings, Truist Says",
+      "pub_date": "2026-08-25T18:59:39+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "SPGI",
+      "related_symbols": [
+        "SPGI",
+        "NFG",
+        "ABM",
+        "PNR",
+        "NVDA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "The 5 Safest Dividend Kings Are the Place to Be If We Have a 10%-20% Fall Sell-Off",
+      "pub_date": "2026-08-25T12:20:28+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "T",
+      "related_symbols": [
+        "ESK.AX",
+        "T"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Etherstack PLC (ASX:ESK) (H1 2026) Earnings Call Highlights: Record Revenue and Strategic ...",
+      "pub_date": "2026-08-25T01:01:48+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "TGT",
+      "related_symbols": [
+        "TGT"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Target (TGT) Q2 2026 Earnings Call Transcript",
+      "pub_date": "2026-08-26T14:43:29+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "TJX",
+      "related_symbols": [
+        "TJX"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "TJX (TJX) Q2 2027 Earnings Call Transcript",
+      "pub_date": "2026-08-26T14:43:30+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "TSLA",
+      "related_symbols": [
+        "TSLA"
+      ],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Market Chatter: Tesla Cars Not Being Recalled in Europe Over Door Issue",
+      "pub_date": "2026-08-26T13:18:10+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "V",
+      "related_symbols": [
+        "AFRM",
+        "SYF",
+        "SYF-PB",
+        "V",
+        "AXP"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Higher GMV, More Consumers: What Could Drive Affirm's Q4 Earnings?",
+      "pub_date": "2026-08-25T15:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "XOM",
+      "related_symbols": [
+        "BTC-USD",
+        "GC=F",
+        "XOM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Arthur Hayes Says Bitcoin Can Hit $250,000 Without A Credit Crisis \u2013 But Warns Of 75% Crash",
+      "pub_date": "2026-08-26T11:44:50+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "ZS",
+      "related_symbols": [
+        "META",
+        "NVDA",
+        "CL=F",
+        "MSFT",
+        "BSX",
+        "ZM",
+        "ZS",
+        "FIGS",
+        "SNDK"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Stocks in holding pattern ahead of Nvidia earnings: AlphaCheck",
+      "pub_date": "2026-08-26T14:15:58+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "ZS",
+      "related_symbols": [
+        "CRWD",
+        "OKTA",
+        "S",
+        "PANW",
+        "ZS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Cybersecurity Stocks Are Priced For Big AI Growth. Why Earnings Could Bring Fireworks.",
+      "pub_date": "2026-08-26T12:49:45+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Fed\u2019s preferred inflation gauge shows core prices rose 3.3% annually in July"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Canada unveils retaliatory tariffs on about $20 billion of U.S. goods"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Fed\u2019s preferred inflation gauge shows core prices rose 3.3% annually in July"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Singapore inflation hits highest in nearly two years, but undershoots expectations"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Bessent's bond gambit aimed at calming markets is instead stirring inflation worries"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Trump bemoans Fed interest rate policy, says U.S. should be paying much less"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces approval of application by National Westminster Bank Plc"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement actions with former employee of Regions Bank and former employee of United Community Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with SouthPoint Bancshares, Inc. and announces termination of enforcement action with Deutsche Bank AG, DB USA Corporation, and Deutsche Bank AG New York Branch"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with former employee of Regions Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces approval of the application by Coastal Bend Bancshares, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces approval of the application by FS Bancorp, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces approval of the application by Banco Santander, S.A. and Santander Holdings USA, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board requests comment on a proposal to modernize its rule governing the extension of credit to bank \"insiders\"\u2014bank executives, board members and major shareholders who could potentially influence a bank's lending decisions"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board requests comment on a proposal to modernize rules for mutual banking organizations"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with Iuka Bancshares, Inc. and The Iuka State Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement actions with former employee of Regions Bank and former employee of First Interstate Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve issues FOMC statement"
+    }
+  ],
+  "source_errors": []
+}

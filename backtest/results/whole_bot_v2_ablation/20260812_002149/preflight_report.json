@@ -1,0 +1,49 @@
+{
+  "preregistration_scope": {
+    "document_sha256": "44e5d562353934edd57fec7dbe31303499ed977ea879c8780d668ddc73b7f5ba",
+    "cache_db_sha256_preflight": "2aa39029331c7dea6c620c8a23a43b70764fe40ad6761eda901da6775d83d841",
+    "untouched_source_files": {
+      "config/universe.py": "b756bb8b34452619e22b6eeef8a49cfeeda0238847c4b41970ab1a7e7337f979",
+      "utils/market_calendar.py": "e016e0eff92b9820bba99c6d174c7b3fb6534acca94f7edc14470e6ae4fdd964",
+      "backtest/whole_bot_metrics.py": "64a5835a755c648d6b595e8d150fbbb781596cf0dc8d884554966d40d1fcc4ea"
+    },
+    "intentionally_modified_source_files": {
+      "backtest/whole_bot_engine.py": {
+        "frozen": "59e62c21c249f35a0896992c3742d6b02b3badf85651b0aedb167bb4a92350df",
+        "current": "e64c6051851ad1e78992a5b5b05f3fa6578370da663d9529a8b9a8b66878e843",
+        "changed": true
+      },
+      "utils/indicators.py": {
+        "frozen": "d244a858d49ba48de7e6b5f897300adabb5c815e13297f73c82fc1a7cdd4c47a",
+        "current": "cd4680f9f828b76909084eaf692ed7b690e186fbbb7997ca8201780f54960f3b",
+        "changed": true
+      },
+      "utils/strategy_signals.py": {
+        "frozen": "92d6f6dd149b4ee75d7aa28ba8929438cb20a9360a4e37132d5b0911d9059151",
+        "current": "bdc08a651662a2f691376e137b81e309d6fefac6ac1abc816fc7aa2bb3372c8a",
+        "changed": true
+      }
+    }
+  },
+  "deployment_guardrail": {
+    "baseline_record_path": "C:\\Users\\dougf\\TradingBot\\ai_trading_bot\\research\\stock_trend_momentum_v2_implementation_baseline_check_20260812T031719230674Z.json",
+    "deployment_files_sha256": {
+      "utils/strategy_registry.py": "925065689427ddd87559a940e1efe3b5ab26836ff137431ca07ab2bfefbc6545",
+      "run_pipeline.py": "0c41f709909acd522b1bc2361d914b15242b7b772d061721b572397d4b34f4f4",
+      "nodes/execution_node.py": "9390c26a3b81ebae0e605b77c30cda95ef0aa4f66e5b8eb57b44c8368c37bc77"
+    },
+    "scheduler_files_sha256": {
+      "run_bot.bat": "0d9f348eae57e2c942ba9fe1da695c061acf07ed86ea8a8543175c61dd832a2d",
+      "scripts/run_daily.bat": "8d056a85b15b5768599e3f0c34c91c26eaa34227656a5ef23c5e6ae629017064",
+      "scripts/run_day_preflight.bat": "9e74c50b547cc98c3810a945a3432825890d81ee93763009c794efeec6a2324e",
+      "scripts/run_day_open.bat": "7b4dbb73c6cd6c429b5b991175b86864ed239a626c76915805f2abe3ded478bb",
+      "scripts/run_day_shadow.bat": "814a1f0a60b11c7f71e95cc481c9cc4d4abf42d5f0d7bc52340f32dce3517222",
+      "scripts/run_monitor_only.bat": "7ab3332b840d3a0c7c27a6275dfc6e02908df7b1050bb7cd35076d0ec6c430b9"
+    }
+  },
+  "cache_integrity": {
+    "pre_run_sha256": "2aa39029331c7dea6c620c8a23a43b70764fe40ad6761eda901da6775d83d841",
+    "post_run_sha256": "2aa39029331c7dea6c620c8a23a43b70764fe40ad6761eda901da6775d83d841",
+    "unchanged": true
+  }
+}

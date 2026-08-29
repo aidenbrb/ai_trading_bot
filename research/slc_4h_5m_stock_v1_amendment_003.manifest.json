@@ -1,0 +1,10 @@
+{
+  "strategy_version": "slc_4h_5m_stock_v1",
+  "amendment": 3,
+  "parent_document_sha256": "d453ae039c3d9145e986ff6cf27ce98af7418b7b5ea6da0d2ddb728e801c3e9d",
+  "path": "research/slc_4h_5m_stock_v1_amendment_003.md",
+  "sha256": "36e666ec3c41c71aafb2d73df4e747c8b053aec4a399270a18eda013ae272cda",
+  "strategy_rule_change": false,
+  "governance_rule_change": true,
+  "historical_backtest_status": "deferred_not_abandoned"
+}

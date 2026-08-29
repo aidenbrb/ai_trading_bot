@@ -1,0 +1,67 @@
+{
+  "coverage_rate": 0.0,
+  "incomplete_count": 10,
+  "data_cache_misses": [
+    {
+      "symbol": "AAPL",
+      "interval": "research-stock-sip-5Minute",
+      "start": "2025-02-02 00:00:00",
+      "end": "2025-03-02 00:00:00"
+    },
+    {
+      "symbol": "SPY",
+      "interval": "research-stock-sip-5Minute",
+      "start": "2025-02-02 00:00:00",
+      "end": "2025-03-02 00:00:00"
+    },
+    {
+      "symbol": "AAPL",
+      "interval": "research-stock-sip-5Minute",
+      "start": "2025-03-02 00:00:00",
+      "end": "2025-03-30 00:00:00"
+    },
+    {
+      "symbol": "SPY",
+      "interval": "research-stock-sip-5Minute",
+      "start": "2025-03-02 00:00:00",
+      "end": "2025-03-30 00:00:00"
+    },
+    {
+      "symbol": "AAPL",
+      "interval": "research-stock-sip-5Minute",
+      "start": "2025-03-30 00:00:00",
+      "end": "2025-04-27 00:00:00"
+    },
+    {
+      "symbol": "SPY",
+      "interval": "research-stock-sip-5Minute",
+      "start": "2025-03-30 00:00:00",
+      "end": "2025-04-27 00:00:00"
+    },
+    {
+      "symbol": "AAPL",
+      "interval": "research-stock-sip-5Minute",
+      "start": "2025-04-27 00:00:00",
+      "end": "2025-05-25 00:00:00"
+    },
+    {
+      "symbol": "SPY",
+      "interval": "research-stock-sip-5Minute",
+      "start": "2025-04-27 00:00:00",
+      "end": "2025-05-25 00:00:00"
+    },
+    {
+      "symbol": "AAPL",
+      "interval": "research-stock-sip-5Minute",
+      "start": "2025-05-25 00:00:00",
+      "end": "2025-06-07 00:00:00"
+    },
+    {
+      "symbol": "SPY",
+      "interval": "research-stock-sip-5Minute",
+      "start": "2025-05-25 00:00:00",
+      "end": "2025-06-07 00:00:00"
+    }
+  ],
+  "outcome_cache_misses": []
+}

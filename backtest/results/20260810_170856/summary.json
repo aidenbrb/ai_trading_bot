@@ -1,0 +1,576 @@
+{
+  "summaries": [
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "zero",
+      "trade_count": 34,
+      "triggered_count": 28,
+      "closed_count": 28,
+      "win_rate": 0.32142857142857145,
+      "avg_pnl_r": 1.3012798244708443,
+      "expectancy": 327.9512788028852,
+      "total_pnl": 9182.635806480786,
+      "ambiguous_count": 2
+    },
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "baseline",
+      "trade_count": 34,
+      "triggered_count": 28,
+      "closed_count": 28,
+      "win_rate": 0.32142857142857145,
+      "avg_pnl_r": 0.5580527512381722,
+      "expectancy": 145.33962032530326,
+      "total_pnl": 4069.5093691084912,
+      "ambiguous_count": 2
+    },
+    {
+      "scenario": "research_fidelity",
+      "cost_model": "stressed",
+      "trade_count": 34,
+      "triggered_count": 28,
+      "closed_count": 28,
+      "win_rate": 0.32142857142857145,
+      "avg_pnl_r": -0.18517432199447123,
+      "expectancy": -37.272038152271875,
+      "total_pnl": -1043.6170682636125,
+      "ambiguous_count": 2
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "zero",
+      "trade_count": 34,
+      "triggered_count": 28,
+      "closed_count": 28,
+      "win_rate": 0.32142857142857145,
+      "avg_pnl_r": 1.3012798244708443,
+      "expectancy": 107.51952353731885,
+      "total_pnl": 3010.5466590449278,
+      "ambiguous_count": 2
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "baseline",
+      "trade_count": 34,
+      "triggered_count": 28,
+      "closed_count": 28,
+      "win_rate": 0.32142857142857145,
+      "avg_pnl_r": 0.5580527512381721,
+      "expectancy": 55.5824506062378,
+      "total_pnl": 1556.3086169746584,
+      "ambiguous_count": 2
+    },
+    {
+      "scenario": "intended_deployment",
+      "cost_model": "stressed",
+      "trade_count": 34,
+      "triggered_count": 28,
+      "closed_count": 28,
+      "win_rate": 0.32142857142857145,
+      "avg_pnl_r": -0.1851743219944712,
+      "expectancy": 3.6453776751585023,
+      "total_pnl": 102.07057490443806,
+      "ambiguous_count": 2
+    }
+  ],
+  "by_direction": {
+    "research_fidelity/zero": {
+      "long": {
+        "trade_count": 12,
+        "closed_count": 10,
+        "win_rate": 0.4,
+        "expectancy": 335.60329437030435
+      },
+      "short": {
+        "trade_count": 22,
+        "closed_count": 18,
+        "win_rate": 0.2777777777777778,
+        "expectancy": 323.7001590432079
+      }
+    },
+    "research_fidelity/baseline": {
+      "long": {
+        "trade_count": 12,
+        "closed_count": 10,
+        "win_rate": 0.4,
+        "expectancy": 152.7105375123735
+      },
+      "short": {
+        "trade_count": 22,
+        "closed_count": 18,
+        "win_rate": 0.2777777777777778,
+        "expectancy": 141.24466633248645
+      }
+    },
+    "research_fidelity/stressed": {
+      "long": {
+        "trade_count": 12,
+        "closed_count": 10,
+        "win_rate": 0.4,
+        "expectancy": -30.182219345551726
+      },
+      "short": {
+        "trade_count": 22,
+        "closed_count": 18,
+        "win_rate": 0.2777777777777778,
+        "expectancy": -41.210826378227516
+      }
+    },
+    "intended_deployment/zero": {
+      "long": {
+        "trade_count": 12,
+        "closed_count": 10,
+        "win_rate": 0.4,
+        "expectancy": 82.75972026969364
+      },
+      "short": {
+        "trade_count": 22,
+        "closed_count": 18,
+        "win_rate": 0.2777777777777778,
+        "expectancy": 121.27496979711061
+      }
+    },
+    "intended_deployment/baseline": {
+      "long": {
+        "trade_count": 12,
+        "closed_count": 10,
+        "win_rate": 0.4,
+        "expectancy": 30.652132633342354
+      },
+      "short": {
+        "trade_count": 22,
+        "closed_count": 18,
+        "win_rate": 0.2777777777777778,
+        "expectancy": 69.43262725784638
+      }
+    },
+    "intended_deployment/stressed": {
+      "long": {
+        "trade_count": 12,
+        "closed_count": 10,
+        "win_rate": 0.4,
+        "expectancy": -21.45545500300706
+      },
+      "short": {
+        "trade_count": 22,
+        "closed_count": 18,
+        "win_rate": 0.2777777777777778,
+        "expectancy": 17.590284718583817
+      }
+    }
+  },
+  "missing_data": {
+    "excluded_count": 0,
+    "excluded_rate": 0.0,
+    "reasons": {}
+  },
+  "iex_sip_overlap": [
+    {
+      "session_date": "2026-07-01",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-02",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-06",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-07",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-08",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-09",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-10",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-13",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-14",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-15",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-16",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-17",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-20",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-21",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-22",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-23",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-24",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-27",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-28",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-29",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-30",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-07-31",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-08-03",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-08-04",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-08-05",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-08-06",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    },
+    {
+      "session_date": "2026-08-07",
+      "iex_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "sip_top": [
+        "AAPL",
+        "NVDA",
+        "TSLA"
+      ],
+      "overlap_count": 3,
+      "overlap_rate": 1.0
+    }
+  ],
+  "universe_caveat": "This backtest evaluates the bot's own static 142-symbol universe (config/universe.py::UNIVERSE), NOT the ~7,000-symbol universe the original ORB research used. Results characterize whether this works for THIS bot's existing symbol list - a materially narrower claim than 'this is a generally profitable market-wide strategy.'",
+  "long_only_note": "Only long stock orders are executable live by this codebase today. Short-side results above are informational only."
+}

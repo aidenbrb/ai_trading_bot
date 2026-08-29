@@ -1,0 +1,1989 @@
+{
+  "report_date": "2026-08-05",
+  "generated_at": "2026-08-05T16:28:17.637767",
+  "overall_market_risk": "medium",
+  "macro_summary": "Volatility=low  VIX=16.200000762939453",
+  "stock_market_summary": "",
+  "crypto_market_summary": "",
+  "commodity_summary": "",
+  "items": [
+    {
+      "symbol": "AAPL",
+      "related_symbols": [
+        "SPCX",
+        "^GSPC",
+        "GOOG",
+        "AAPL",
+        "TSLA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "SpaceX\u2019s $1T Goal and 3 More Shockers From Musk on the Earnings Call",
+      "pub_date": "2026-08-05T15:28:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "ABT",
+      "related_symbols": [
+        "ABT",
+        "DHR"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Abbott vs Danaher: Which Healthcare Stock Looks Better Positioned Following Earnings?",
+      "pub_date": "2026-08-04T16:55:59+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "AMAT",
+      "related_symbols": [
+        "PCTY",
+        "ACIW",
+        "ADI",
+        "AMAT"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Paylocity Q4 Earnings Beat Estimates, Revenues Increase Y/Y",
+      "pub_date": "2026-08-05T14:33:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "AMD",
+      "related_symbols": [
+        "AMD"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "7 numbers from AMD earnings reveal an ultra-bullish future: AlphaSpace stats to know",
+      "pub_date": "2026-08-05T13:12:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "AVGO",
+      "related_symbols": [
+        "GFS",
+        "AVGO"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "GlobalFoundries Inc. (GFS) Surpasses Q2 Earnings and Revenue Estimates",
+      "pub_date": "2026-08-05T12:15:04+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "AXON",
+      "related_symbols": [
+        "AXON",
+        "DRS",
+        "KTOS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Axon Enterprise Q2 Earnings on Deck: How to Approach the Stock Now?",
+      "pub_date": "2026-08-03T15:02:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "BA",
+      "related_symbols": [
+        "NVDA",
+        "TDG",
+        "BA",
+        "AIR.PA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "TransDigm Group Incorporated Q3 2026 Earnings Call Summary",
+      "pub_date": "2026-08-05T02:15:41+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "BA",
+      "related_symbols": [
+        "AIN",
+        "BA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Albany International Q2 Earnings Call Highlights",
+      "pub_date": "2026-08-04T20:04:02+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "BAC",
+      "related_symbols": [
+        "OKLO",
+        "NVDA",
+        "BAC"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Oklo Reports Earnings on Aug. 7. Here's What Investors Should Be Watching.",
+      "pub_date": "2026-08-04T20:20:01+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "BKNG",
+      "related_symbols": [
+        "BKNG"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "BKNG Q2 Earnings Call Centers on Resilience, AI and Savings",
+      "pub_date": "2026-08-05T14:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "BKNG",
+      "related_symbols": [
+        "BKNG"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Booking Holdings Inc (BKNG) (Q2 2026) Earnings Call Highlights: Strong Beat Across All Metrics, ...",
+      "pub_date": "2026-08-05T05:06:26+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "BLK",
+      "related_symbols": [
+        "BTC-USD",
+        "BLK"
+      ],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "First US Bitcoin ETF to be Delisted from NYSE After Just 2 Years",
+      "pub_date": "2026-08-05T13:45:34+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "BLK",
+      "related_symbols": [
+        "CRCL",
+        "BLK",
+        "V",
+        "MA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Circle shares climb after Q2 results, federal bank charter approval and higher guidance",
+      "pub_date": "2026-08-05T12:58:24+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "BLK",
+      "related_symbols": [
+        "CRCL",
+        "BLK",
+        "V",
+        "MA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Circle jumps 7% in premarket trade after Q2 bank charter, in-line earnings",
+      "pub_date": "2026-08-05T11:15:03+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "BX",
+      "related_symbols": [
+        "PLTR",
+        "NVDA",
+        "GOOG",
+        "BX",
+        "MCD",
+        "MRK",
+        "GOOGL",
+        "AMZN",
+        "CAT"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Top Midday Stories: Bessent Says US, Iran Could Soon Reach Hormuz Deal; Palantir Shares Soar on Strong Q2 Results, Guidance",
+      "pub_date": "2026-08-04T16:06:03+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CAT",
+      "related_symbols": [
+        "CAT"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CAT Q2 Earnings Call Focuses on Backlog and Capacity Growth",
+      "pub_date": "2026-08-05T14:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CAT",
+      "related_symbols": [
+        "CAT"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Caterpillar Inc (CAT) (Q2 2026) Earnings Call Highlights: Record $20. ...",
+      "pub_date": "2026-08-04T21:04:38+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CI",
+      "related_symbols": [
+        "CVS",
+        "CI",
+        "UNH"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CVS Stock Slides On 2027 Outlook Despite Hearty Earnings Beat",
+      "pub_date": "2026-08-05T14:37:29+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CI",
+      "related_symbols": [
+        "CI"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Jefferies downgrades Cigna to Hold on mounting 2027 earnings headwinds",
+      "pub_date": "2026-08-04T18:01:12+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CMCSA",
+      "related_symbols": [
+        "DIS",
+        "CMCSA",
+        "NFLX"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Disney's Quarterly Earnings Top Views, Revenue Falls Short Despite 'Toy Story 5' Boost",
+      "pub_date": "2026-08-05T14:45:48+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CMG",
+      "related_symbols": [
+        "CMG",
+        "YUM",
+        "SG",
+        "CALM",
+        "KR"
+      ],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "CMG, YUM, SG, CALM, KR Stocks In Focus: How Recalls, Outbreaks And Supply Chain Chaos Rattled Consumer Stocks In 2026",
+      "pub_date": "2026-08-05T08:45:52+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "COF",
+      "related_symbols": [
+        "NAVI",
+        "ENVA",
+        "COF",
+        "COF-PK",
+        "COF-PL",
+        "COF-PN"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Navient Set to Report Q2 Earnings: What's in Store for the Stock?",
+      "pub_date": "2026-08-03T16:52:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "COF",
+      "related_symbols": [
+        "EZPW",
+        "GC=F",
+        "COF",
+        "COF-PK",
+        "COF-PL",
+        "COF-PN",
+        "ALLY"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "EZCORP Gears Up to Post Q3 Earnings: What's in the Offing?",
+      "pub_date": "2026-08-03T15:16:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "COP",
+      "related_symbols": [
+        "BRK-B",
+        "UBER",
+        "LLY",
+        "KHC",
+        "CVS",
+        "SNDK",
+        "WDC",
+        "DASH",
+        "EBAY",
+        "EXPE",
+        "COP",
+        "ABNB",
+        "LYFT",
+        "KVUE",
+        "HTZ",
+        "KDP",
+        "DDOG",
+        "SG",
+        "RL",
+        "MNST",
+        "UAA",
+        "WEN",
+        "VST"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Jobs Report, Berkshire Earnings: What to Watch the Rest of the Week",
+      "pub_date": "2026-08-05T07:18:36+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "COP",
+      "related_symbols": [
+        "COP",
+        "OXY",
+        "LNG",
+        "EE"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "ConocoPhillips Gears Up to Report Q2 Earnings: What's in the Cards?",
+      "pub_date": "2026-08-03T18:19:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CSCO",
+      "related_symbols": [
+        "CSCO"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Dear Cisco Stock Fans, Earnings Are Just Around the Corner",
+      "pub_date": "2026-08-04T19:57:23+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CVS",
+      "related_symbols": [
+        "CVS",
+        "CI",
+        "UNH"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CVS Stock Slides On 2027 Outlook Despite Hearty Earnings Beat",
+      "pub_date": "2026-08-05T14:37:29+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CVS",
+      "related_symbols": [
+        "CVS",
+        "DGX",
+        "LH"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CVS Health Q2 Earnings and Revenues Top Estimates, Stock Climbs",
+      "pub_date": "2026-08-05T14:20:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CVS",
+      "related_symbols": [
+        "CVS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CVS Health (CVS) Q2 Earnings and Revenues Beat Estimates",
+      "pub_date": "2026-08-05T11:45:03+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CVS",
+      "related_symbols": [
+        "CVS",
+        "FDS",
+        "^GSPC",
+        "LLY"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CVS Health Raises Earnings Outlook, but the Stock Is Falling",
+      "pub_date": "2026-08-05T14:20:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CVS",
+      "related_symbols": [
+        "CVS",
+        "FDS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CVS Health Q2 Adjusted Earnings, Revenue Rise; Lifts 2026 Adjusted EPS Outlook",
+      "pub_date": "2026-08-05T10:46:13+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "CVX",
+      "related_symbols": [
+        "EOG",
+        "CVX",
+        "XOM",
+        "CL=F",
+        "NG=F"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "EOG Q2 Earnings Beat Estimates on Higher Volumes & Prices",
+      "pub_date": "2026-08-05T15:02:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DE",
+      "related_symbols": [
+        "ZBRA",
+        "DE"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Zebra Technologies (ZBRA) Beats Q2 Earnings and Revenue Estimates",
+      "pub_date": "2026-08-04T11:50:03+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DE",
+      "related_symbols": [
+        "CNH",
+        "DE",
+        "AGCO",
+        "^GSPC"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CNH Earnings Were So Good They Pulled Deere Stock Up",
+      "pub_date": "2026-08-03T20:26:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DE",
+      "related_symbols": [
+        "CNH",
+        "DE"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CNH Industrial (CNH) Q2 Earnings and Revenues Beat Estimates",
+      "pub_date": "2026-08-03T11:40:02+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DIS",
+      "related_symbols": [
+        "DIS",
+        "LION"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Walt Disney (DIS) Q3 Earnings Top Estimates",
+      "pub_date": "2026-08-05T12:15:03+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DIS",
+      "related_symbols": [
+        "DIS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Compared to Estimates, Disney (DIS) Q3 Earnings: A Look at Key Metrics",
+      "pub_date": "2026-08-05T13:30:10+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DIS",
+      "related_symbols": [
+        "DIS",
+        "FDS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Walt Disney Fiscal Q3 Adjusted Earnings, Revenue Rise; Shares Up Pre-Bell",
+      "pub_date": "2026-08-05T10:46:23+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DIS",
+      "related_symbols": [
+        "DIS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Disney earnings beat lifts shares despite revenue miss",
+      "pub_date": "2026-08-05T11:19:20+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DIS",
+      "related_symbols": [
+        "DIS",
+        "CMCSA",
+        "NFLX"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Disney's Quarterly Earnings Top Views, Revenue Falls Short Despite 'Toy Story 5' Boost",
+      "pub_date": "2026-08-05T14:45:48+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DVN",
+      "related_symbols": [
+        "DVN"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Devon Energy (DVN) Q2 Earnings and Revenues Beat Estimates",
+      "pub_date": "2026-08-04T21:40:05+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DVN",
+      "related_symbols": [
+        "DVN",
+        "FDS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Devon Energy Q2 Adjusted Earnings Rise",
+      "pub_date": "2026-08-04T20:30:01+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DVN",
+      "related_symbols": [
+        "DVN"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Devon Energy: Q2 Earnings Snapshot",
+      "pub_date": "2026-08-04T20:17:56+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "DXCM",
+      "related_symbols": [
+        "DXCM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "DexCom (DXCM) Q2 2026 Earnings Call Transcript",
+      "pub_date": "2026-08-04T00:15:22+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "EBAY",
+      "related_symbols": [
+        "EBAY"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "eBay (EBAY) Is Down 6.7% After Depop-Driven Cost Concerns and Analyst Downgrades Ahead of Q2 Earnings",
+      "pub_date": "2026-08-05T01:11:33+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "ELV",
+      "related_symbols": [
+        "ELV"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Is Elevance Health (ELV) Entering a Major Earnings Recovery?",
+      "pub_date": "2026-08-04T16:21:57+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "ELV",
+      "related_symbols": [
+        "CVS",
+        "UNH",
+        "ELV"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CVS Health's Q2 Earnings on Deck: How Should You Play the Stock?",
+      "pub_date": "2026-08-03T13:55:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "EOG",
+      "related_symbols": [
+        "EOG",
+        "CVX",
+        "XOM",
+        "CL=F",
+        "NG=F"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "EOG Q2 Earnings Beat Estimates on Higher Volumes & Prices",
+      "pub_date": "2026-08-05T15:02:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "EOG",
+      "related_symbols": [
+        "EOG"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "EOG Resources (EOG) Beats Q2 Earnings and Revenue Estimates",
+      "pub_date": "2026-08-04T21:40:06+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "ETN",
+      "related_symbols": [
+        "ETN"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "ETN Q2 Earnings Call Highlights Ramp Progress and Raised Outlook",
+      "pub_date": "2026-08-03T14:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "F",
+      "related_symbols": [
+        "LCID",
+        "F",
+        "GM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "LCID Q2 Earnings Miss on Inventory Charges, Revenues Beat Estimates",
+      "pub_date": "2026-08-05T15:12:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "F",
+      "related_symbols": [
+        "RIVN",
+        "F",
+        "GM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "RIVN Q2 Earnings Beat on Software Growth, Regulatory Credits",
+      "pub_date": "2026-08-05T14:47:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "F",
+      "related_symbols": [
+        "CMI",
+        "GM",
+        "F"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Cummins Q2 Earnings Miss Estimates on High Costs, Revenues Beat",
+      "pub_date": "2026-08-05T14:45:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "GILD",
+      "related_symbols": [
+        "GILD",
+        "MRK",
+        "GSK"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "GILD Q2 Earnings Beat on HIV and Trodelvy Growth, Product Sales Outlook Raised",
+      "pub_date": "2026-08-05T15:22:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "GILD",
+      "related_symbols": [
+        "GILD"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Compared to Estimates, Gilead (GILD) Q2 Earnings: A Look at Key Metrics",
+      "pub_date": "2026-08-04T23:00:01+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "GM",
+      "related_symbols": [
+        "LCID",
+        "F",
+        "GM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "LCID Q2 Earnings Miss on Inventory Charges, Revenues Beat Estimates",
+      "pub_date": "2026-08-05T15:12:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "GM",
+      "related_symbols": [
+        "RIVN",
+        "F",
+        "GM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "RIVN Q2 Earnings Beat on Software Growth, Regulatory Credits",
+      "pub_date": "2026-08-05T14:47:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "GM",
+      "related_symbols": [
+        "CMI",
+        "GM",
+        "F"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Cummins Q2 Earnings Miss Estimates on High Costs, Revenues Beat",
+      "pub_date": "2026-08-05T14:45:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "GS",
+      "related_symbols": [
+        "CPNG",
+        "GS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Coupang (CPNG) Stock Fair Value Edges Lower After Analysts Rework Earnings",
+      "pub_date": "2026-08-04T23:16:28+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "HD",
+      "related_symbols": [
+        "HD"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "The Home Depot to Host Second Quarter Earnings Conference Call on August 18",
+      "pub_date": "2026-08-04T12:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "ISRG",
+      "related_symbols": [
+        "MSFT",
+        "AZN",
+        "AMZN",
+        "GOOG",
+        "SHEL",
+        "MRVL",
+        "^DJI",
+        "^GSPC",
+        "^IXIC",
+        "BA",
+        "BMY",
+        "WDC",
+        "MU",
+        "LRCX",
+        "SNDK",
+        "INTC",
+        "ISRG",
+        "ADBE",
+        "STX"
+      ],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "FTSE 100 Live: London lagging as AstraZeneca plunges and commodities slip",
+      "pub_date": "2026-08-03T06:17:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "KHC",
+      "related_symbols": [
+        "KHC",
+        "JBS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Kraft Heinz (KHC) Surpasses Q2 Earnings and Revenue Estimates",
+      "pub_date": "2026-08-05T12:15:05+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "KHC",
+      "related_symbols": [
+        "KHC"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Kraft Heinz (KHC) Q2 Earnings: How Key Metrics Compare to Wall Street Estimates",
+      "pub_date": "2026-08-05T13:30:04+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "KHC",
+      "related_symbols": [
+        "KHC"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Kraft Heinz Fiscal Q2 Adjusted Earnings, Net Sales Fall; Fiscal 2026 Adjusted EPS Outlook Updated",
+      "pub_date": "2026-08-05T11:49:38+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "KHC",
+      "related_symbols": [
+        "KHC"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Kraft Heinz Q2 Earnings Call Highlights",
+      "pub_date": "2026-08-05T12:04:06+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "LLY",
+      "related_symbols": [
+        "LLY"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Eli Lilly (LLY) Q2 Earnings and Revenues Surpass Estimates",
+      "pub_date": "2026-08-05T12:15:05+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "LLY",
+      "related_symbols": [
+        "LLY"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Lilly (LLY) Q2 Earnings: Taking a Look at Key Metrics Versus Estimates",
+      "pub_date": "2026-08-05T14:00:02+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "LLY",
+      "related_symbols": [
+        "LLY",
+        "FDS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Eli Lilly's Q2 Non-GAAP Earnings, Revenue Rise; Raises 2026 Revenue Outlook",
+      "pub_date": "2026-08-05T11:07:21+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MA",
+      "related_symbols": [
+        "CRCL",
+        "COIN",
+        "V",
+        "MA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Circle Internet Stock Falls on an Earnings Beat. It\u2019s the Crypto Slump.",
+      "pub_date": "2026-08-05T15:42:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MA",
+      "related_symbols": [
+        "CRCL",
+        "BLK",
+        "V",
+        "MA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Circle shares climb after Q2 results, federal bank charter approval and higher guidance",
+      "pub_date": "2026-08-05T12:58:24+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MA",
+      "related_symbols": [
+        "CRCL",
+        "BLK",
+        "V",
+        "MA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Circle jumps 7% in premarket trade after Q2 bank charter, in-line earnings",
+      "pub_date": "2026-08-05T11:15:03+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MA",
+      "related_symbols": [
+        "FISV",
+        "MA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Fiserv-Mastercard Deal Comes As Investors Brace For Q2 Earnings: FISV Retail Sentiment Softens",
+      "pub_date": "2026-08-05T05:21:17+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MDLZ",
+      "related_symbols": [
+        "MDLZ"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Mondelez\u2019s (MDLZ) Earnings Beat May Matter Less Than Its 2027 Growth Bet",
+      "pub_date": "2026-08-04T17:06:45+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MO",
+      "related_symbols": [
+        "MO"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Altria (MO) Q2 2026 Earnings Call Transcript",
+      "pub_date": "2026-08-04T00:15:22+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MPC",
+      "related_symbols": [
+        "MPC"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "MPC Q2 Earnings Call Highlights Refining Capture and Cash Returns",
+      "pub_date": "2026-08-05T14:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MPC",
+      "related_symbols": [
+        "MPC"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Marathon Petroleum (MPC) Q2 Earnings: How Key Metrics Compare to Wall Street Estimates",
+      "pub_date": "2026-08-05T13:30:05+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MPC",
+      "related_symbols": [
+        "MPC"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Marathon Petroleum Corp (MPC) (Q2 2026) Earnings Call Highlights: Record EBITDA and Strategic ...",
+      "pub_date": "2026-08-04T23:01:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MPC",
+      "related_symbols": [
+        "MPC",
+        "VLO",
+        "XOM",
+        "CL=F",
+        "NVDA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Oil Refiners Are Quietly Printing Money. This Company\u2019s Earnings Jumped 975%",
+      "pub_date": "2026-08-05T13:30:11+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MRK",
+      "related_symbols": [
+        "MRK"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "MRK Q2 Earnings Call Puts Pipeline Progress in Focus",
+      "pub_date": "2026-08-05T14:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MS",
+      "related_symbols": [
+        "CRCL",
+        "USDC-USD",
+        "MS",
+        "MS-PQ",
+        "IBM",
+        "COIN",
+        "^NYA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Circle Revenue Misses Estimates as Crypto Markets Mired in Rout",
+      "pub_date": "2026-08-05T10:10:53+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "MU",
+      "related_symbols": [
+        "GFS",
+        "MU"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "GlobalFoundries Q2 Earnings Call Highlights",
+      "pub_date": "2026-08-05T15:04:26+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "NFLX",
+      "related_symbols": [
+        "DIS",
+        "CMCSA",
+        "NFLX"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Disney's Quarterly Earnings Top Views, Revenue Falls Short Despite 'Toy Story 5' Boost",
+      "pub_date": "2026-08-05T14:45:48+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "NVDA",
+      "related_symbols": [
+        "NVDA",
+        "SPCX",
+        "2317.TW"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "NVDA Stock Bucks Selloff Premarket On SpaceX Boost, Foxconn\u2019s Sales Update",
+      "pub_date": "2026-08-05T09:29:38+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "OXY",
+      "related_symbols": [
+        "OXY",
+        "SRE"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Occidental Petroleum Set to Report Q2 Earnings: How to Play the Stock?",
+      "pub_date": "2026-08-05T12:41:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "OXY",
+      "related_symbols": [
+        "OXY"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Countdown to Occidental (OXY) Q2 Earnings: Wall Street Forecasts for Key Metrics",
+      "pub_date": "2026-08-04T13:15:04+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PANW",
+      "related_symbols": [
+        "QLYS",
+        "PANW"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Qualys (QLYS) Tops Q2 Earnings and Revenue Estimates",
+      "pub_date": "2026-08-04T21:40:09+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PFE",
+      "related_symbols": [
+        "PFE"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Pfizer Q2 Earnings Call Highlights Non-COVID Growth and Cost Cuts",
+      "pub_date": "2026-08-05T14:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PFE",
+      "related_symbols": [
+        "PFE"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Pfizer Q2 Earnings Call Highlights",
+      "pub_date": "2026-08-05T12:04:07+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PFE",
+      "related_symbols": [
+        "PFE",
+        "BMY"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "PFE Q2 Earnings Top, 2026 Sales View Tweaked, COVID Forecast Cut",
+      "pub_date": "2026-08-04T15:44:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PFE",
+      "related_symbols": [
+        "PFE"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Pfizer Stock Slips Despite Earnings Beat and $2.5 Billion Cuts",
+      "pub_date": "2026-08-05T15:04:56+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PFE",
+      "related_symbols": [
+        "PFE",
+        "LLY"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Pfizer (PFE) Q2 Earnings and Revenues Top Estimates",
+      "pub_date": "2026-08-04T12:05:04+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PLD",
+      "related_symbols": [
+        "IRM",
+        "PLD",
+        "DLR",
+        "DLR-PJ",
+        "DLR-PL"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "IRM Q2 AFFO Beats Estimates on Data Center and ALM Growth, '26 View Up",
+      "pub_date": "2026-08-05T15:02:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PSX",
+      "related_symbols": [
+        "PSX"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Phillips 66 (PSX) Beats Q2 Earnings and Revenue Estimates",
+      "pub_date": "2026-08-05T12:15:06+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PSX",
+      "related_symbols": [
+        "PSX"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Phillips 66 (PSX) Q2 Earnings: Taking a Look at Key Metrics Versus Estimates",
+      "pub_date": "2026-08-05T13:30:10+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PSX",
+      "related_symbols": [
+        "PSX",
+        "FDS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Phillips 66 Q2 Adjusted Earnings Rise",
+      "pub_date": "2026-08-05T11:20:56+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "PSX",
+      "related_symbols": [
+        "PSX"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Phillips 66: Q2 Earnings Snapshot",
+      "pub_date": "2026-08-05T11:15:06+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "RTX",
+      "related_symbols": [
+        "HWM",
+        "TXT",
+        "RTX"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Should Howmet Aerospace Shares be in Your Portfolio Pre-Q2 Earnings?",
+      "pub_date": "2026-08-05T15:07:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "SBUX",
+      "related_symbols": [
+        "SBUX"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "SBUX Q3 Earnings Call Highlights Durable Traffic Recovery",
+      "pub_date": "2026-08-03T14:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "SCHW",
+      "related_symbols": [
+        "SCHW"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Charles Schwab (SCHW) Stock Still Looks Cheap On Fair Value Yet Fair On Earnings",
+      "pub_date": "2026-08-04T22:10:35+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "SPG",
+      "related_symbols": [
+        "HST",
+        "SPG",
+        "O",
+        "SPG-PJ"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "3 REITs to Watch for Potential Upside This Earnings Season",
+      "pub_date": "2026-08-04T18:27:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "SPGI",
+      "related_symbols": [
+        "^GSPC",
+        "SNDK",
+        "DIS",
+        "SHOP",
+        "SPGI",
+        "^SPX",
+        "EXPE",
+        "ANET",
+        "KHC",
+        "GPN",
+        "SPCX",
+        "APP",
+        "AMD",
+        "CVS",
+        "UBER",
+        "MCK",
+        "DASH",
+        "PSX",
+        "EBAY",
+        "LLY",
+        "^IXIC",
+        "^DJI",
+        "CL=F"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Stocks Rise Pre-Bell Amid Growing Hopes for Hormuz Deal; Traders Await More Corporate Earnings",
+      "pub_date": "2026-08-05T12:15:58+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "TJX",
+      "related_symbols": [
+        "TJX",
+        "MSLH.L"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Will TJX (TJX) Beat Estimates Again in Its Next Earnings Report?",
+      "pub_date": "2026-08-03T16:10:02+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "TJX",
+      "related_symbols": [
+        "SG",
+        "TJX",
+        "CMRC"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CMRC Gears Up to Report Q2 Earnings: What's in the Cards?",
+      "pub_date": "2026-08-04T16:36:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "TSLA",
+      "related_symbols": [
+        "TSLA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Tesla (TSLA) Q2 2026 Earnings Call Transcript",
+      "pub_date": "2026-08-05T15:14:12+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "TXN",
+      "related_symbols": [
+        "MCHP",
+        "ADI",
+        "ON",
+        "TXN"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Buy Microchip Stock Before Q1 Earnings? Here's What to Know",
+      "pub_date": "2026-08-04T18:08:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "UBER",
+      "related_symbols": [
+        "UBER"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Uber Technologies (UBER) Tops Q2 Earnings Estimates",
+      "pub_date": "2026-08-05T12:15:08+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "UBER",
+      "related_symbols": [
+        "UBER"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Uber shares retreat as weak outlook overshadows Q2 earnings and bookings beat",
+      "pub_date": "2026-08-05T14:14:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "UBER",
+      "related_symbols": [
+        "UBER"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Uber shares slip as third-quarter earnings outlook disappoints investors",
+      "pub_date": "2026-08-05T13:51:03+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "UBER",
+      "related_symbols": [
+        "UBER",
+        "FDS"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Uber Technologies Q2 Non-GAAP Earnings, Revenue Rise; Q3 Non-GAAP Earnings Guidance Set",
+      "pub_date": "2026-08-05T11:22:15+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "UNH",
+      "related_symbols": [
+        "CVS",
+        "CI",
+        "UNH"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CVS Stock Slides On 2027 Outlook Despite Hearty Earnings Beat",
+      "pub_date": "2026-08-05T14:37:29+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "V",
+      "related_symbols": [
+        "CRCL",
+        "COIN",
+        "V",
+        "MA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Circle Internet Stock Falls on an Earnings Beat. It\u2019s the Crypto Slump.",
+      "pub_date": "2026-08-05T15:42:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "V",
+      "related_symbols": [
+        "CRCL",
+        "BLK",
+        "V",
+        "MA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Circle shares climb after Q2 results, federal bank charter approval and higher guidance",
+      "pub_date": "2026-08-05T12:58:24+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "V",
+      "related_symbols": [
+        "CRCL",
+        "BLK",
+        "V",
+        "MA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Circle jumps 7% in premarket trade after Q2 bank charter, in-line earnings",
+      "pub_date": "2026-08-05T11:15:03+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "VRTX",
+      "related_symbols": [
+        "VRTX",
+        "CRNX",
+        "CRSP"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "VRTX's Q2 Earnings Lag Estimates, Revenues Top, 2026 Sales View Raised",
+      "pub_date": "2026-08-04T14:57:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "VRTX",
+      "related_symbols": [
+        "VRTX"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "VRTX Q2 Earnings Call Highlights Launch Momentum & Higher Outlook",
+      "pub_date": "2026-08-04T14:00:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "XOM",
+      "related_symbols": [
+        "CL=F",
+        "XOM"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "ExxonMobil Holdings (XOM) Could Be 9% Undervalued On Strong Q2 Earnings",
+      "pub_date": "2026-08-05T04:28:05+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "XOM",
+      "related_symbols": [
+        "EOG",
+        "CVX",
+        "XOM",
+        "CL=F",
+        "NG=F"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "EOG Q2 Earnings Beat Estimates on Higher Volumes & Prices",
+      "pub_date": "2026-08-05T15:02:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "XOM",
+      "related_symbols": [
+        "XOM",
+        "CL=F",
+        "CVX",
+        "BP"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Should You Buy ExxonMobil Stock Despite Its Q2 Earnings Miss?",
+      "pub_date": "2026-08-04T15:24:00+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": "XOM",
+      "related_symbols": [
+        "MPC",
+        "VLO",
+        "XOM",
+        "CL=F",
+        "NVDA"
+      ],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Oil Refiners Are Quietly Printing Money. This Company\u2019s Earnings Jumped 975%",
+      "pub_date": "2026-08-05T13:30:11+00:00",
+      "relevance_source": "yahoo_related_tickers"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Trump admin refunds $100 billion in 'liberation day' tariffs"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Manufacturing survey shows inflation worries 'worse than pandemic era,' adding to Fed pressure"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "As Warsh\u2019s Fed faces pressure to act on inflation, these indicators show it\u2019s at its lowest in years"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "U.S. economy slowed to 1.5% growth rate in Q2; June core inflation at 3.3%"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "What a divided Fed means for investors"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Singapore tightens monetary policy in surprise move as rising oil prices rekindle inflation risk"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Trump's new global tariff draws rebukes from trade partners over forced labor justification"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Kevin Warsh has homed in on three key phrases. How Fed watchers interpret them"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Trump plans generic drug tariffs from 2028 with two-year delay testing U.S. onshoring push"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Renewed Hormuz hostilities drive ECB rates rethink amid \u2018extremely volatile\u2019 outlook"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces approval of the application by Coastal Bend Bancshares, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces approval of the application by FS Bancorp, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces approval of the application by Banco Santander, S.A. and Santander Holdings USA, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board requests comment on a proposal to modernize its rule governing the extension of credit to bank \"insiders\"\u2014bank executives, board members and major shareholders who could potentially influence a bank's lending decisions"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board requests comment on a proposal to modernize rules for mutual banking organizations"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement actions with former employee of Regions Bank and former employee of First Interstate Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with Iuka Bancshares, Inc. and The Iuka State Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve issues FOMC statement"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with former chief lending officer of Heritage State Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve announces the leadership and objectives of its task forces to advance the conduct of monetary policy"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with TS Banking Group, Inc. and TS Contrarian Bancshares, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board requests comment on a proposal to amend its requirements for banks to maintain anti-money laundering programs"
+    }
+  ],
+  "source_errors": []
+}

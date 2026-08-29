@@ -1,0 +1,478 @@
+{
+  "qualification": {
+    "passed": false,
+    "checks": {
+      "closed_trades_at_least_100": false,
+      "data_coverage_at_least_95pct": true,
+      "missing_outcomes_below_1pct": true,
+      "baseline_expectancy_positive": false,
+      "stressed_expectancy_positive": false,
+      "baseline_profit_factor_at_least_1_15": false,
+      "sharpe_at_least_1": false,
+      "sharpe_beats_benchmark": false,
+      "max_drawdown_no_more_than_15pct": true,
+      "recent_12m_positive": false,
+      "positive_quarters_at_least_60pct": false,
+      "bootstrap_lower_mean_r_positive": false,
+      "single_symbol_profit_no_more_than_25pct": false
+    },
+    "failed_checks": [
+      "closed_trades_at_least_100",
+      "baseline_expectancy_positive",
+      "stressed_expectancy_positive",
+      "baseline_profit_factor_at_least_1_15",
+      "sharpe_at_least_1",
+      "sharpe_beats_benchmark",
+      "recent_12m_positive",
+      "positive_quarters_at_least_60pct",
+      "bootstrap_lower_mean_r_positive",
+      "single_symbol_profit_no_more_than_25pct"
+    ],
+    "qualification_status": "evaluated",
+    "historical_pass_does_not_enable_execution": true,
+    "shortability_assumption_unverified": true
+  },
+  "coverage_rate": 1.0,
+  "signal_count": 3,
+  "deterministic_repeatability": true,
+  "summaries": {
+    "safe_0_25pct__zero": {
+      "mode": "stock_only",
+      "portfolio": "safe_0_25pct",
+      "cost_model": "zero",
+      "approved_count": 3,
+      "closed_count": 3,
+      "win_rate": 0.3333333333333333,
+      "net_expectancy": -12.212390476190459,
+      "average_pnl_r": 0.02062616483420802,
+      "bootstrap_95pct_lower_mean_r": -1.0,
+      "total_net_pnl": -36.63717142857138,
+      "total_return": -0.0003663717142857138,
+      "annualized_return": -0.032906838104449165,
+      "profit_factor": 0.5714874530100207,
+      "sharpe": 1.3539760074113572,
+      "sortino": null,
+      "max_drawdown": -0.0004950000000000232,
+      "recent_12m_net_pnl": -36.63717142857138,
+      "positive_quarter_fraction": 0.0,
+      "max_symbol_profit_contribution": null,
+      "break_even_cost_bps_per_leg_pool": -3.0587548567979344,
+      "missing_outcome_count": 0,
+      "missing_outcome_rate": 0.0,
+      "ambiguous_count": 0,
+      "benchmark": {
+        "symbol": "SPY",
+        "total_return": 0.010765207120560172,
+        "sharpe": 6.461780809410132,
+        "max_drawdown": -0.005200382479743748
+      },
+      "quarterly": [
+        {
+          "period": "2025Q2",
+          "net_pnl": -36.63717142857138
+        }
+      ],
+      "yearly": [
+        {
+          "period": "2025",
+          "net_pnl": -36.63717142857138
+        }
+      ],
+      "per_symbol_net_pnl": {
+        "AAPL": -36.63717142857138
+      },
+      "equity_curve": [
+        {
+          "date": "2025-06-02",
+          "equity": 99950.5,
+          "drawdown": -0.0004950000000000232
+        },
+        {
+          "date": "2025-06-03",
+          "equity": 99950.5,
+          "drawdown": -0.0004950000000000232
+        },
+        {
+          "date": "2025-06-04",
+          "equity": 99950.5,
+          "drawdown": -0.0004950000000000232
+        },
+        {
+          "date": "2025-06-05",
+          "equity": 99999.36130857143,
+          "drawdown": -6.386914285672063e-06
+        },
+        {
+          "date": "2025-06-06",
+          "equity": 99963.36282857142,
+          "drawdown": -0.00036637171428577364
+        }
+      ]
+    },
+    "safe_0_25pct__baseline": {
+      "mode": "stock_only",
+      "portfolio": "safe_0_25pct",
+      "cost_model": "baseline",
+      "approved_count": 3,
+      "closed_count": 3,
+      "win_rate": 0.3333333333333333,
+      "net_expectancy": -32.17540001428569,
+      "average_pnl_r": -0.5629095620970624,
+      "bootstrap_95pct_lower_mean_r": -1.5537988815083457,
+      "total_net_pnl": -96.52620004285708,
+      "total_return": -0.0009652620004285709,
+      "annualized_return": -0.08440674083825594,
+      "profit_factor": 0.23017290955922237,
+      "sharpe": -2.782243700402924,
+      "sortino": null,
+      "max_drawdown": -0.0009652620004286794,
+      "recent_12m_net_pnl": -96.52620004285708,
+      "positive_quarter_fraction": 0.0,
+      "max_symbol_profit_contribution": null,
+      "break_even_cost_bps_per_leg_pool": -3.0587548567979344,
+      "missing_outcome_count": 0,
+      "missing_outcome_rate": 0.0,
+      "ambiguous_count": 0,
+      "benchmark": {
+        "symbol": "SPY",
+        "total_return": 0.010765207120560172,
+        "sharpe": 6.461780809410132,
+        "max_drawdown": -0.005200382479743748
+      },
+      "quarterly": [
+        {
+          "period": "2025Q2",
+          "net_pnl": -96.52620004285708
+        }
+      ],
+      "yearly": [
+        {
+          "period": "2025",
+          "net_pnl": -96.52620004285708
+        }
+      ],
+      "per_symbol_net_pnl": {
+        "AAPL": -96.52620004285708
+      },
+      "equity_curve": [
+        {
+          "date": "2025-06-02",
+          "equity": 99930.54754,
+          "drawdown": -0.0006945245999999683
+        },
+        {
+          "date": "2025-06-03",
+          "equity": 99930.54754,
+          "drawdown": -0.0006945245999999683
+        },
+        {
+          "date": "2025-06-04",
+          "equity": 99930.54754,
+          "drawdown": -0.0006945245999999683
+        },
+        {
+          "date": "2025-06-05",
+          "equity": 99959.40819791715,
+          "drawdown": -0.0004059180208285662
+        },
+        {
+          "date": "2025-06-06",
+          "equity": 99903.47379995714,
+          "drawdown": -0.0009652620004286794
+        }
+      ]
+    },
+    "safe_0_25pct__stressed": {
+      "mode": "stock_only",
+      "portfolio": "safe_0_25pct",
+      "cost_model": "stressed",
+      "approved_count": 3,
+      "closed_count": 3,
+      "win_rate": 0.0,
+      "net_expectancy": -64.11621527523808,
+      "average_pnl_r": -1.496566725187095,
+      "bootstrap_95pct_lower_mean_r": -2.4398770919216983,
+      "total_net_pnl": -192.34864582571421,
+      "total_return": -0.0019234864582571422,
+      "annualized_return": -0.16122056141005403,
+      "profit_factor": 0.0,
+      "sharpe": -7.414914696000967,
+      "sortino": -4.822958012856156,
+      "max_drawdown": -0.0019234864582571287,
+      "recent_12m_net_pnl": -192.34864582571421,
+      "positive_quarter_fraction": 0.0,
+      "max_symbol_profit_contribution": null,
+      "break_even_cost_bps_per_leg_pool": -3.0587548567979344,
+      "missing_outcome_count": 0,
+      "missing_outcome_rate": 0.0,
+      "ambiguous_count": 0,
+      "benchmark": {
+        "symbol": "SPY",
+        "total_return": 0.010765207120560172,
+        "sharpe": 6.461780809410132,
+        "max_drawdown": -0.005200382479743748
+      },
+      "quarterly": [
+        {
+          "period": "2025Q2",
+          "net_pnl": -192.34864582571421
+        }
+      ],
+      "yearly": [
+        {
+          "period": "2025",
+          "net_pnl": -192.34864582571421
+        }
+      ],
+      "per_symbol_net_pnl": {
+        "AAPL": -192.34864582571421
+      },
+      "equity_curve": [
+        {
+          "date": "2025-06-02",
+          "equity": 99898.623604,
+          "drawdown": -0.0010137639600000803
+        },
+        {
+          "date": "2025-06-03",
+          "equity": 99898.623604,
+          "drawdown": -0.0010137639600000803
+        },
+        {
+          "date": "2025-06-04",
+          "equity": 99898.623604,
+          "drawdown": -0.0010137639600000803
+        },
+        {
+          "date": "2025-06-05",
+          "equity": 99895.48322087029,
+          "drawdown": -0.0010451677912971524
+        },
+        {
+          "date": "2025-06-06",
+          "equity": 99807.65135417429,
+          "drawdown": -0.0019234864582571287
+        }
+      ]
+    },
+    "current_1pct__zero": {
+      "mode": "stock_only",
+      "portfolio": "current_1pct",
+      "cost_model": "zero",
+      "approved_count": 3,
+      "closed_count": 3,
+      "win_rate": 0.3333333333333333,
+      "net_expectancy": -12.212390476190459,
+      "average_pnl_r": 0.02062616483420802,
+      "bootstrap_95pct_lower_mean_r": -1.0,
+      "total_net_pnl": -36.63717142857138,
+      "total_return": -0.0003663717142857138,
+      "annualized_return": -0.032906838104449165,
+      "profit_factor": 0.5714874530100207,
+      "sharpe": 1.3539760074113572,
+      "sortino": null,
+      "max_drawdown": -0.0004950000000000232,
+      "recent_12m_net_pnl": -36.63717142857138,
+      "positive_quarter_fraction": 0.0,
+      "max_symbol_profit_contribution": null,
+      "break_even_cost_bps_per_leg_pool": -3.0587548567979344,
+      "missing_outcome_count": 0,
+      "missing_outcome_rate": 0.0,
+      "ambiguous_count": 0,
+      "benchmark": {
+        "symbol": "SPY",
+        "total_return": 0.010765207120560172,
+        "sharpe": 6.461780809410132,
+        "max_drawdown": -0.005200382479743748
+      },
+      "quarterly": [
+        {
+          "period": "2025Q2",
+          "net_pnl": -36.63717142857138
+        }
+      ],
+      "yearly": [
+        {
+          "period": "2025",
+          "net_pnl": -36.63717142857138
+        }
+      ],
+      "per_symbol_net_pnl": {
+        "AAPL": -36.63717142857138
+      },
+      "equity_curve": [
+        {
+          "date": "2025-06-02",
+          "equity": 99950.5,
+          "drawdown": -0.0004950000000000232
+        },
+        {
+          "date": "2025-06-03",
+          "equity": 99950.5,
+          "drawdown": -0.0004950000000000232
+        },
+        {
+          "date": "2025-06-04",
+          "equity": 99950.5,
+          "drawdown": -0.0004950000000000232
+        },
+        {
+          "date": "2025-06-05",
+          "equity": 99999.36130857143,
+          "drawdown": -6.386914285672063e-06
+        },
+        {
+          "date": "2025-06-06",
+          "equity": 99963.36282857142,
+          "drawdown": -0.00036637171428577364
+        }
+      ]
+    },
+    "current_1pct__baseline": {
+      "mode": "stock_only",
+      "portfolio": "current_1pct",
+      "cost_model": "baseline",
+      "approved_count": 3,
+      "closed_count": 3,
+      "win_rate": 0.3333333333333333,
+      "net_expectancy": -32.17540001428569,
+      "average_pnl_r": -0.5629095620970624,
+      "bootstrap_95pct_lower_mean_r": -1.5537988815083457,
+      "total_net_pnl": -96.52620004285708,
+      "total_return": -0.0009652620004285709,
+      "annualized_return": -0.08440674083825594,
+      "profit_factor": 0.23017290955922237,
+      "sharpe": -2.782243700402924,
+      "sortino": null,
+      "max_drawdown": -0.0009652620004286794,
+      "recent_12m_net_pnl": -96.52620004285708,
+      "positive_quarter_fraction": 0.0,
+      "max_symbol_profit_contribution": null,
+      "break_even_cost_bps_per_leg_pool": -3.0587548567979344,
+      "missing_outcome_count": 0,
+      "missing_outcome_rate": 0.0,
+      "ambiguous_count": 0,
+      "benchmark": {
+        "symbol": "SPY",
+        "total_return": 0.010765207120560172,
+        "sharpe": 6.461780809410132,
+        "max_drawdown": -0.005200382479743748
+      },
+      "quarterly": [
+        {
+          "period": "2025Q2",
+          "net_pnl": -96.52620004285708
+        }
+      ],
+      "yearly": [
+        {
+          "period": "2025",
+          "net_pnl": -96.52620004285708
+        }
+      ],
+      "per_symbol_net_pnl": {
+        "AAPL": -96.52620004285708
+      },
+      "equity_curve": [
+        {
+          "date": "2025-06-02",
+          "equity": 99930.54754,
+          "drawdown": -0.0006945245999999683
+        },
+        {
+          "date": "2025-06-03",
+          "equity": 99930.54754,
+          "drawdown": -0.0006945245999999683
+        },
+        {
+          "date": "2025-06-04",
+          "equity": 99930.54754,
+          "drawdown": -0.0006945245999999683
+        },
+        {
+          "date": "2025-06-05",
+          "equity": 99959.40819791715,
+          "drawdown": -0.0004059180208285662
+        },
+        {
+          "date": "2025-06-06",
+          "equity": 99903.47379995714,
+          "drawdown": -0.0009652620004286794
+        }
+      ]
+    },
+    "current_1pct__stressed": {
+      "mode": "stock_only",
+      "portfolio": "current_1pct",
+      "cost_model": "stressed",
+      "approved_count": 3,
+      "closed_count": 3,
+      "win_rate": 0.0,
+      "net_expectancy": -64.11621527523808,
+      "average_pnl_r": -1.496566725187095,
+      "bootstrap_95pct_lower_mean_r": -2.4398770919216983,
+      "total_net_pnl": -192.34864582571421,
+      "total_return": -0.0019234864582571422,
+      "annualized_return": -0.16122056141005403,
+      "profit_factor": 0.0,
+      "sharpe": -7.414914696000967,
+      "sortino": -4.822958012856156,
+      "max_drawdown": -0.0019234864582571287,
+      "recent_12m_net_pnl": -192.34864582571421,
+      "positive_quarter_fraction": 0.0,
+      "max_symbol_profit_contribution": null,
+      "break_even_cost_bps_per_leg_pool": -3.0587548567979344,
+      "missing_outcome_count": 0,
+      "missing_outcome_rate": 0.0,
+      "ambiguous_count": 0,
+      "benchmark": {
+        "symbol": "SPY",
+        "total_return": 0.010765207120560172,
+        "sharpe": 6.461780809410132,
+        "max_drawdown": -0.005200382479743748
+      },
+      "quarterly": [
+        {
+          "period": "2025Q2",
+          "net_pnl": -192.34864582571421
+        }
+      ],
+      "yearly": [
+        {
+          "period": "2025",
+          "net_pnl": -192.34864582571421
+        }
+      ],
+      "per_symbol_net_pnl": {
+        "AAPL": -192.34864582571421
+      },
+      "equity_curve": [
+        {
+          "date": "2025-06-02",
+          "equity": 99898.623604,
+          "drawdown": -0.0010137639600000803
+        },
+        {
+          "date": "2025-06-03",
+          "equity": 99898.623604,
+          "drawdown": -0.0010137639600000803
+        },
+        {
+          "date": "2025-06-04",
+          "equity": 99898.623604,
+          "drawdown": -0.0010137639600000803
+        },
+        {
+          "date": "2025-06-05",
+          "equity": 99895.48322087029,
+          "drawdown": -0.0010451677912971524
+        },
+        {
+          "date": "2025-06-06",
+          "equity": 99807.65135417429,
+          "drawdown": -0.0019234864582571287
+        }
+      ]
+    }
+  }
+}

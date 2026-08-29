@@ -1,0 +1,12 @@
+{
+  "stock": {
+    "attempted": 163287,
+    "usable": 163284,
+    "coverage_rate": 0.9999816274412537
+  },
+  "crypto": {
+    "attempted": 0,
+    "usable": 0,
+    "coverage_rate": null
+  }
+}

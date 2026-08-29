@@ -1,0 +1,26 @@
+# Core
+sqlmodel>=0.0.21
+sqlalchemy>=2.0.0
+alembic>=1.13.0
+
+# Data
+yfinance>=0.2.40
+pandas>=2.0.0
+numpy>=1.26.0
+feedparser>=6.0.0
+pandas_market_calendars>=4.0
+
+# Broker
+alpaca-py>=0.34.0
+robin-stocks>=3.0.0
+pyotp>=2.9.0
+
+# Utilities
+python-dotenv>=1.0.0
+apscheduler>=3.10.0
+httpx>=0.27.0
+pydantic>=2.0.0
+
+# Dev / testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0

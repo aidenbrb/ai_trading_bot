@@ -1,0 +1,13 @@
+{
+  "strategy_version": "slc_4h_5m_stock_v1",
+  "amendment": 5,
+  "parent_document_sha256": "d453ae039c3d9145e986ff6cf27ce98af7418b7b5ea6da0d2ddb728e801c3e9d",
+  "path": "research/slc_4h_5m_stock_v1_amendment_005.md",
+  "sha256": "0ecf9ce77fecbe7f55a3478c192c5662fbd309fd86ac4863620b53e611885753",
+  "strategy_rule_change": false,
+  "operational_precision_deviations": [
+    "Decimal-based tick normalization ($0.01 at/above $1.00, $0.0001 below)",
+    "stops round away from entry, targets round to guarantee >=2R (practical fidelity, disclosed, never labeled exactly 2R)",
+    "rounded-value validation applied pre-submission (skip) and post-fill (protected_degraded + guarded exit)"
+  ]
+}

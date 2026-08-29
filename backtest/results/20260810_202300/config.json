@@ -1,0 +1,20 @@
+{
+  "symbols": [
+    "AAPL",
+    "MSFT"
+  ],
+  "start": "2025-06-02",
+  "end": "2025-06-04",
+  "top_n": 20,
+  "label": null,
+  "scenarios": [
+    "research_fidelity",
+    "intended_deployment"
+  ],
+  "cost_models": [
+    "zero",
+    "baseline",
+    "stressed"
+  ],
+  "universe_caveat": "This backtest evaluates the bot's own static 142-symbol universe (config/universe.py::UNIVERSE), NOT the ~7,000-symbol universe the original ORB research used. Results characterize whether this works for THIS bot's existing symbol list - a materially narrower claim than 'this is a generally profitable market-wide strategy.'"
+}

@@ -1,0 +1,13 @@
+interval,market,symbol,variant_id,window_end,window_start
+research-stock-sip-1Minute,stock,SPY,d1_off_d2_off_d3_off,2026-08-01 00:00:00,2026-07-02 15:16:00
+research-stock-sip-1Minute,stock,MSFT,d1_off_d2_off_d3_off,2026-08-01 00:00:00,2026-07-07 15:16:00
+research-stock-sip-1Minute,stock,AAPL,d1_off_d2_off_d3_off,2026-08-01 00:00:00,2026-07-13 15:16:00
+research-stock-sip-1Minute,stock,MSFT,d1_off_d2_on_d3_off,2026-08-01 00:00:00,2026-07-13 15:16:00
+research-stock-sip-1Minute,stock,SPY,d1_off_d2_on_d3_off,2026-08-01 00:00:00,2026-07-15 15:16:00
+research-stock-sip-1Minute,stock,SPY,d1_on_d2_off_d3_off,2026-08-01 00:00:00,2026-07-02 15:16:00
+research-stock-sip-1Minute,stock,MSFT,d1_on_d2_off_d3_off,2026-08-01 00:00:00,2026-07-07 15:16:00
+research-stock-sip-1Minute,stock,AAPL,d1_on_d2_off_d3_off,2026-08-01 00:00:00,2026-07-13 15:16:00
+research-stock-sip-1Minute,stock,MSFT,d1_on_d2_on_d3_off,2026-08-01 00:00:00,2026-07-13 15:16:00
+research-stock-sip-1Minute,stock,SPY,d1_on_d2_on_d3_off,2026-08-01 00:00:00,2026-07-15 15:16:00
+research-stock-sip-1Minute,stock,MSFT,determinism_check,2026-08-01 00:00:00,2026-07-13 15:16:00
+research-stock-sip-1Minute,stock,SPY,determinism_check,2026-08-01 00:00:00,2026-07-15 15:16:00

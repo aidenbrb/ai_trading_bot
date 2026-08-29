@@ -1,0 +1,28 @@
+{
+  "context_window_end": "2025-01-03T00:00:00",
+  "coverage_notes": "Two symbols (AAPL, AMD), ~3 calendar months (~62 trading sessions - comfortably exceeds the 20-session level-expiration bound), includes the 2024-11-29 NYSE early close. This is a starting corpus, not a claim of exhaustive regime coverage; expand via a re-run of _generate_corpus.py with a wider window or more symbols if reducer parity testing needs more diversity than this provides.",
+  "declared_evaluation_window": {
+    "end": "2025-01-02T00:00:00",
+    "start": "2024-10-01T00:00:00"
+  },
+  "final_bar_handling": "Each fixture includes one additional real 5-minute bar beyond the declared evaluation boundary (through context_window_end), solely so the frozen batch generate_signals() has the trailing bar it structurally requires. Comparison must stay scoped to confirmations whose entry/confirmation falls within declared_evaluation_window - the extra bar is data plumbing, never itself evaluated.",
+  "fixtures": {
+    "AAPL": {
+      "bar_count": 4998,
+      "first_bar": "2024-10-01 13:30:00",
+      "last_bar": "2025-01-02 20:55:00",
+      "path": "tests/fixtures/slc_reducer_corpus/AAPL_5min_2024-10-01_2025-01-03.csv",
+      "sha256": "a4f2e765aead3f045a5e5b243c5fcefd15d80f972a33384630301a9b65aa4ca9"
+    },
+    "AMD": {
+      "bar_count": 4998,
+      "first_bar": "2024-10-01 13:30:00",
+      "last_bar": "2025-01-02 20:55:00",
+      "path": "tests/fixtures/slc_reducer_corpus/AMD_5min_2024-10-01_2025-01-03.csv",
+      "sha256": "d3944c9ff5a302d2272aff210cad15785314c415375bbc301c1173bf9dc11654"
+    }
+  },
+  "purpose": "Frozen, extracted, immutable fixture corpus for reducer confirmation-output parity testing against the frozen batch generate_signals(). Written before live_slc/reducer.py was implemented, per rev. 6 Step 5.",
+  "source": "backtest/cache/slc_bars_cache.db (isolated SLC research cache, cache-only read, no fetch)",
+  "strategy_version": "slc_4h_5m_stock_v1"
+}

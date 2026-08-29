@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "purpose": "Read-only reference snapshot of the three SLC Windows Scheduled Task definitions, captured directly from Get-ScheduledTask on 2026-08-17.",
+    "why_this_exists": "run_hidden.vbs is Tier-2 guardrail-hashed (see live_slc/guardrails.py), but a file hash only protects the launcher script's own bytes. Each Scheduled Task passes the target .bat file as a runtime Arguments string configured entirely inside Windows Task Scheduler - that configuration is not a repo file and is not reachable by any file-hash system. This snapshot is the only protection against that configuration silently drifting (e.g. a task repointed at the wrong .bat, or an argument edited outside this process).",
+    "enforcement": "Manual re-diff only, against a fresh `Get-ScheduledTask` read - see the activation plan's B11 and the Tuesday operational checklist. Not automated, not hash-verified, not checked by any Python code.",
+    "captured_by": "Get-ScheduledTask | Where-Object { $_.TaskName -like '*SLC*' } | Select-Object TaskName, State, Actions, Triggers"
+  },
+  "tasks": {
+    "TradingBot SLC Dry Run - Preflight": {
+      "action": {
+        "execute": "C:\\Windows\\System32\\wscript.exe",
+        "arguments": "//B //NoLogo \"C:\\Users\\dougf\\TradingBot\\ai_trading_bot\\scripts\\slc_live\\run_hidden.vbs\" \"C:\\Users\\dougf\\TradingBot\\ai_trading_bot\\scripts\\slc_live\\run_slc_preflight.bat\"",
+        "working_directory": "C:\\Users\\dougf\\TradingBot\\ai_trading_bot"
+      },
+      "trigger": {
+        "type": "MSFT_TaskWeeklyTrigger",
+        "start_boundary_time_of_day": "08:35:00",
+        "days_of_week_bitmask": 62,
+        "days_of_week": "Mon-Fri",
+        "weeks_interval": 1,
+        "repetition": null
+      },
+      "settings": {
+        "multiple_instances": "IgnoreNew",
+        "execution_time_limit": "PT2H"
+      }
+    },
+    "TradingBot SLC Dry Run - Cycle": {
+      "action": {
+        "execute": "C:\\Windows\\System32\\wscript.exe",
+        "arguments": "//B //NoLogo \"C:\\Users\\dougf\\TradingBot\\ai_trading_bot\\scripts\\slc_live\\run_hidden.vbs\" \"C:\\Users\\dougf\\TradingBot\\ai_trading_bot\\scripts\\slc_live\\run_slc_cycle.bat\"",
+        "working_directory": "C:\\Users\\dougf\\TradingBot\\ai_trading_bot"
+      },
+      "trigger": {
+        "type": "MSFT_TaskWeeklyTrigger",
+        "start_boundary_time_of_day": "09:36:00",
+        "days_of_week_bitmask": 62,
+        "days_of_week": "Mon-Fri",
+        "weeks_interval": 1,
+        "repetition": {
+          "interval": "PT5M",
+          "duration": "PT5H55M"
+        }
+      },
+      "settings": {
+        "multiple_instances": "IgnoreNew",
+        "execution_time_limit": "PT10M"
+      }
+    },
+    "TradingBot SLC Dry Run - Closeout": {
+      "action": {
+        "execute": "C:\\Windows\\System32\\wscript.exe",
+        "arguments": "//B //NoLogo \"C:\\Users\\dougf\\TradingBot\\ai_trading_bot\\scripts\\slc_live\\run_hidden.vbs\" \"C:\\Users\\dougf\\TradingBot\\ai_trading_bot\\scripts\\slc_live\\run_slc_closeout.bat\"",
+        "working_directory": "C:\\Users\\dougf\\TradingBot\\ai_trading_bot"
+      },
+      "trigger": {
+        "type": "MSFT_TaskWeeklyTrigger",
+        "start_boundary_time_of_day": "12:55:45",
+        "days_of_week_bitmask": 62,
+        "days_of_week": "Mon-Fri",
+        "weeks_interval": 1,
+        "repetition": {
+          "interval": "PT1M",
+          "duration": "PT3H10M"
+        }
+      },
+      "settings": {
+        "multiple_instances": "IgnoreNew",
+        "execution_time_limit": "PT10M"
+      }
+    }
+  }
+}

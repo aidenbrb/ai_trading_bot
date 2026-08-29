@@ -1,0 +1,11 @@
+expected_bars,observed_bars,session,symbol,usable
+78,0,2025-06-02,AAPL,False
+78,0,2025-06-03,AAPL,False
+78,0,2025-06-04,AAPL,False
+78,0,2025-06-05,AAPL,False
+78,0,2025-06-06,AAPL,False
+78,0,2025-06-02,SPY,False
+78,0,2025-06-03,SPY,False
+78,0,2025-06-04,SPY,False
+78,0,2025-06-05,SPY,False
+78,0,2025-06-06,SPY,False

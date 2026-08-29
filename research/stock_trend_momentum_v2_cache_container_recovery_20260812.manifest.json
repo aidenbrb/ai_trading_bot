@@ -1,0 +1,8 @@
+{
+  "path": "research/stock_trend_momentum_v2_cache_container_recovery_20260812.md",
+  "sha256": "b331539f2ee46a8c9bfc9d9c2e0d8b265cbb7a2c83fd5bb99506ab69054d7b4b",
+  "original_frozen_cache_sha256": "2aa39029331c7dea6c620c8a23a43b70764fe40ad6761eda901da6775d83d841",
+  "logically_restored_cache_sha256": "abfeee4cae5c4edda4b8c3323d33174d484d2fe7e22d1e97f43ab87776f40ef1",
+  "isolated_slc_cache_sha256_at_migration": "66bbd1d06ca2bb7881eedd4085440848d47db8d47a2f4f0f1f3f9b1a9ed6a3b6",
+  "strategy_or_result_change": false
+}

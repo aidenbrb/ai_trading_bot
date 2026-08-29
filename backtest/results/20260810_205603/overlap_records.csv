@@ -1,0 +1,4 @@
+iex_eligible_count,iex_selected_count,intersection_count,jaccard,overlap_rate,session_date,sip_eligible_count,sip_selected_count,valid
+1,1,0,0.0,0.0,2025-06-02,0,0,True
+0,0,0,None,None,2025-06-03,0,0,True
+0,0,0,None,None,2025-06-04,0,0,True

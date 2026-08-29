@@ -1,0 +1,33 @@
+# Environment / secrets
+.env
+
+# Virtual environment
+.venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Databases (regenerated locally, never checked in)
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+
+# Large regenerable caches
+backtest/cache/
+
+# Test scratch / temp directories left behind by prior sessions
+.pytest_cache/
+**/.pytest_*/
+.test_tmp_*/
+.tmp/
+test_artifacts/
+watch_output_*/
+
+# Editor / OS
+.DS_Store
+Thumbs.db

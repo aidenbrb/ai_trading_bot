@@ -1,0 +1,3261 @@
+{
+  "report_date": "2026-07-24",
+  "generated_at": "2026-07-25T01:55:22.705267",
+  "overall_market_risk": "medium",
+  "macro_summary": "Volatility=low  VIX=18.579999923706055",
+  "stock_market_summary": "",
+  "crypto_market_summary": "",
+  "commodity_summary": "",
+  "items": [
+    {
+      "symbol": "AAPL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Mag 7 Earnings Preview: Alphabet's Cloud Surge and CapEx Hike Raise the Stakes"
+    },
+    {
+      "symbol": "AAPL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Visa and Apple: Cash-Generating Machines"
+    },
+    {
+      "symbol": "AAPL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Dow Jones Futures: Apple Earnings, Iran News, Fed Meeting Loom As AI Stocks Sell Off"
+    },
+    {
+      "symbol": "ABBV",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "AbbVie (ABBV) Earnings Expected to Grow: What to Know Ahead of Next Week's Release"
+    },
+    {
+      "symbol": "ABT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Q2 Earnings: Guidance Upgrades Push These 3 Stocks Higher"
+    },
+    {
+      "symbol": "ABT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "6 Medical-Device Stocks to Buy After a Massive Selloff"
+    },
+    {
+      "symbol": "ABT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Reading Between The Lines Of DHR's Latest Call"
+    },
+    {
+      "symbol": "ABT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Abbott Laboratories (ABT) Earnings Drew Fresh Attention, Is It Still Below Fair Value?"
+    },
+    {
+      "symbol": "ABT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Johnson & Johnson vs Abbott Laboratories: Two Healthcare Giants on Opposite Trajectories"
+    },
+    {
+      "symbol": "ABT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Boston Scientific's Q2 Earnings Coming Up: Buy, Hold or Sell the Stock?"
+    },
+    {
+      "symbol": "AMAT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "KLA's Q4 Earnings Loom: Buy, Sell or Hold the KLAC Stock?"
+    },
+    {
+      "symbol": "AMAT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "LRCX Poised for a Q4 Earnings Surprise: Should You Buy the Stock Now?"
+    },
+    {
+      "symbol": "AMAT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What to Expect From Applied Materials' Next Quarterly Earnings Report"
+    },
+    {
+      "symbol": "AMD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Capex fears trigger biggest Tech sell-off since 'Liberation Day'"
+    },
+    {
+      "symbol": "AMD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Intel Beat Earnings by $1.7 Billion and Fell 11% as Cramer Turned Bullish"
+    },
+    {
+      "symbol": "AMT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Gear Up for American Tower (AMT) Q2 Earnings: Wall Street Estimates for Key Metrics"
+    },
+    {
+      "symbol": "AMT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "American Tower to Post Q2 Earnings: Is AMT a Portfolio Must-Have?"
+    },
+    {
+      "symbol": "AMZN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Amazon CEO Jassy may deliver a July 30 AWS earnings shock"
+    },
+    {
+      "symbol": "AMZN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Review & Preview: An Earnings Week to Forget"
+    },
+    {
+      "symbol": "AMZN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Mag 7 Earnings Preview: Alphabet's Cloud Surge and CapEx Hike Raise the Stakes"
+    },
+    {
+      "symbol": "AMZN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Dow Jones Futures: Apple Earnings, Iran News, Fed Meeting Loom As AI Stocks Sell Off"
+    },
+    {
+      "symbol": "APD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Air Products and Chemicals (APD) Earnings Expected to Grow: Should You Buy?"
+    },
+    {
+      "symbol": "ARM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "These high-flying tech stocks are down 65% \u2014 here's how to shop the sell-off: One Big Investment Idea"
+    },
+    {
+      "symbol": "AVGO",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Why Big Tech barnings could define the market next week"
+    },
+    {
+      "symbol": "AVGO",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "AI Memory Stocks Lead Chip Selloff"
+    },
+    {
+      "symbol": "AVGO",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Chip Stocks Slide Friday\u2014Memory Favorites Micron, Sandisk Among the Big Decliners"
+    },
+    {
+      "symbol": "AXON",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Axon Enterprise (AXON) On Earnings Focus And AI Narrative Looks Undervalued"
+    },
+    {
+      "symbol": "AXP",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Earnings live: American Express, Verizon stocks slip despite earnings beats"
+    },
+    {
+      "symbol": "AXP",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Review & Preview: An Earnings Week to Forget"
+    },
+    {
+      "symbol": "AXP",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "How To Earn $500 A Month From American Express Stock Ahead Of Q2 Earnings"
+    },
+    {
+      "symbol": "AXP",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "American Express Co (AXP) Q2 2026 Earnings Call Highlights: Strong Revenue Growth and Strategic ..."
+    },
+    {
+      "symbol": "BA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Boeing Has a $695B Backlog and Analysts See 29% Upside. Should You Buy Before July 28 Earnings?"
+    },
+    {
+      "symbol": "BA",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "1 Cash-Burning Stock to Consider Right Now and 2 We Brush Off"
+    },
+    {
+      "symbol": "BAC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Stocks Struggle as Iran, Inflation Worries Persist: Stock Market Today"
+    },
+    {
+      "symbol": "BAC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "SpaceX at $100 Would Imply Zero AI Value, Morgan Stanley Says"
+    },
+    {
+      "symbol": "BAC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "ServiceNow Surges 6%, Salesforce Climbs 4% as Government AI Deals Lift Enterprise Software"
+    },
+    {
+      "symbol": "BKNG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What to Expect From Booking Holdings\u2019 Q2 2026 Earnings Report"
+    },
+    {
+      "symbol": "BKNG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Booking, Alphabet, and 7 Other Stocks to Buy Ahead of Earnings"
+    },
+    {
+      "symbol": "BLK",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "BlackRock (BLK) Could Be 21% Below Fair Value As Dividend Signals Confidence"
+    },
+    {
+      "symbol": "BMY",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Will Moderna (MRNA) Report Negative Earnings Next Week? What You Should Know"
+    },
+    {
+      "symbol": "BMY",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Bristol Myers Squibb (BMY) Reports Next Week: Wall Street Expects Earnings Growth"
+    },
+    {
+      "symbol": "BX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "LAZ Stock Down as Q2 Earnings Lag on Higher Costs, Expands Buyback Plan"
+    },
+    {
+      "symbol": "BX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "BX Q2 Earnings Call Highlights AI Strategy & Fundraising Strength"
+    },
+    {
+      "symbol": "BX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Blackstone Inc (BX) Q2 2026 Earnings Call Highlights: Record AUM and Strategic AI Investments ..."
+    },
+    {
+      "symbol": "BX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Blackstone Q2 Earnings Call Highlights"
+    },
+    {
+      "symbol": "C",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "SpaceX at $100 Would Imply Zero AI Value, Morgan Stanley Says"
+    },
+    {
+      "symbol": "C",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Herc Holdings (HRI) Surges 8.1%: Is This an Indication of Further Gains?"
+    },
+    {
+      "symbol": "CAT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Earnings Season Is Here. Will Euphoric Be Good Enough?"
+    },
+    {
+      "symbol": "CAT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Industrial Stocks And This ETF Claw Gains From A Falling Market"
+    },
+    {
+      "symbol": "CI",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What Kept Coming Up When Analysts Grilled UNH"
+    },
+    {
+      "symbol": "CI",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What A Patient Holder Is Really Paying For CVS Health Stock"
+    },
+    {
+      "symbol": "CL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Colgate-Palmolive (CL) Earnings Expected to Grow: Should You Buy?"
+    },
+    {
+      "symbol": "CL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Colgate-Palmolive's Q2 Organic Sales Growth to Be Driven by Continued International Momentum, UBS Says"
+    },
+    {
+      "symbol": "CL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What to Expect From Colgate-Palmolive's Next Quarterly Earnings Report"
+    },
+    {
+      "symbol": "CMCSA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Charter Earnings Beat Estimates. Subscriber Losses Suggest a Bleak Future for Cable."
+    },
+    {
+      "symbol": "CMCSA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CMCSA Q2 Earnings Beat Estimates on Wireless and Peacock Strength"
+    },
+    {
+      "symbol": "CMCSA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Charter Communications Q2 Earnings Call Highlights"
+    },
+    {
+      "symbol": "CMCSA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "CMCSA Q2 Earnings Call Highlights Broadband Pivot and Wireless Growth"
+    },
+    {
+      "symbol": "CMG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Chipotle to Post Q2 Earnings: What's in the Cards for the Stock?"
+    },
+    {
+      "symbol": "CMG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Starbucks Q3 Earnings Ahead: Buy, Sell or Hold the Stock?"
+    },
+    {
+      "symbol": "CMG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Countdown to Chipotle (CMG) Q2 Earnings: A Look at Estimates Beyond Revenue and EPS"
+    },
+    {
+      "symbol": "CMG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "The Zacks Analyst Blog Highlights Domino's, The Cheesecake Factory, BJ's Restaurants and Chipotle Mexican Grill"
+    },
+    {
+      "symbol": "COF",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Enova Q2 Earnings Beat on Higher Revenues, Stock Dips as Costs Rise Y/Y"
+    },
+    {
+      "symbol": "COF",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "SYF vs. ALLY vs. COF: Which Consumer Finance Stock Is the Best Buy After Earnings?"
+    },
+    {
+      "symbol": "COF",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Capital One (COF) Faces Zelle Fraud Lawsuit As It Settles Canada Data Breach Case"
+    },
+    {
+      "symbol": "COF",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Zelle must face New York attorney general's lawsuit over fraud, judge rules"
+    },
+    {
+      "symbol": "COP",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What to Expect From ConocoPhillips' Q2 2026 Earnings Report"
+    },
+    {
+      "symbol": "COP",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Goldman Flags 3 AI-Resistant Investment Themes to Watch"
+    },
+    {
+      "symbol": "CRM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "ServiceNow Surges 6%, Salesforce Climbs 4% as Government AI Deals Lift Enterprise Software"
+    },
+    {
+      "symbol": "CRWD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Here's What to Expect From CrowdStrike\u2019s Next Earnings Report"
+    },
+    {
+      "symbol": "CRWD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Prediction: 1 Reason Palantir Could Keep Beating the Market"
+    },
+    {
+      "symbol": "CVS",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "HCA Q2 Earnings Beat on Strong Admissions, 2026 Outlook Revised"
+    },
+    {
+      "symbol": "CVS",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "CVS Health (CVS) Faces Henry Ford Health Lawsuit Over $29 Million 340B Claims"
+    },
+    {
+      "symbol": "CVX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Earnings Calendar and Analysis for This Week (July 27-31)"
+    },
+    {
+      "symbol": "CVX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Chevron (CVX) Earnings Expected to Grow: What to Know Ahead of Next Week's Release"
+    },
+    {
+      "symbol": "DE",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Deere & Company Earnings Preview: What to Expect"
+    },
+    {
+      "symbol": "DE",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Dover Gears Up to Report Q2 Earnings: What to Expect From the Stock?"
+    },
+    {
+      "symbol": "DECK",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Deckers Stock Down 6% Despite Q1 Earnings Beat, FY'27 Outlook Raised"
+    },
+    {
+      "symbol": "DECK",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Deckers tops first-quarter earnings expectations but shares fall on cautious revenue outlook"
+    },
+    {
+      "symbol": "DECK",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Deckers Outdoor Corp (DECK) Q1 2027 Earnings Call Highlights: Record Revenue and Strategic ..."
+    },
+    {
+      "symbol": "DECK",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "DECK Stock Falls Overnight As Q2 Sales Growth Slows \u2014 Retail Calls The Drop 'Absurd'"
+    },
+    {
+      "symbol": "DECK",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Deckers Outdoor Q1 Earnings Call Highlights"
+    },
+    {
+      "symbol": "DIA",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Is This KWEB Plunge A Bargain Or A Trap?"
+    },
+    {
+      "symbol": "DIA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Nasdaq, S&P 500, Dow Futures Shake Off Iran Jitters As Investors Turn To AI Hyperscaler Earnings: INTC, TSLA, TTD, HIMS In Focus"
+    },
+    {
+      "symbol": "DIS",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "JAKKS Pacific Q2 Earnings Call Highlights"
+    },
+    {
+      "symbol": "DVN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "TotalEnergies Q2 Earnings & Sales Miss Estimates as Lower Volumes Hurt"
+    },
+    {
+      "symbol": "DVN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Enphase Energy Gears Up to Report Q2 Earnings: Here's What to Expect"
+    },
+    {
+      "symbol": "DVN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What to Expect From Devon Energy\u2019s Next Quarterly Earnings Report"
+    },
+    {
+      "symbol": "DXCM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "DexCom (DXCM) Earnings Expected to Grow: Should You Buy?"
+    },
+    {
+      "symbol": "DXCM",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Is DexCom (DXCM) Undervalued Following Its Investor Day Sentiment Shift?"
+    },
+    {
+      "symbol": "EBAY",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Intel, Amkor on AI optimism; eBay slips"
+    },
+    {
+      "symbol": "EBAY",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Amazon Falls 4% as Senate China Probe and AI-Spending Jitters Weigh Ahead of Earnings"
+    },
+    {
+      "symbol": "ELV",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Can Humana Beat Q2 Earnings Estimates on Growing Premiums?"
+    },
+    {
+      "symbol": "ELV",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Edwards' Q2 Earnings & Revenues Top Estimates, Stock Rises"
+    },
+    {
+      "symbol": "ELV",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "TMO Q2 Earnings & Revenues Top Estimates, Stock Up in Pre-Market"
+    },
+    {
+      "symbol": "ELV",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Molina Healthcare Earnings Beat Estimates. The Medicaid Insurer Is Confronting Investor Doubts."
+    },
+    {
+      "symbol": "ELV",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Elevance Health (ELV) Stock Still Looks Reasonable After A 43% Run"
+    },
+    {
+      "symbol": "ELV",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What Kept Coming Up When Analysts Grilled UNH"
+    },
+    {
+      "symbol": "EOG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Earnings Preview: What To Expect From EOG Resources' Report"
+    },
+    {
+      "symbol": "EOG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Does EOG Resources\u2019 (EOG) Index Exit Reveal More About Its Capital Discipline Than Its Prospects?"
+    },
+    {
+      "symbol": "EOG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "EOG Resources (EOG) Stock Still Looks Below Fair Value Today"
+    },
+    {
+      "symbol": "EQIX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Gear Up for Equinix (EQIX) Q2 Earnings: Wall Street Estimates for Key Metrics"
+    },
+    {
+      "symbol": "EQIX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Equinix to Post Q2 Earnings: What's in Store for the Stock?"
+    },
+    {
+      "symbol": "EQIX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Oklo Just Dropped 28% in a Month. Is It Time to Abandon Nuclear Stocks Like OKLO, NuScale, and Uranium Energy Corp.?"
+    },
+    {
+      "symbol": "ETN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Eaton (ETN) Reports Next Week: Wall Street Expects Earnings Growth"
+    },
+    {
+      "symbol": "ETN",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "AI Energy Winner GE Vernova Sinks Below Key Level On Earnings Miss"
+    },
+    {
+      "symbol": "F",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Ford Pre-Q2 Earnings Analysis: Buy the Stock Now or Wait?"
+    },
+    {
+      "symbol": "FCX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Teck Resources Q2 Earnings Beat Estimates, Sales & Margins Improve Y/Y"
+    },
+    {
+      "symbol": "FCX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "FCX Q2 Earnings Call Highlights Grasberg Ramp and U.S. Growth"
+    },
+    {
+      "symbol": "FCX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Freeport-McMoRan (FCX) Beats In Q2 As Lower Copper Sales Outlook Tests Valuation"
+    },
+    {
+      "symbol": "FCX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Freeport-McMoRan Inc (FCX) Q2 2026 Earnings Call Highlights: Strong Income Growth and Strategic ..."
+    },
+    {
+      "symbol": "FCX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Freeport-McMoRan Q2 Earnings Call Highlights"
+    },
+    {
+      "symbol": "FCX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Freeport-McMoRan shares slip despite second quarter earnings beat as copper outlook softens"
+    },
+    {
+      "symbol": "FDX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "FedEx (FDX) Could Be 10% Undervalued On Fresh Financing And Strong Q4 Results"
+    },
+    {
+      "symbol": "FDX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "FedEx (FDX) Up 1.3% Since Last Earnings Report: Can It Continue?"
+    },
+    {
+      "symbol": "GE",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Industrial Stocks And This ETF Claw Gains From A Falling Market"
+    },
+    {
+      "symbol": "GILD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Gilead Sciences' Quarterly Earnings Preview: What You Need to Know"
+    },
+    {
+      "symbol": "GM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Q2 Earnings: Guidance Upgrades Push These 3 Stocks Higher"
+    },
+    {
+      "symbol": "GM",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Harley-Davidson Q2 Earnings Beat Estimates on HDMC Growth"
+    },
+    {
+      "symbol": "GM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Mobileye Q2 Earnings Surpass Expectations on R&D Incentive Grant"
+    },
+    {
+      "symbol": "GM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Ford Pre-Q2 Earnings Analysis: Buy the Stock Now or Wait?"
+    },
+    {
+      "symbol": "GOOGL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What to watch next week: Big Tech earnings, the Fed, and Consumer Confidence"
+    },
+    {
+      "symbol": "GOOGL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Capex fears trigger biggest Tech sell-off since 'Liberation Day'"
+    },
+    {
+      "symbol": "GOOGL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Earnings live: American Express, Verizon stocks slip despite earnings beats"
+    },
+    {
+      "symbol": "GOOGL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Review & Preview: An Earnings Week to Forget"
+    },
+    {
+      "symbol": "GS",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "3 High-Momentum Stocks to Buy Now Before They Surge"
+    },
+    {
+      "symbol": "GS",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "SpaceX at $100 Would Imply Zero AI Value, Morgan Stanley Says"
+    },
+    {
+      "symbol": "HD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Earnings Preview: What To Expect From The Home Depot\u2019s Report"
+    },
+    {
+      "symbol": "HD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Confidence Is Back, But Earnings Show the Consumer Is Being Picky"
+    },
+    {
+      "symbol": "HON",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "HON Q2 Earnings Call Highlights Automation Growth Push"
+    },
+    {
+      "symbol": "HON",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Honeywell (HON) Q2 2026 Earnings Call Transcript"
+    },
+    {
+      "symbol": "HON",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Honeywell International Inc (HON) Q2 2026 Earnings Call Highlights: Strong Organic Growth and ..."
+    },
+    {
+      "symbol": "HON",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Industrial Stocks And This ETF Claw Gains From A Falling Market"
+    },
+    {
+      "symbol": "HON",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Why Honeywell Tech\u2019s Earnings Beat Is Weighing on Aerospace Shares"
+    },
+    {
+      "symbol": "IBB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Thursday Amid Major Tech Stocks Sell-Off"
+    },
+    {
+      "symbol": "IBB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Wednesday Ahead of Major Tech Earnings"
+    },
+    {
+      "symbol": "IBB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Higher Pre-Bell Monday Ahead of Key Earnings Reports"
+    },
+    {
+      "symbol": "INTC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Intel stock falls nearly 8% despite big Q2 earnings beat"
+    },
+    {
+      "symbol": "INTC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Review & Preview: An Earnings Week to Forget"
+    },
+    {
+      "symbol": "INTC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Nasdaq lags on angst over AI spending ahead of earnings reports"
+    },
+    {
+      "symbol": "INTC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Stock Market Today, July 24: Dow Recovers and Sandisk Tumbles 11% as Tech Stocks Fall Further"
+    },
+    {
+      "symbol": "ISRG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "6 Medical-Device Stocks to Buy After a Massive Selloff"
+    },
+    {
+      "symbol": "ISRG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Zacks.com featured highlights include AIM ImmunoTech, Hasbro, Fox, Cencora and Intuitive Surgical"
+    },
+    {
+      "symbol": "IWM",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Is This KWEB Plunge A Bargain Or A Trap?"
+    },
+    {
+      "symbol": "JNJ",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Nasdaq lags on angst over AI spending ahead of earnings reports"
+    },
+    {
+      "symbol": "JNJ",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Q2 Earnings: Guidance Upgrades Push These 3 Stocks Higher"
+    },
+    {
+      "symbol": "JPM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "SpaceX at $100 Would Imply Zero AI Value, Morgan Stanley Says"
+    },
+    {
+      "symbol": "JPM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Infosys downgraded by JPMorgan, HSBC after earnings miss and weaker growth outlook"
+    },
+    {
+      "symbol": "KHC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "How Kraft Heinz\u2019s New Disney Partnership At Kraft Heinz (KHC) Has Changed Its Investment Story"
+    },
+    {
+      "symbol": "KKR",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "LAZ Stock Down as Q2 Earnings Lag on Higher Costs, Expands Buyback Plan"
+    },
+    {
+      "symbol": "KKR",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Ares Management (ARES) Earnings Expected to Grow: What to Know Ahead of Next Week's Release"
+    },
+    {
+      "symbol": "KKR",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "KKR (KKR) Stock May Be Cheap Following Its 61% 3 Year Gain"
+    },
+    {
+      "symbol": "KKR",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "BX's Q2 Earnings Beat as AUM Hits Record High Amid Tough Environment"
+    },
+    {
+      "symbol": "KKR",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "KKR & Co. Inc. (KKR) Earnings Expected to Grow: What to Know Ahead of Next Week's Release"
+    },
+    {
+      "symbol": "KO",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Earnings Season Is Here. Will Euphoric Be Good Enough?"
+    },
+    {
+      "symbol": "LIN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "How Investors May Respond To Linde (LIN) Sustainability Recognition And Rising Earnings Expectations"
+    },
+    {
+      "symbol": "LIN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Linde (LIN) Earnings Expected to Grow: What to Know Ahead of Next Week's Release"
+    },
+    {
+      "symbol": "LIN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Chemicals Companies Likely to Report In-Line Quarterly Results, Deutsche Bank Says"
+    },
+    {
+      "symbol": "LIN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Linde's Q2 2026 Earnings: What to Expect"
+    },
+    {
+      "symbol": "LLY",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Nasdaq lags on angst over AI spending ahead of earnings reports"
+    },
+    {
+      "symbol": "LMT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Boeing Has a $695B Backlog and Analysts See 29% Upside. Should You Buy Before July 28 Earnings?"
+    },
+    {
+      "symbol": "LMT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Lockheed Martin Posted Strong Q2 Results but Execution Remains Key, RBC Says"
+    },
+    {
+      "symbol": "LMT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Defense ETFs in Focus Amid Earnings, Conflict and Military Spending"
+    },
+    {
+      "symbol": "LOW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What You Need to Know Ahead of Lowe's Earnings Release"
+    },
+    {
+      "symbol": "MA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Capex fears trigger biggest Tech sell-off since 'Liberation Day'"
+    },
+    {
+      "symbol": "MA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "PayPal to Report Q2 Earnings: What Should Investors Do?"
+    },
+    {
+      "symbol": "MA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "American Express Sinks 6% After Q2 Earnings Beat as Visa, Mastercard Hold Steady"
+    },
+    {
+      "symbol": "MCD",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Food news latest: Coors Light & Cheez-It team up, 19M eggs recalled for potential salmonella"
+    },
+    {
+      "symbol": "MCD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Starbucks Q3 Earnings Ahead: Buy, Sell or Hold the Stock?"
+    },
+    {
+      "symbol": "MCD",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Why Did PEGA, ISRG, MCD Stocks Plunge To 52-Week Lows Today?"
+    },
+    {
+      "symbol": "MCD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "McDonald\u2019s Just Hit a New 52-Week Low. Don\u2019t Buy the Dip Until After August 4."
+    },
+    {
+      "symbol": "MDLZ",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Mondelez Q2 Earnings Coming Up: Here's What You Should Know"
+    },
+    {
+      "symbol": "MDLZ",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Mondelez (MDLZ) Expected to Beat Earnings Estimates: Should You Buy?"
+    },
+    {
+      "symbol": "MDT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "6 Medical-Device Stocks to Buy After a Massive Selloff"
+    },
+    {
+      "symbol": "MDT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Medtronic Earnings Preview: What to Expect"
+    },
+    {
+      "symbol": "META",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What to watch next week: Big Tech earnings, the Fed, and Consumer Confidence"
+    },
+    {
+      "symbol": "META",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Review & Preview: An Earnings Week to Forget"
+    },
+    {
+      "symbol": "META",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Mag 7 Earnings Preview: Alphabet's Cloud Surge and CapEx Hike Raise the Stakes"
+    },
+    {
+      "symbol": "MMM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "HON Q2 Earnings Beat on Automation Growth, Outlook Raised"
+    },
+    {
+      "symbol": "MMM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "3M Stock Eyes Best Week Since February: Wall Street Sees Multi-Year Growth Story Taking Shape"
+    },
+    {
+      "symbol": "MMM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "3M's Growth Outlook Supports Better Results, UBS Says"
+    },
+    {
+      "symbol": "MMM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "MMM Q2 Earnings Call Shows It is Leaning Into Momentum"
+    },
+    {
+      "symbol": "MMM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "This Dividend Stock Beat Expectations Again. Here\u2019s The New Price Target"
+    },
+    {
+      "symbol": "MO",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Altria Group (MO) Nears Earnings, Is The Recent Rally Already Priced In?"
+    },
+    {
+      "symbol": "MO",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Altria (MO) Earnings Expected to Grow: What to Know Ahead of Next Week's Release"
+    },
+    {
+      "symbol": "MPC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Is Delek US' Higher P/E Ratio Backed by Stronger Fundamentals?"
+    },
+    {
+      "symbol": "MRNA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Will Moderna (MRNA) Report Negative Earnings Next Week? What You Should Know"
+    },
+    {
+      "symbol": "MRNA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Dassault Systemes SE (DASTF) (H1 2026) Earnings Call Highlights: Strong Subscription Growth and ..."
+    },
+    {
+      "symbol": "MRNA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Earnings Preview: What To Expect From Moderna\u2019s Report"
+    },
+    {
+      "symbol": "MRNA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Is Moderna (MRNA) Fully Valued As Board Changes And Earnings Near?"
+    },
+    {
+      "symbol": "MRNA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Moderna Is Up 109% in 2026. Jim Cramer Just Called It 'Finally Investable Again.' Is the Stock a No-Brainer Buy on Its Recent Pullback?"
+    },
+    {
+      "symbol": "MRVL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Momentum Crash Hits YOLO Traders\u2019 Returns by Most in Four Years"
+    },
+    {
+      "symbol": "MS",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "SpaceX at $100 Would Imply Zero AI Value, Morgan Stanley Says"
+    },
+    {
+      "symbol": "MS",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Rollins Q2 Miss Seen as Seasonal, H2 Recovery Expected, Morgan Stanley Says"
+    },
+    {
+      "symbol": "MS",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Profits Are Beating a High Bar and Traders Still Aren\u2019t Enthused"
+    },
+    {
+      "symbol": "MSFT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What to watch next week: Big Tech earnings, the Fed, and Consumer Confidence"
+    },
+    {
+      "symbol": "MSFT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Review & Preview: An Earnings Week to Forget"
+    },
+    {
+      "symbol": "MSFT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Mag 7 Earnings Preview: Alphabet's Cloud Surge and CapEx Hike Raise the Stakes"
+    },
+    {
+      "symbol": "MU",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Micron Stock Falls After an Otherwise Strong Week. What Comes Next Could Define the Memory Boom."
+    },
+    {
+      "symbol": "NEM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Newmont Reported Strong Earnings and Cash Flow. The Stock Is Down."
+    },
+    {
+      "symbol": "NEM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "NEM Q2 Earnings Call Centers on Costs and Capital Returns"
+    },
+    {
+      "symbol": "NEM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Newmont Resources delivers mixed second quarter earnings"
+    },
+    {
+      "symbol": "NEM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Newmont's Q2 Earnings Beat Estimates, Sales Lag on Lower Volumes"
+    },
+    {
+      "symbol": "NEM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Newmont Corp (NEM) Q2 2026 Earnings Call Highlights: Record Free Cash Flow and Strategic ..."
+    },
+    {
+      "symbol": "NEM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Newmont (NEM) Reports Q2 Earnings: What Key Metrics Have to Say"
+    },
+    {
+      "symbol": "NEM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Newmont Q2 Earnings Call Highlights"
+    },
+    {
+      "symbol": "NEM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Newmont Corporation (NEM) Tops Q2 Earnings Estimates"
+    },
+    {
+      "symbol": "NET",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Nebius Is Down 9% Today: How Does NBIS Compare to Other AI Cloud Stocks Like CoreWeave and Cloudflare?"
+    },
+    {
+      "symbol": "NET",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "3 AI Stocks Flying Under the Radar to Buy Before July Ends"
+    },
+    {
+      "symbol": "NET",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Morgan Stanley says software selloff has gone too far, names 8 winners"
+    },
+    {
+      "symbol": "NFLX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "ETFs in Spotlight Following Netflix's Q2 Earnings Beat & Weak '26 View"
+    },
+    {
+      "symbol": "NFLX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Jim Cramer gives his two cents about Netflix stock"
+    },
+    {
+      "symbol": "NKE",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Nike Stock for the Next 10 Years: Buy, Hold, or Avoid?"
+    },
+    {
+      "symbol": "NOW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Big Tech Earnings Week is Over. Who Won and Lost?"
+    },
+    {
+      "symbol": "NOW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "ServiceNow Surges 6%, Salesforce Climbs 4% as Government AI Deals Lift Enterprise Software"
+    },
+    {
+      "symbol": "NSC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Union Pacific's CN Agreement Strengthens Deal Case After Strong Q2, RBC Says"
+    },
+    {
+      "symbol": "NSC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Norfolk Southern's Q2 Beat Driven by Revenue, Margin Strength, RBC Says"
+    },
+    {
+      "symbol": "NSC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Union Pacific Q2 Earnings Call Highlights"
+    },
+    {
+      "symbol": "NSC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Norfolk Southern Posts Record Revenue as Freight Demand Strengthens"
+    },
+    {
+      "symbol": "NVDA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Is Wall Street buying Intel's comeback story after blowout Q2 earnings?"
+    },
+    {
+      "symbol": "ORCL",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Bloom Energy Tumbles 13%, FuelCell Energy Drops 9%, Plug Power Slips 4% in Fuel-Cell Selloff"
+    },
+    {
+      "symbol": "OXY",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "TotalEnergies Q2 Earnings & Sales Miss Estimates as Lower Volumes Hurt"
+    },
+    {
+      "symbol": "PANW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Palo Alto Networks' Q4 2026 Earnings: What to Expect"
+    },
+    {
+      "symbol": "PFE",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Biogen Q2 Earnings: Can New Drugs Counter Falling MS Sales?"
+    },
+    {
+      "symbol": "PG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Colgate-Palmolive (CL) Earnings Expected to Grow: Should You Buy?"
+    },
+    {
+      "symbol": "PG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What Analyst Projections for Key Metrics Reveal About P&G (PG) Q4 Earnings"
+    },
+    {
+      "symbol": "PG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Procter & Gamble to Report Q4 Earnings: What Should You Know?"
+    },
+    {
+      "symbol": "PG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Analysts Estimate Procter & Gamble (PG) to Report a Decline in Earnings: What to Look Out for"
+    },
+    {
+      "symbol": "PLD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Crown Castle Q2 AFFO Beats Estimates on Lower Interest Expense"
+    },
+    {
+      "symbol": "PM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Four Stocks Hit New Highs Amid Tech Meltdown"
+    },
+    {
+      "symbol": "PM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Philip Morris International Inc (PM) Q2 2026 Earnings Call Highlights: Strong Revenue Growth ..."
+    },
+    {
+      "symbol": "PM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Wall Street indexes dip with technology earnings, rising oil in focus"
+    },
+    {
+      "symbol": "PM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Philip Morris Stock Rises as Earnings Highlight Nicotine Pouch Rebound"
+    },
+    {
+      "symbol": "PM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "These Two Stocks Hit Fresh 52-Week Highs Today \u2013 Here\u2019s What Investors Need To Know"
+    },
+    {
+      "symbol": "PNC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Here Are Thursday\u2019s Top Wall Street Analyst Research Calls: AT&T, Applied Digital, Autodesk, Duke Energy, Exxon Mobil, JPMorgan Chase & Company, Live Nation Entertainment, and More"
+    },
+    {
+      "symbol": "PNC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "PNC (PNC) Q2 2026 Earnings Call Transcript"
+    },
+    {
+      "symbol": "PNC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Fifth Third Q2 Earnings Beat on Strong NII & Fee Income, Stock Down"
+    },
+    {
+      "symbol": "PSX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "All You Need to Know About Phillips 66 (PSX) Rating Upgrade to Buy"
+    },
+    {
+      "symbol": "PSX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "These Two Stocks Hit Fresh 52-Week Highs Today \u2013 Here\u2019s What Investors Need To Know"
+    },
+    {
+      "symbol": "REGN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Regeneron (REGN) Expected to Beat Earnings Estimates: What to Know Ahead of Q2 Release"
+    },
+    {
+      "symbol": "REGN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Here's What to Expect From Regeneron Pharmaceuticals\u2019 Next Earnings Report"
+    },
+    {
+      "symbol": "RTX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Boeing Has a $695B Backlog and Analysts See 29% Upside. Should You Buy Before July 28 Earnings?"
+    },
+    {
+      "symbol": "RTX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "RTX Q2 Results Beat Expectations on Strong Aerospace, Defense Demand, RBC Says"
+    },
+    {
+      "symbol": "RTX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Defense ETFs in Focus Amid Earnings, Conflict and Military Spending"
+    },
+    {
+      "symbol": "RTX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "RTX Beats on Q2 Earnings, Lifts Full-Year 2026 Guidance"
+    },
+    {
+      "symbol": "RTX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "RTX (RTX) Q2 2026 Earnings Call Transcript"
+    },
+    {
+      "symbol": "SBUX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Tata Consumer Products Ltd (BOM:500800) Q1 2027 Earnings Call Highlights: Strong Revenue Growth ..."
+    },
+    {
+      "symbol": "SBUX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Starbucks Q3 Earnings Ahead: Buy, Sell or Hold the Stock?"
+    },
+    {
+      "symbol": "SCHW",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Nasdaq Tightens Rules, Nearly 180 Microcap Stocks Face Delisting Risk"
+    },
+    {
+      "symbol": "SCHW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Morgan Stanley doubles down on Schwab after earnings"
+    },
+    {
+      "symbol": "SCHW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Raymond James Q3 Earnings Beat on Higher Revenues, Provision Benefit"
+    },
+    {
+      "symbol": "SCHW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Schwab Earnings Boosted by Latest Tax-Focused Strategy"
+    },
+    {
+      "symbol": "SHW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Will Sherwin-Williams (SHW) Beat Estimates Again in Its Next Earnings Report?"
+    },
+    {
+      "symbol": "SHW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Is RPM Stock a Buy Now or a Hold After Its Latest Earnings Beat?"
+    },
+    {
+      "symbol": "SHW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Analysts Estimate Quaker Chemical (KWR) to Report a Decline in Earnings: What to Look Out for"
+    },
+    {
+      "symbol": "SHW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Stay Ahead of the Game With Sherwin-Williams (SHW) Q2 Earnings: Wall Street's Insights on Key Metrics"
+    },
+    {
+      "symbol": "SHW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "FCX to Report Q2 Earnings: What's in the Offing for the Stock?"
+    },
+    {
+      "symbol": "SHW",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Sherwin-Williams (SHW) Reports Next Week: Wall Street Expects Earnings Growth"
+    },
+    {
+      "symbol": "SLB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "SLB Ltd (SLB) Q2 2026 Earnings Call Highlights: Strong Digital Growth Amid Middle East Challenges"
+    },
+    {
+      "symbol": "SLB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "SLB N.V. Q2 2026 Earnings Call Summary"
+    },
+    {
+      "symbol": "SLB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "S&P 500 Posts Weekly Decline Amid Mixed Earnings, US-Iran Turmoil"
+    },
+    {
+      "symbol": "SLB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "SLB Stock Jumps as Drilling Activity Drives Earnings. It\u2019s Also Leaning Into This \u2018Growth Vector.\u2019"
+    },
+    {
+      "symbol": "SLB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "SLB Q2 Earnings Call Highlights"
+    },
+    {
+      "symbol": "SLB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "SLB Q2 Earnings Beat Estimates on Digital & Production Systems Growth"
+    },
+    {
+      "symbol": "SOXX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Intel Rises 3% on Q2 Earnings Beat, Upbeat Q3 Outlook as Chip Sector Stays Flat"
+    },
+    {
+      "symbol": "SOXX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Why Texas Instruments\u2019 Near-Perfect Earnings Is a Warning for the Chip Sector"
+    },
+    {
+      "symbol": "SOXX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Thursday Amid Major Tech Stocks Sell-Off"
+    },
+    {
+      "symbol": "SOXX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Wall Street Turns to Value Ahead of Alphabet Earnings"
+    },
+    {
+      "symbol": "SPG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Regency Centers to Post Q2 Earnings: Is It a Portfolio Must-Have Stock?"
+    },
+    {
+      "symbol": "SPG",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Simon Property Group's Quarterly Earnings Preview: What You Need to Know"
+    },
+    {
+      "symbol": "T",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Verizon Stock Rises as Q2 Beats, AI Deals Could Add Billions in Revenue"
+    },
+    {
+      "symbol": "T",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Verizon Stock Rises After Earnings as Turnaround Plan Gathers Pace"
+    },
+    {
+      "symbol": "T",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Verizon Lifts Earnings Outlook; Charter Communications Reports Broadband Customer Drop"
+    },
+    {
+      "symbol": "T",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Should AT&T\u2019s (T) Strong Q2 Earnings and Bigger Buybacks Require Action From Investors?"
+    },
+    {
+      "symbol": "T",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Wolfe Research Just Upgraded AT&T Stock. Here's Why."
+    },
+    {
+      "symbol": "TGT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Amazon stock slides as Prime Day data reveals shopper shift ahead of earnings"
+    },
+    {
+      "symbol": "TGT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What You Need To Know Ahead of Target\u2019s Earnings Release"
+    },
+    {
+      "symbol": "TJX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "TJX Companies Earnings Preview: What to Expect"
+    },
+    {
+      "symbol": "TJX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "TJX (TJX) Stock Looks Above Fair Value As Earnings Outrun Fair Value"
+    },
+    {
+      "symbol": "TJX",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Can TJX Companies (TJX) Justify Its Valuation After Rising On Earnings Optimism?"
+    },
+    {
+      "symbol": "TMO",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Reading Between The Lines Of DHR's Latest Call"
+    },
+    {
+      "symbol": "TMO",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Thermo Fisher (TMO) Climbs 8.7% on Solid Earnings, Price Target Upgrades"
+    },
+    {
+      "symbol": "TMO",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Thermo Fisher Scientific Q2 Earnings Call Highlights"
+    },
+    {
+      "symbol": "TSLA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "What to watch next week: Big Tech earnings, the Fed, and Consumer Confidence"
+    },
+    {
+      "symbol": "TSLA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Why Big Tech barnings could define the market next week"
+    },
+    {
+      "symbol": "TSLA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Elon Musk Wouldn't Rule Out a Tesla-SpaceX Merger on the July 22 Earnings Call. Here's What It Would Mean for the Shares You Own Today."
+    },
+    {
+      "symbol": "TSLA",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Dow Jones Futures: Apple Earnings, Iran News, Fed Meeting Loom As AI Stocks Sell Off"
+    },
+    {
+      "symbol": "TXN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Big Tech Earnings Week is Over. Who Won and Lost?"
+    },
+    {
+      "symbol": "TXN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Tech Stocks Slide as Semiconductor Index Drops 6% Despite Strong Earnings"
+    },
+    {
+      "symbol": "TXN",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Profits Are Beating a High Bar and Traders Still Aren\u2019t Enthused"
+    },
+    {
+      "symbol": "UNH",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Can Humana Beat Q2 Earnings Estimates on Growing Premiums?"
+    },
+    {
+      "symbol": "UNH",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "UnitedHealth\u2019s earnings comeback hides a risk Wall Street can\u2019t price"
+    },
+    {
+      "symbol": "UNH",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Molina Healthcare Earnings Beat Estimates. The Medicaid Insurer Is Confronting Investor Doubts."
+    },
+    {
+      "symbol": "UNH",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Will UnitedHealth (UNH) Gain on Rising Earnings Estimates?"
+    },
+    {
+      "symbol": "UPS",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Could UPS's Cost Focus and Modest Earnings Outlook Quietly Redefine Its Investment Story (UPS)?"
+    },
+    {
+      "symbol": "UPS",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "United Parcel Service (UPS) Looks Fully Valued Following Its Network Overhaul Narrative"
+    },
+    {
+      "symbol": "UPS",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "UPS (UPS) Q2 Earnings Preview: What You Should Know Beyond the Headline Estimates"
+    },
+    {
+      "symbol": "UPS",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "4 Transportation Stocks Positioned to Beat Q2 Earnings Expectations"
+    },
+    {
+      "symbol": "USB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "U.S. Bancorp (USB) Q2 2026 Earnings Call Transcript"
+    },
+    {
+      "symbol": "USB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "NTRS Q2 Earnings Beat on Higher NII & AUM Growth, Dividend Raised"
+    },
+    {
+      "symbol": "V",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Visa and Apple: Cash-Generating Machines"
+    },
+    {
+      "symbol": "V",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "PayPal to Report Q2 Earnings: What Should Investors Do?"
+    },
+    {
+      "symbol": "V",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Veralto Gears Up to Report Q2 Earnings: What's in the Cards?"
+    },
+    {
+      "symbol": "V",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "American Express Sinks 6% After Q2 Earnings Beat as Visa, Mastercard Hold Steady"
+    },
+    {
+      "symbol": "VZ",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Earnings live: American Express, Verizon stocks slip despite earnings beats"
+    },
+    {
+      "symbol": "VZ",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "How Verizon\u2019s Q2 Results, Dark-Fiber Deal With Google And Raised Outlook At Verizon (VZ) Has Changed Its Investment Story"
+    },
+    {
+      "symbol": "VZ",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Verizon Communications Inc (VZ) Q2 2026 Earnings Call Highlights: Strong Cash Flow and ..."
+    },
+    {
+      "symbol": "VZ",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "S&P 500 Posts Weekly Decline Amid Mixed Earnings, US-Iran Turmoil"
+    },
+    {
+      "symbol": "WFC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Wall Street Says the Chip Selloff Is a Gift: $1.1 Trillion in AI Spending Is Coming"
+    },
+    {
+      "symbol": "WMT",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Amazon stock slides as Prime Day data reveals shopper shift ahead of earnings"
+    },
+    {
+      "symbol": "XLB",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Sector ETFs to Win on Q2 Earnings Growth Potential"
+    },
+    {
+      "symbol": "XLC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "These Growth Funds Are On Quiet Sale"
+    },
+    {
+      "symbol": "XLC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Netflix Slump Puts These ETFs in the Spotlight After Weak Outlook"
+    },
+    {
+      "symbol": "XLC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Netflix Sinks 11% on Soft Q3 Guidance as Analysts Warn It\u2019s \u201cLosing Narrative Control\u201d"
+    },
+    {
+      "symbol": "XLC",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Stock Market News for July 17, 2026"
+    },
+    {
+      "symbol": "XLF",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "American Express Sinks 6% After Q2 Earnings Beat as Visa, Mastercard Hold Steady"
+    },
+    {
+      "symbol": "XLI",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Industrial Stocks And This ETF Claw Gains From A Falling Market"
+    },
+    {
+      "symbol": "XLI",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Thursday Amid Major Tech Stocks Sell-Off"
+    },
+    {
+      "symbol": "XLI",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Wednesday Ahead of Major Tech Earnings"
+    },
+    {
+      "symbol": "XLI",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Higher Pre-Bell Monday Ahead of Key Earnings Reports"
+    },
+    {
+      "symbol": "XLK",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Thursday Amid Major Tech Stocks Sell-Off"
+    },
+    {
+      "symbol": "XLP",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Thursday Amid Major Tech Stocks Sell-Off"
+    },
+    {
+      "symbol": "XLP",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "S&P 500 Q2 Earnings Beats Hit 5-Year Highs: 3 Sector ETFs to Play"
+    },
+    {
+      "symbol": "XLP",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Wednesday Ahead of Major Tech Earnings"
+    },
+    {
+      "symbol": "XLU",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Sector ETFs to Win on Q2 Earnings Growth Potential"
+    },
+    {
+      "symbol": "XLV",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "ETFs to Buy Post JNJ's Q2 Earnings Beat & Bullish 2026 Outlook"
+    },
+    {
+      "symbol": "XLV",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Thursday Amid Major Tech Stocks Sell-Off"
+    },
+    {
+      "symbol": "XLV",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "S&P 500 Q2 Earnings Beats Hit 5-Year Highs: 3 Sector ETFs to Play"
+    },
+    {
+      "symbol": "XLY",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "These Growth Funds Are On Quiet Sale"
+    },
+    {
+      "symbol": "XLY",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Amazon Falls 4% as Senate China Probe and AI-Spending Jitters Weigh Ahead of Earnings"
+    },
+    {
+      "symbol": "XLY",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Thursday Amid Major Tech Stocks Sell-Off"
+    },
+    {
+      "symbol": "XLY",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Exchange-Traded Funds, Equity Futures Lower Pre-Bell Wednesday Ahead of Major Tech Earnings"
+    },
+    {
+      "symbol": "XOM",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Exxon Mobil Holdings (XOM) Earnings Expected to Grow: What to Know Ahead of Next Week's Release"
+    },
+    {
+      "symbol": "BTC-USD",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Elon Musk confirms former trillionaire status as SpaceX plunges 50%"
+    },
+    {
+      "symbol": "AVAX-USD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Is the Saylor playbook cracking? Bitcoin's biggest buyer just became a seller"
+    },
+    {
+      "symbol": "OP-USD",
+      "related_symbols": [],
+      "importance_score": 70,
+      "catalyst_type": "avoid_new_trade",
+      "bot_context_label": "avoid_new_trade",
+      "sentiment": "negative",
+      "headline": "Optimism token price plunges 25% as Coinbase cuts off DAO from millions in revenue"
+    },
+    {
+      "symbol": "OP-USD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Coinbase\u2019s Base Exits Optimism, Triggers 23% Crash To New All-Time Low"
+    },
+    {
+      "symbol": "OP-USD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Stocks end the year up a solid 16% as AI hype powers gains"
+    },
+    {
+      "symbol": "SEI-USD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "earnings_risk",
+      "bot_context_label": "earnings_risk",
+      "sentiment": "negative",
+      "headline": "Earnings season gathers steam, U.S. jobs: Crypto Week Ahead"
+    },
+    {
+      "symbol": "FET-USD",
+      "related_symbols": [],
+      "importance_score": 50,
+      "catalyst_type": "high_volatility_warning",
+      "bot_context_label": "high_volatility_warning",
+      "sentiment": "negative",
+      "headline": "Worst Performing Altcoins of 2025: What Went Wrong"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Trump threatens EU with 'substantial TARIFF' for 'ROBBING' U.S. tech giants"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Trump sued hours after new tariffs take effect, as experts say they may not hold up"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Why bond investors are pushing up some of your interest rates"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Trump's new global tariff draws rebukes from trade partners over forced labor justification"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Kevin Warsh has homed in on three key phrases. How Fed watchers interpret them"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Trump plans generic drug tariffs from 2028 with two-year delay testing U.S. onshoring push"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Renewed Hormuz hostilities drive ECB rates rethink amid \u2018extremely volatile\u2019 outlook"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "India's inflation accelerates to 4.38% in June, exceeding forecasts"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "China consumer price growth weakens in June while producer inflation rises to near 4-year high"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Job seekers giving up: Labor force participation rate falls to lowest in 50 years, outside of Covid era"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with former chief lending officer of Heritage State Bank"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve announces the leadership and objectives of its task forces to advance the conduct of monetary policy"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with TS Banking Group, Inc. and TS Contrarian Bancshares, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board requests comment on a proposal to amend its requirements for banks to maintain anti-money laundering programs"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with Small Business Bank and announces termination enforcement actions with BNP Paribas S.A., BNP Paribas USA, Inc., BNP Paribas Securities Corp., and Community Bankshares, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve issues initial findings from its 2025 triennial payments study"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with employee of Bank of Eufaula and S N B Bancshares, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board announces termination of enforcement action with Jiko Group, Inc."
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board's annual bank stress test confirms that large banks are well positioned to weather a severe recession and able to continue to lend to households and businesses"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve notes with deep sadness the passing of Alan Greenspan"
+    },
+    {
+      "symbol": null,
+      "related_symbols": [],
+      "importance_score": 40,
+      "catalyst_type": "macro",
+      "bot_context_label": "macro_risk",
+      "sentiment": "neutral",
+      "headline": "Federal Reserve Board issues enforcement action with former employee of Bank of Eufaula and S N B Bancshares, Inc."
+    }
+  ],
+  "source_errors": []
+}

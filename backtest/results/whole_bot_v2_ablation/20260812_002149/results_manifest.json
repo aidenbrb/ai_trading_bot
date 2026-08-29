@@ -1,0 +1,23 @@
+{
+  "generated_at_utc": "2026-08-12T04:21:51.337540+00:00",
+  "preregistration_document_sha256": "44e5d562353934edd57fec7dbe31303499ed977ea879c8780d668ddc73b7f5ba",
+  "preregistration_manifest_path": "research/stock_trend_momentum_v2_preregistration.manifest.json",
+  "cache_db_sha256_pre_run": "2aa39029331c7dea6c620c8a23a43b70764fe40ad6761eda901da6775d83d841",
+  "cache_db_sha256_post_run": "2aa39029331c7dea6c620c8a23a43b70764fe40ad6761eda901da6775d83d841",
+  "files_sha256": {
+    "config.json": "d5215d00015176a4a507b0542544359c488264c29a549589c612431712e7cd20",
+    "preflight_report.json": "f3ad0825eee1934d8140a8d4e3404cd408bb4cb19b41bc776a85219ce14f8d7f",
+    "data_coverage.json": "5360f37d39205e1d9be191c26e3ea953f7c7c5fa2f44304bb11e3b6c2a1bf005",
+    "exclusions.csv": "9534fe3f22cb44c1acd7fa8a8454e5fab12c25140cf10e510db91458d69a3122",
+    "trades.csv": "81f517a38ffe5332bad77dccd17c28d05c3d7fdd4a67016266af6768bcdeb3de",
+    "rejected_orders.csv": "71835626cbfce87d965e41b1670045b1a2626899b7b8b6163dcdc11a42b2b8e5",
+    "equity_curves.csv": "b30d5922b9ae76360fce0f08b2b331948c2e97bf37ea367cc3ef27584bee993f",
+    "cache_misses.csv": "5b79e1cedeff02f8650919c51b546e24a8cb6fc4cc191b66018a6aaec0fad534",
+    "missing_outcome_data.csv": "084c8f9ee34977831c58d3cf0b0f9f0d25cf030d69df559f1d3c6195d0b67563",
+    "summaries.json": "14bb72324b5d58b14957416b402501326da4e0e3aab9043260b6f90aa811cd67",
+    "temporal_diagnostics.csv": "cb05a94ee1c8311326f0a0bb5f25e32dc5045a5b51bdd11788cbaecf05dec6c7",
+    "qualification_result.json": "a115b1b35e58af50d5e938c5c1e7065bba5e8c2ae6362984115efafc5e24850e",
+    "determinism_check.json": "14341a411ec3c8750d84d654d62314b848e0faf546556976f2b4bffc1d5787a0",
+    "implementation_hashes.json": "2d6a502c761a63482667ade282974e85d512d82150c85abcece232fa61279f23"
+  }
+}

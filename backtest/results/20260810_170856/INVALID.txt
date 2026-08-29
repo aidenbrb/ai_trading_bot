@@ -1,0 +1,35 @@
+THIS RUN'S RESULTS ARE INVALID - DO NOT USE FOR ANY DECISION.
+
+This run predates a set of confirmed defect fixes to the backtester. Every
+number in this directory (trades.csv, summary.json, equity_curve_*.csv) was
+produced by code with the following bugs, several of which directly inflate
+or corrupt the reported signals and P&L:
+
+  1. Timezone mismatch in the bar cache silently excluded the 9:30 opening
+     bar and could substitute the 9:35 bar instead - wrong entry signals.
+  2. The $5 price filter (and the stored opening_price) used the 5-minutes-
+     later CLOSE instead of the actual 9:30 OPEN price.
+  3. The IEX-vs-SIP overlap check ranked raw single-bar volume instead of
+     14-session relative volume, and divided by a fixed top-20 regardless
+     of how many candidates were actually eligible - the reported overlap
+     percentage was not meaningful.
+  4. Portfolio limits (max_concurrent_positions, max_gross_exposure_x) were
+     not enforced at all - every scenario, including the 5-position
+     "intended deployment" scenario, was simulating trades for all 20
+     selected candidates. Position sizing also always used the fixed
+     starting equity, never compounding realized gains/losses.
+  5. The missing-data exclusion-rate denominator excluded exactly the
+     population it was supposed to measure, understating (or wildly
+     overstating) the true data-completeness rate.
+  6. Fetching was extremely inefficient (thousands of tiny per-symbol,
+     per-session requests) - not itself a correctness bug, but a sign the
+     run may not have completed a representative window before being
+     stopped.
+  7. Simulated fills never accounted for price gaps through the entry
+     trigger or the stop level - unrealistically favorable execution
+     assumptions in both directions.
+
+This run is kept for reference/comparison only (e.g. to sanity-check that
+the fixed code changes results in the expected direction), never as
+evidence of the strategy's actual historical performance. See the
+day-trading-mode backtest defect-fix plan for full details on each item.

@@ -123,3 +123,74 @@ def test_baseline_cost_reduces_final_equity_versus_zero_cost():
     zero = simulate_regime_benchmark(daily_ind, ["BTC-USD"], start, end, engine.COSTS["zero"])
     baseline = simulate_regime_benchmark(daily_ind, ["BTC-USD"], start, end, engine.COSTS["baseline"])
     assert baseline["final_equity"] < zero["final_equity"]
+
+
+# -- entry_days="weekend" / min_hold_days (Phase 3 addendum item 1) -----------
+
+def test_weekend_entry_only_ever_lands_on_saturday_or_sunday():
+    # Multiple regime on/off cycles across a long enough window that entries
+    # land on a variety of weekdays under entry_days="daily" (control) - then
+    # confirm entry_days="weekend" forces every single one onto a Sat/Sun,
+    # regardless of which weekday the regime itself actually flipped on.
+    warmup = _noisy_trend(0.0, WARMUP, seed=12, noise_std=0.02)
+    cycles = []
+    price = warmup[-1]
+    for c in range(6):
+        up = _noisy_trend(0.03, 8, seed=100 + c, start_price=price, noise_std=0.01)
+        price = up[-1]
+        down = _noisy_trend(-0.03, 8, seed=200 + c, start_price=price, noise_std=0.01)
+        price = down[-1]
+        cycles += up[1:] + down[1:]
+    closes = warmup + cycles
+    frame = _frame(closes, "2026-01-01")
+    daily_ind = {"BTC-USD": frame}
+    start = date(2026, 1, 1)
+    end = start + timedelta(days=len(closes) - 1)
+
+    daily_mode = simulate_regime_benchmark(daily_ind, ["BTC-USD"], start, end, engine.COSTS["zero"], entry_days="daily")
+    weekend_mode = simulate_regime_benchmark(daily_ind, ["BTC-USD"], start, end, engine.COSTS["zero"], entry_days="weekend")
+
+    assert daily_mode["trades"], "sanity: control run must have actually traded"
+    assert weekend_mode["trades"], "sanity: weekend-entry run must have actually traded"
+    assert any(t["entry_date"].weekday() < 5 for t in daily_mode["trades"]), (
+        "sanity: the daily-entry control should include at least one weekday entry, "
+        "otherwise this scenario can't actually distinguish the two modes"
+    )
+    assert all(t["entry_date"].weekday() >= 5 for t in weekend_mode["trades"])
+
+
+def test_min_hold_ignores_an_early_regime_off_signal():
+    # Regime on, then off after just 2 days (well under a 7-day min hold) -
+    # position must stay open at least 7 days regardless.
+    warmup = _noisy_trend(0.0, WARMUP, seed=10, noise_std=0.001)
+    rally = _noisy_trend(0.03, 5, seed=10, start_price=warmup[-1], noise_std=0.001)
+    crash = [rally[-1] * 0.6] * 20  # regime flips off almost immediately after entry
+    closes = warmup + rally[1:] + crash
+    frame = _frame(closes, "2026-01-01")
+    daily_ind = {"BTC-USD": frame}
+    start = date(2026, 1, 1)
+    end = start + timedelta(days=len(closes) - 1)
+
+    no_hold = simulate_regime_benchmark(daily_ind, ["BTC-USD"], start, end, engine.COSTS["zero"], min_hold_days=0)
+    with_hold = simulate_regime_benchmark(daily_ind, ["BTC-USD"], start, end, engine.COSTS["zero"], min_hold_days=7)
+
+    assert no_hold["trades"], "sanity: the no-hold run must have actually traded"
+    assert with_hold["trades"], "sanity: the min-hold run must have actually traded"
+    no_hold_hold_days = (no_hold["trades"][0]["exit_date"] - no_hold["trades"][0]["entry_date"]).days
+    with_hold_hold_days = (with_hold["trades"][0]["exit_date"] - with_hold["trades"][0]["entry_date"]).days
+    assert with_hold_hold_days >= 7
+    assert with_hold_hold_days > no_hold_hold_days
+
+
+def test_min_hold_zero_is_equivalent_to_the_default():
+    warmup = _noisy_trend(0.0, WARMUP, seed=11, noise_std=0.001)
+    rally = _noisy_trend(0.02, 20, seed=11, start_price=warmup[-1], noise_std=0.002)
+    closes = warmup + rally[1:]
+    frame = _frame(closes, "2026-01-01")
+    daily_ind = {"BTC-USD": frame}
+    start = date(2026, 1, 1)
+    end = start + timedelta(days=len(closes) - 1)
+
+    default = simulate_regime_benchmark(daily_ind, ["BTC-USD"], start, end, engine.COSTS["zero"])
+    explicit_zero_hold = simulate_regime_benchmark(daily_ind, ["BTC-USD"], start, end, engine.COSTS["zero"], min_hold_days=0)
+    assert default["final_equity"] == pytest.approx(explicit_zero_hold["final_equity"])

@@ -69,15 +69,33 @@ def simulate_regime_benchmark(
     vol_lookback_days: int = 30,
     starting_equity: float = 100_000.0,
     regime_symbol: str = "BTC-USD",
+    entry_days: str = "daily",
+    min_hold_days: int = 0,
 ) -> dict:
     """Long `universe` (100% notional, equal-split if inverse_vol=False and
     len(universe)>1; inverse-vol-weighted if True) whenever `regime_symbol`
     is above its own 20-day SMA, flat otherwise. Weights are set once at
     entry and held fixed until the regime flips off - not re-balanced
-    daily within a holding period."""
+    daily within a holding period.
+
+    entry_days="weekend" restricts new entries to Sat/Sun (matching cell
+    #1's own weekend-only ADMISSION restriction - crypto_trend_daily_v1's
+    exits, like this benchmark's, are never day-restricted, only entries
+    are); min_hold_days ignores a regime-off exit signal until at least
+    that many days have elapsed since entry (Phase 3 addendum: the
+    original daily-entry/daily-exit benchmark is confounded by turnover -
+    every brief regime flip both enters AND exits a position, paying the
+    cost twice for noise. Both added specifically to give this control a
+    fairer, less turnover-punished comparison against cell #1's own
+    cadence, not to make it look better by construction - defaults to the
+    original daily/daily behavior so existing callers are unaffected)."""
     cash = starting_equity
     open_positions: dict[str, _BenchPosition] = {}
-    was_on = False
+    holding = False  # whether we currently hold a position - NOT the same as
+                      # "regime is on" once entry_days="weekend" can delay
+                      # entry past the instant the regime actually turns on
+    last_regime = False
+    basket_entry_date: date | None = None
     trades: list[dict] = []
     daily_equity: list[dict] = []
 
@@ -85,9 +103,16 @@ def simulate_regime_benchmark(
     while day <= end:
         regime = _regime_on(daily_ind, day, regime_symbol)
         if regime is None:
-            regime = was_on  # hold last known state on a rare missing regime-symbol bar
+            regime = last_regime  # hold last known reading on a rare missing regime-symbol bar
+        last_regime = regime
 
-        if regime and not was_on:
+        entry_allowed = entry_days != "weekend" or day.weekday() >= 5
+        exit_allowed = (
+            basket_entry_date is None
+            or (day - basket_entry_date).days >= min_hold_days
+        )
+
+        if regime and not holding and entry_allowed:
             equity_now = cash  # flat going in - cash IS equity at this instant
             bars = {}
             for sym in universe:
@@ -106,14 +131,17 @@ def simulate_regime_benchmark(
             else:
                 weights = {s: 1.0 / len(bars) for s in bars} if bars else {}
 
-            for sym, w in weights.items():
-                price = float(bars[sym]["close"])
-                notional = equity_now * w
-                quantity = notional / price
-                cash -= notional
-                open_positions[sym] = _BenchPosition(sym, day, price, quantity, notional)
+            if weights:
+                for sym, w in weights.items():
+                    price = float(bars[sym]["close"])
+                    notional = equity_now * w
+                    quantity = notional / price
+                    cash -= notional
+                    open_positions[sym] = _BenchPosition(sym, day, price, quantity, notional)
+                basket_entry_date = day
+                holding = True
 
-        elif not regime and was_on:
+        elif not regime and holding and exit_allowed:
             for sym, pos in list(open_positions.items()):
                 bar = _xsec_bar(daily_ind.get(sym), day) if daily_ind.get(sym) is not None else None
                 exit_price = float(bar["close"]) if bar is not None else pos.entry_price
@@ -129,8 +157,8 @@ def simulate_regime_benchmark(
                     "pnl_r": net / abs(pos.entry_notional) if pos.entry_notional else None,
                 })
             open_positions = {}
-
-        was_on = regime
+            holding = False
+            basket_entry_date = None
 
         unrealized = 0.0
         for sym, pos in open_positions.items():

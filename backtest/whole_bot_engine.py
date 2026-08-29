@@ -10,7 +10,7 @@ import time as wall_time
 from dataclasses import asdict, dataclass
 from datetime import date, datetime, time, timedelta, timezone
 from types import SimpleNamespace
-from typing import Callable
+from typing import Callable, Optional
 from zoneinfo import ZoneInfo
 
 import numpy as np
@@ -752,6 +752,99 @@ def _outcome(candidate, filled_at, fill_price, exit_time, exit_price, reason,
         "final_stop": float(current_stop),
         "ambiguous": bool(ambiguous),
     }
+
+
+def simulate_daily_crypto_order_outcome(
+    candidate: Candidate,
+    end_date: date,
+    indicator_frames: dict[str, pd.DataFrame],
+    *,
+    fetch_stock: Callable = get_stock_research_bars_multi,    # unused - kept for call-signature parity
+    fetch_crypto: Callable = get_crypto_research_bars_multi,  # unused - kept for call-signature parity
+    expiration_sessions: Optional[int] = None,                # unused - crypto never GTC-expires unfilled
+) -> dict:
+    """Daily-cadence counterpart to simulate_order_outcome(), for
+    timeframe="daily" candidates (crypto_trend_daily_v1) - added for Phase 2
+    Step 4 (exit timeframe consistency) alongside simulate_order_outcome()
+    (completely unmodified above; every hourly-strategy and every stock
+    candidate keeps using it exactly as before, since Candidate.timeframe
+    defaults to "hourly" and simulate_portfolio() itself is untouched -
+    Step 5 selects this function via simulate_portfolio()'s existing
+    outcome_simulator= parameter only for the daily-strategy backtest runs).
+
+    Mirrors the SAME exit philosophy the hourly path and monitor_node.py's
+    live _evaluate_position() both use (downside checked before upside;
+    trail the stop once price has moved >= 1x ATR favorably, to 1.5x ATR
+    behind; DOWNTREND or MACD<0-and-RSI<45 forces an exit) - just
+    evaluated once per day instead of every 30 minutes, against
+    `indicator_frames` (must be a DAILY frame dict, e.g. from
+    build_daily_crypto_indicator_frames() - NOT the hourly one; passing the
+    hourly frame here would silently reintroduce the exact hourly/daily
+    mismatch this work exists to fix).
+
+    fetch_stock/fetch_crypto/expiration_sessions are accepted only because
+    simulate_portfolio() always passes expiration_sessions positionally-
+    compatible with simulate_order_outcome()'s signature; this function
+    never fetches its own bars and crypto has no GTC-expiration concept."""
+    frame = indicator_frames.get(candidate.symbol)
+    if frame is None or frame.empty:
+        return {"status": "outcome_data_missing", "outcome_data_missing": True,
+                "reason": "no daily indicator frame for symbol",
+                "filled_at": None, "fill_price": None}
+
+    decision_day = candidate.decision_time.date()
+    fill_cutoff = datetime.combine(decision_day, time.min)
+    if fill_cutoff not in frame.index:
+        return {"status": "unfilled_end", "outcome_data_missing": False,
+                "filled_at": None, "fill_price": None}
+    fill_row = frame.loc[fill_cutoff]
+    if pd.isna(fill_row.get("open")):
+        return {"status": "outcome_data_missing", "outcome_data_missing": True,
+                "reason": "missing open on fill day",
+                "filled_at": None, "fill_price": None}
+
+    filled_at = fill_cutoff
+    fill_price = float(fill_row["open"])
+    current_stop = candidate.stop
+    last_row = fill_row
+
+    day = decision_day
+    while day <= end_date:
+        cutoff = datetime.combine(day, time.min)
+        if cutoff not in frame.index:
+            day += timedelta(days=1)
+            continue
+        row = frame.loc[cutoff]
+        if pd.isna(row.get("low")) or pd.isna(row.get("high")) or pd.isna(row.get("close")):
+            day += timedelta(days=1)
+            continue
+        last_row = row
+        low, high, close_now = float(row["low"]), float(row["high"]), float(row["close"])
+
+        # Broker-side downside protection checked before upside, matching
+        # simulate_order_outcome()'s own convention for the same reason:
+        # the required adverse-ambiguity assumption when both could have
+        # occurred within the same bar.
+        if low <= current_stop:
+            return _outcome(candidate, filled_at, fill_price, cutoff, current_stop, "stop", current_stop)
+        if high >= candidate.target:
+            return _outcome(candidate, filled_at, fill_price, cutoff, candidate.target, "target", current_stop)
+
+        if pd.notna(row.get("trend")) and pd.notna(row.get("macd_hist")) and pd.notna(row.get("rsi_14")):
+            if str(row["trend"]) == "DOWNTREND" or (float(row["macd_hist"]) < 0 and float(row["rsi_14"]) < 45):
+                return _outcome(candidate, filled_at, fill_price, cutoff, close_now, "monitor_reversal", current_stop)
+
+        if pd.notna(row.get("atr_14")):
+            current_atr = float(row["atr_14"])
+            if current_atr > 0 and close_now - fill_price >= current_atr:
+                proposed = close_now - 1.5 * current_atr
+                if proposed > current_stop and proposed < close_now:
+                    current_stop = round(proposed, 8)
+
+        day += timedelta(days=1)
+
+    final_ts = datetime.combine(end_date, time.max)
+    return _outcome(candidate, filled_at, fill_price, final_ts, float(last_row["close"]), "end_of_test", current_stop)
 
 
 def _size(candidate: Candidate, portfolio: ResearchPortfolio, equity: float, cash: float) -> dict:

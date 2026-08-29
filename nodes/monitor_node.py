@@ -41,6 +41,7 @@ from __future__ import annotations
 import argparse
 import uuid
 from datetime import date, datetime
+from types import SimpleNamespace
 from utils.timeutil import utcnow
 from typing import Optional
 
@@ -49,7 +50,7 @@ from sqlmodel import select
 from config.settings import settings
 from config.universe import CRYPTO_SET
 from db.connection import get_session, init_db
-from db.models import Indicator, Order, Position, RunLog, Ticker, Trade
+from db.models import Indicator, Order, Position, RiskApproval, RunLog, Strategy, Ticker, Trade
 
 _NODE = "monitor_node"
 
@@ -203,7 +204,12 @@ def run(tickers: list[str] | None = None) -> dict:
               f"held={_days_held(pos.entry_date)}d")
 
         try:
-            ind = _get_latest_indicator(pos.ticker_id)
+            timeframe = _position_timeframe(pos)
+            ind = (
+                _get_daily_indicator_namespace(symbol)
+                if symbol in CRYPTO_SET and timeframe == "daily"
+                else _get_latest_indicator(pos.ticker_id)
+            )
             decision = _evaluate_position(symbol, pos, current_price, ind)
         except Exception as exc:
             failed_list.append({"symbol": symbol, "reason": str(exc)})
@@ -1017,6 +1023,77 @@ def _get_latest_indicator(ticker_id: str) -> Optional[Indicator]:
             .where(Indicator.ticker_id == ticker_id)
             .order_by(Indicator.bar_date.desc())  # type: ignore[attr-defined]
         ).first()
+
+
+# -- Timeframe-aware review (Phase 2 Step 4) ------------------------------------
+#
+# Added after a review found _evaluate_position() always trails/reverses
+# every position on hourly indicators, even though the daily-bar crypto
+# strategies (crypto_trend_daily_v1, crypto_xsec_momentum_v1) were built
+# specifically because the hourly path's "SMA20/50/200" is actually
+# 20/50/200 HOURLY bars, not the daily periods the names imply - the same
+# mismatch would silently reappear in position management if left alone.
+# Scoped deliberately narrowly: only crypto positions opened by one of the
+# two new daily-bar strategies switch source; every stock position and
+# every existing hourly-strategy crypto position is completely unaffected
+# (falls through to the exact same _get_latest_indicator() call as before).
+#
+# No new Position/Order column, no migration, no touching
+# nodes/execution_node.py (a Tier-1 guardrail file for both the live SLC
+# system and this repo's own evidence gate - see the crypto_trend_daily_v1
+# registry incident earlier in this work). Strategy identity for an
+# already-open position is derived by walking the existing
+# Position -> Order -> RiskApproval -> Strategy chain to Strategy.model_used,
+# the field crypto/stock strategy nodes already repurpose to carry the
+# exact strategy version string (see crypto_strategy_node.py::_write_strategy).
+
+DAILY_TIMEFRAME_STRATEGIES = {"crypto_trend_daily_v1", "crypto_xsec_momentum_v1"}
+
+
+def _position_strategy_version(pos: Position) -> Optional[str]:
+    """None (not "unknown") whenever any link in the chain is missing -
+    e.g. a position reconciled directly from a broker fill with no local
+    Strategy row. _position_timeframe() treats None as "hourly", the
+    same behavior every position had before this change existed."""
+    if not pos.order_id:
+        return None
+    with get_session() as session:
+        order = session.exec(select(Order).where(Order.id == pos.order_id)).first()
+        if order is None or not order.risk_approval_id:
+            return None
+        approval = session.exec(
+            select(RiskApproval).where(RiskApproval.id == order.risk_approval_id)
+        ).first()
+        if approval is None:
+            return None
+        strategy = session.exec(
+            select(Strategy).where(Strategy.id == approval.strategy_id)
+        ).first()
+        return strategy.model_used if strategy else None
+
+
+def _position_timeframe(pos: Position) -> str:
+    """"daily" only for the two new daily-bar crypto strategies; "hourly"
+    otherwise, including whenever strategy identity can't be determined -
+    an ambiguous/legacy position degrades to the original, already-proven
+    hourly review path rather than an unverified new one."""
+    version = _position_strategy_version(pos)
+    return "daily" if version in DAILY_TIMEFRAME_STRATEGIES else "hourly"
+
+
+def _get_daily_indicator_namespace(symbol: str):
+    """Daily indicator values (see nodes/crypto_strategy_node.py::
+    fetch_daily_indicator) wrapped as an Indicator-compatible object -
+    _evaluate_position() only ever reads .trend/.macd_hist/.rsi_14/.atr_14
+    by attribute, so a SimpleNamespace satisfies it exactly like a real
+    Indicator row does. None if daily data is unavailable -
+    _evaluate_position() already handles ind=None (falls through to its
+    own ATR fallback / HOLD), the same as a missing hourly Indicator row
+    is handled today."""
+    from nodes.crypto_strategy_node import fetch_daily_indicator
+
+    values = fetch_daily_indicator(symbol)
+    return SimpleNamespace(**values) if values is not None else None
 
 
 _ticker_cache: dict[str, str] = {}

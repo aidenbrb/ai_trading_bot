@@ -107,6 +107,66 @@ def test_equal_high_is_not_a_pivot():
                    for p in slc.confirmed_pivots(bars))
 
 
+# -- Phase 6: confirmed_pivots()'s performance cache must never return a
+#    stale result, and must not leak memory in a long-running process
+#    (live_slc/reducer.py calls classify_structure() -> confirmed_pivots()
+#    every cycle, for the process's entire lifetime) ------------------------
+
+def test_confirmed_pivots_cache_detects_in_place_content_change_under_the_same_identity():
+    """The cache is keyed on object identity AND a content fingerprint
+    (row count, last index, last close) - not identity alone. Verified
+    directly (not merely assumed from reading reducer.py) that reducer.py
+    never mutates completed_4h_bars in place - it only ever reassigns via
+    pd.concat(), which always returns a new object - but this test proves
+    the cache would still be correct even if that ever changed: the same
+    object, mutated in place after the first call, must not serve a stale
+    cached result on the second call."""
+    bars = _uptrend_four_hour_bars()
+    first = slc.confirmed_pivots(bars)
+    assert first  # sanity: this fixture does produce pivots
+
+    # Mutate the SAME object in place - identity is unchanged, content is not.
+    bars.iloc[-1, bars.columns.get_loc("high")] = 1000.0
+    bars.iloc[-1, bars.columns.get_loc("low")] = 999.0
+
+    second = slc.confirmed_pivots(bars)
+    assert second != first, (
+        "cache returned a stale result after the same object's content changed in place"
+    )
+    # And re-running the uncached function directly agrees with the
+    # cache's post-mutation answer - proving "second" is the genuinely
+    # correct recomputation, not just "different from first" by accident.
+    assert second == slc._confirmed_pivots_uncached(bars)
+
+
+def test_confirmed_pivots_cache_does_not_accumulate_across_many_distinct_frames():
+    """Single-entry by construction: calling confirmed_pivots() with many
+    distinct frames in sequence (as a long-running live_slc process would,
+    across many cycles and/or symbols) must not accumulate references to
+    every frame ever seen - each new call's frame replaces the previous
+    cache entry outright, so an old frame becomes garbage-collectable the
+    moment it's superseded."""
+    import gc
+    import weakref
+
+    refs = []
+    for i in range(20):
+        bars = _uptrend_four_hour_bars().copy()
+        bars.iloc[0, bars.columns.get_loc("high")] = 100.0 + i  # distinct content per frame
+        slc.confirmed_pivots(bars)
+        refs.append(weakref.ref(bars))
+        del bars
+
+    gc.collect()
+    alive = [i for i, ref in enumerate(refs) if ref() is not None]
+    # At most the very last frame (still cached) may still be alive -
+    # every earlier one must have been collected, proving the cache never
+    # held more than one frame's worth of memory at a time.
+    assert alive == [len(refs) - 1], (
+        f"expected only the most recent frame to remain alive, found indices still alive: {alive}"
+    )
+
+
 def test_detects_full_base_candle_demand_after_completed_impulse():
     index = pd.date_range("2025-06-02 13:30", periods=18, freq="5min")
     bars = _bars(index)

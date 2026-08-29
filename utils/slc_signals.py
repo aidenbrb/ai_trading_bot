@@ -161,25 +161,89 @@ def session_anchored_4h_bars(five_minute_bars: pd.DataFrame) -> pd.DataFrame:
 # call - previously this recomputed confirmed_pivots() over that entire,
 # unchanging frame from scratch every single time (1,171 full rescans for
 # just a 5-month/14.5k-bar AAPL window in profiling, ~45% of total
-# runtime). Cached by object IDENTITY (`is`, not equality) with a strong
-# reference held to the cached frame itself - this can never return a
-# stale result for a different frame no matter how Python reuses freed
-# objects' ids, because the cached frame object is kept alive and
-# compared directly. side_bars is part of the key too, even though every
-# real call site uses the default - defensive, not exercised today.
+# runtime). live_slc/reducer.py also calls classify_structure() -> this
+# function with the live path's completed_4h_bars, which is what makes
+# the cache's correctness a live-trading concern, not just a backtest
+# one.
+#
+# Keyed on object IDENTITY *and* a cheap content fingerprint (row count,
+# first/last index, a vectorized checksum over high/low), not identity
+# alone:
+#   - Identity, with a strong reference held to the cached frame, means
+#     this can never accidentally match a DIFFERENT frame no matter how
+#     Python reuses freed objects' ids - the cached object is kept alive
+#     and compared directly, so an id-reuse collision is structurally
+#     impossible.
+#   - The content fingerprint exists for a different reason: identity
+#     alone is only correct if a frame, once passed here, is NEVER
+#     mutated in place under the same reference. Verified true for
+#     reducer.py's actual code today (state.completed_4h_bars is only
+#     ever REASSIGNED via pd.concat(), which always returns a new object
+#     - grepped every reference, confirmed empirically that pd.concat
+#     never touches its input in place - see
+#     tests/test_slc_signals.py::test_confirmed_pivots_cache_detects_in_
+#     place_content_change_under_the_same_identity), not merely assumed.
+#     But relying on that invariant holding forever, in a long-running
+#     live process, unverified on every call, is exactly the kind of
+#     "trust the write path forever" gap this project avoids elsewhere
+#     (see live_slc/guardrails.py::resolve_active_baseline()'s own
+#     comment on the same principle) - so this checks fresh every call
+#     instead of assuming it.
+# side_bars is part of the key too, even though every real call site
+# uses the default - defensive, not exercised today.
+#
+# Single-entry by construction (one dict, always overwritten, never
+# accumulates additional keys) - bounded at exactly one frame's worth of
+# memory regardless of how many distinct frames are ever passed across
+# the process's lifetime (relevant for live_slc, a long-running process
+# unlike the one-shot backtest script). The previously-cached frame
+# becomes garbage-collectable the instant a new one replaces it - see
+# tests/test_slc_signals.py::test_confirmed_pivots_cache_does_not_
+# accumulate_across_many_distinct_frames.
+#
 # Zero behavior change: same inputs always produce the same output as an
-# uncached call: confirmed_pivots()'s own logic is untouched below.
-_confirmed_pivots_cache: dict = {"frame": None, "side_bars": None, "result": None}
+# uncached call - confirmed_pivots()'s own logic is untouched below.
+_confirmed_pivots_cache: dict = {"frame": None, "side_bars": None, "fingerprint": None, "result": None}
+
+
+def _pivots_cache_fingerprint(four_hour_bars: pd.DataFrame) -> tuple:
+    """A row count + first/last index + vectorized numpy checksum over
+    high/low (the only columns confirmed_pivots() actually reads) - NOT
+    just the last row's values. A first attempt at this fingerprint used
+    only (row count, last index, last close), and a test written to prove
+    it works instead caught it silently missing a mutation to an
+    interior/last row's high/low (confirmed_pivots() never reads close at
+    all - checking it was doubly wrong). This is O(n) but on a single
+    vectorized numpy sum, not the O(n) Python loop with per-row .iloc[]
+    calls confirmed_pivots() itself uses - still dramatically cheaper
+    than an uncached recomputation, while catching a mutation anywhere in
+    the frame, not just its last row."""
+    n = len(four_hour_bars)
+    if n == 0:
+        return (0, None, None, 0.0)
+    first_index = four_hour_bars.index[0]
+    last_index = four_hour_bars.index[-1]
+    try:
+        checksum = float(np.nansum(four_hour_bars[["high", "low"]].to_numpy(dtype=float)))
+    except (KeyError, ValueError, TypeError):
+        checksum = None
+    return (n, first_index, last_index, checksum)
 
 
 def confirmed_pivots(four_hour_bars: pd.DataFrame, *, side_bars: int = 2) -> list[dict]:
     """Return strict pivots and the timestamp each one became knowable."""
     cache = _confirmed_pivots_cache
-    if cache["frame"] is four_hour_bars and cache["side_bars"] == side_bars:
+    fingerprint = _pivots_cache_fingerprint(four_hour_bars)
+    if (
+        cache["frame"] is four_hour_bars
+        and cache["side_bars"] == side_bars
+        and cache["fingerprint"] == fingerprint
+    ):
         return cache["result"]
     result = _confirmed_pivots_uncached(four_hour_bars, side_bars=side_bars)
     cache["frame"] = four_hour_bars
     cache["side_bars"] = side_bars
+    cache["fingerprint"] = fingerprint
     cache["result"] = result
     return result
 

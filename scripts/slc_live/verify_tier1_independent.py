@@ -51,6 +51,7 @@ TIER1_FILES: dict[str, Path] = {
     "utils/strategy_registry.py": REPO_ROOT / "utils" / "strategy_registry.py",
     "nodes/execution_node.py": REPO_ROOT / "nodes" / "execution_node.py",
     "live_slc/guardrails.py": REPO_ROOT / "live_slc" / "guardrails.py",
+    "live_slc/allowed_signers": REPO_ROOT / "live_slc" / "allowed_signers",
     **{
         f"scripts/{path.name}": path
         for path in sorted((REPO_ROOT / "scripts").glob("*.bat"))

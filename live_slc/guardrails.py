@@ -65,6 +65,31 @@ GUARDRAILS_TIER1 = {
     "utils/strategy_registry.py": REPO_ROOT / "utils" / "strategy_registry.py",
     "nodes/execution_node.py": REPO_ROOT / "nodes" / "execution_node.py",
     "live_slc/guardrails.py": LIVE_SLC_ROOT / "guardrails.py",
+    # Phase 6 (operator request): moved here from "deliberately never
+    # guardrailed" once the bootstrap sequencing made it safe - the
+    # operator adds their real key to this file FIRST, as an unprotected
+    # manual edit (the only edit to this file that ever happens without
+    # Tier-1 protection), and only the baseline generated AFTER that key
+    # is already present includes this file's hash. From that point on,
+    # ADDING a further key is safe to guardrail normally: the existing
+    # key(s) already in the file co-sign the new version, and since they
+    # remain present in the post-edit file, their signature still
+    # verifies against it.
+    #
+    # KNOWN GAP - key REMOVAL is not solved by this scheme: revoking a
+    # key requires signing a new file version that no longer contains
+    # that key, but verification checks the signer's identity against the
+    # POST-edit file - the outgoing key can never authorize its own
+    # removal that way. With today's single-key setup this is moot (no
+    # removal is possible at all - the sole key can only be replaced by
+    # returning to an unprotected edit, i.e. re-doing the bootstrap).
+    # Once more than one key is ever registered, revoking any one of them
+    # needs a mechanism this scheme doesn't provide yet - e.g. requiring
+    # a REMAINING (not the outgoing) key's signature for any edit that
+    # removes a line, or a separate short-lived revocation list checked
+    # independently of allowed_signers itself. Not designed or
+    # implemented; flagged here so it isn't rediscovered as a surprise.
+    "live_slc/allowed_signers": LIVE_SLC_ROOT / "allowed_signers",
     **{
         f"scripts/{path.name}": path
         for path in sorted((REPO_ROOT / "scripts").glob("*.bat"))
@@ -79,21 +104,6 @@ _LIVE_SLC_MODULE_NAMES = [
     "split_detection.py", "check_schedule_health.py",
     "reauth_signature.py",  # Phase 6 Step 1
 ]
-
-# live_slc/allowed_signers is deliberately NEVER added here, for the same
-# structural reason guardrails.py excludes itself (see the note below):
-# if it were Tier-2 guardrailed, the operator's very first edit to it
-# (adding their real public key, replacing the empty placeholder) would
-# itself be a Tier-2 re-baseline requiring a valid signature - verified
-# against the allowed_signers file being changed. That's circular by
-# construction, not merely inconvenient. Its protection instead comes
-# from what it actually gates: an empty or wrong allowed_signers file
-# means NO signature can ever verify (reauth_signature.verify_signature()
-# fails closed on that), so tampering with it can only ever make the
-# system MORE restrictive, never less - there is no attack that adds a
-# forged key to this file without already having filesystem write access
-# indistinguishable from every other risk this project accepts by running
-# on a single operator-controlled machine.
 
 GUARDRAILS_TIER2 = {
     "utils/slc_signals.py": REPO_ROOT / "utils" / "slc_signals.py",

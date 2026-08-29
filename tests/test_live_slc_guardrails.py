@@ -46,17 +46,20 @@ def test_scripts_slc_live_does_not_affect_backtest_runner_glob():
     assert not any("slc_live" in name for name in hashes)
 
 
-def test_tier1_diverges_from_the_backtest_runner_by_exactly_guardrails_py():
-    """Phase 6: live_slc/guardrails.py is now Tier-1 guardrailed (the
-    circularity-fix - see the module-level note in guardrails.py). This is
-    a deliberate, one-file divergence from backtest/run_slc_backtest.py's
-    separate hash set - that module doesn't import or depend on
-    live_slc.guardrails at all, so it has no reason to protect it. Every
-    OTHER Tier-1 file must still match exactly."""
+def test_tier1_diverges_from_the_backtest_runner_by_exactly_two_files():
+    """Phase 6: live_slc/guardrails.py and live_slc/allowed_signers are
+    now both Tier-1 guardrailed (the circularity fix, then the operator's
+    own follow-up request once their key was in place - see the
+    module-level notes in guardrails.py). Both are a deliberate divergence
+    from backtest/run_slc_backtest.py's separate hash set - that module
+    doesn't import or depend on live_slc.guardrails or the signature
+    scheme at all, so it has no reason to protect either. Every OTHER
+    Tier-1 file must still match exactly."""
     live_hashes = guardrails.guardrail_hashes()["tier1"]
     backtest_hashes = backtest_runner._guardrail_hashes()
-    assert set(live_hashes) - set(backtest_hashes) == {"live_slc/guardrails.py"}
-    shared = {name: value for name, value in live_hashes.items() if name != "live_slc/guardrails.py"}
+    diverged = {"live_slc/guardrails.py", "live_slc/allowed_signers"}
+    assert set(live_hashes) - set(backtest_hashes) == diverged
+    shared = {name: value for name, value in live_hashes.items() if name not in diverged}
     assert shared == backtest_hashes
 
 
@@ -71,16 +74,14 @@ def test_guardrails_module_is_tier1_guardrailed_and_excluded_from_tier2():
     assert not any("guardrails.py" in name for name in guardrails.GUARDRAILS_TIER2)
 
 
-def test_allowed_signers_excluded_from_tier2_for_the_same_circularity_reason():
-    """Phase 6 Step 1: guardrailing allowed_signers would make the
-    operator's first-ever edit to it (adding their real key) a re-baseline
-    requiring a signature verified against the very file being changed -
-    circular by construction. Its safety instead comes from
-    reauth_signature.verify_signature() failing closed on an
-    empty/missing/wrong file, so tampering with it can only ever restrict,
-    never loosen, what can be signed."""
+def test_allowed_signers_is_now_tier1_guardrailed():
+    """Phase 6 (operator request): moved from "deliberately never
+    guardrailed" to Tier-1, now that the bootstrap sequencing (operator
+    adds their real key as one unprotected manual edit, THEN the next
+    baseline protects the file) makes it safe - see the KNOWN GAP note
+    above GUARDRAILS_TIER1 for the still-unsolved key-removal case."""
+    assert "live_slc/allowed_signers" in guardrails.GUARDRAILS_TIER1
     assert not any("allowed_signers" in name for name in guardrails.GUARDRAILS_TIER2)
-    assert not any("allowed_signers" in name for name in guardrails.GUARDRAILS_TIER1)
 
 
 def test_reauth_signature_module_is_tier2_guardrailed():
@@ -104,7 +105,7 @@ def test_verify_deployment_baseline_passes_against_a_freshly_signed_baseline(tmp
     )
     result = guardrails.verify_deployment_baseline()
     assert result["guardrails"] == current
-    assert len(result["guardrails"]["tier1"]) == 10  # Phase 6: +live_slc/guardrails.py
+    assert len(result["guardrails"]["tier1"]) == 11  # Phase 6: +live_slc/guardrails.py, +live_slc/allowed_signers
     assert len(result["guardrails"]["tier2"]) == 28  # +migrations.py, +split_detection.py (rev. 11), +run_hidden.vbs (activation), +check_schedule_health.py + its .bat wrapper (sleep-fix), +reauth_signature.py + promotion.md + verify_tier1_independent.py (Phase 6)
 
 

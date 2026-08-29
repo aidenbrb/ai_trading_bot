@@ -71,6 +71,12 @@ UNIVERSE: list[str] = sorted(set(
 # Database/data symbols use Yahoo/Coinbase's BASE-USD spelling. Execution
 # translates them to Alpaca's BASE/USD spelling. Availability is checked against
 # Alpaca's live Assets API before any paper order is submitted.
+#
+# FET-USD, INJ-USD, JUP-USD, OP-USD, SEI-USD, SUI-USD, TAO-USD, TON-USD were
+# removed 2026-08-29 (Phase 4 wrap-up): 0.0% Alpaca daily-bar coverage for the
+# full 2022-2026 study range - no data at all, not short history - so they can
+# never qualify under the evidence gate. See the Crypto Evidence Ledger's
+# Step 0 coverage bars and Phase 3's "Coverage & universe notes".
 CRYPTO: list[str] = [
     # Large caps
     "BTC-USD",    # Bitcoin
@@ -83,23 +89,14 @@ CRYPTO: list[str] = [
     "LINK-USD",   # Chainlink
     "UNI-USD",    # Uniswap
     "AAVE-USD",   # Aave
-    "INJ-USD",    # Injective
     # Layer 2 / Alt L1
     "POL-USD",    # Polygon (rebranded from MATIC)
-    "OP-USD",     # Optimism
     "ARB-USD",    # Arbitrum
-    "SUI-USD",    # Sui
-    "SEI-USD",    # Sei
     # Meme / High momentum
     "PEPE-USD",   # Pepe
     "WIF-USD",    # dogwifhat
     # AI / Data
-    "FET-USD",    # Fetch.ai
     "RENDER-USD", # Render
-    "TAO-USD",    # Bittensor
-    # Ecosystem
-    "TON-USD",    # Toncoin
-    "JUP-USD",    # Jupiter
 ]
 
 CRYPTO_SET: set[str] = set(CRYPTO)

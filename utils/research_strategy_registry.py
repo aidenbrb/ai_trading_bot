@@ -20,6 +20,14 @@ from dataclasses import asdict
 from utils.strategy_registry import StrategyRegistration
 from utils.strategy_signals import CRYPTO_DAILY_STRATEGY_VERSION
 
+# crypto_xsec_momentum_v1 has no SignalDecision-based function in
+# utils/strategy_signals.py (it's a portfolio simulator in
+# backtest/whole_bot_engine.py, not a per-symbol gate), so there's no
+# existing constant to import - this string must stay byte-identical to
+# the literal "strategy_version" backtest/whole_bot_engine.py::
+# _xsec_close_trade() writes onto every trade dict.
+CRYPTO_XSEC_MOMENTUM_STRATEGY_VERSION = "crypto_xsec_momentum_v1"
+
 RESEARCH_REGISTRY = {
     CRYPTO_DAILY_STRATEGY_VERSION: StrategyRegistration(
         CRYPTO_DAILY_STRATEGY_VERSION, "crypto", "swing", False, "research",
@@ -28,6 +36,18 @@ RESEARCH_REGISTRY = {
             "(unmodified) after a review found v1's SMA20/50/200 trend "
             "classification runs on hourly bars, not the daily periods the "
             "names imply. Not yet evaluated through the evidence gate - "
+            "execution_eligible stays False until a comparison run passes "
+            "qualification on its own merits."
+        ),
+    ),
+    CRYPTO_XSEC_MOMENTUM_STRATEGY_VERSION: StrategyRegistration(
+        CRYPTO_XSEC_MOMENTUM_STRATEGY_VERSION, "crypto", "swing", False, "research",
+        (
+            "Cross-sectional momentum variant, evaluated alongside "
+            "crypto_trend_daily_v1 through the same evidence-gate comparison "
+            "(Phase 2 Step 5). Best cell (lookback_30, weekend_rebalance) "
+            "reached only 4/13 qualification checks on the full universe. "
+            "Not yet evaluated through the evidence gate for promotion - "
             "execution_eligible stays False until a comparison run passes "
             "qualification on its own merits."
         ),

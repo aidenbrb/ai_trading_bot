@@ -41,8 +41,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 TRADINGBOT_ROOT = REPO_ROOT.parent
 LIVE_SLC_ROOT = Path(__file__).parent
 
-DEPLOYMENT_BASELINE = REPO_ROOT / "research" / "slc_4h_5m_stock_v1_live_deployment_baseline_20260828.json"
-EXPECTED_DEPLOYMENT_BASELINE_SHA256 = "23e5836aa72e017c4e52f77af5c9747fe5b7b554be4ba6d1c936823a119c38f1"
+DEPLOYMENT_BASELINE = REPO_ROOT / "research" / "slc_4h_5m_stock_v1_live_deployment_baseline_20260829.json"
+EXPECTED_DEPLOYMENT_BASELINE_SHA256 = "78fb793721eb948801509fb18ead715501f63eb1746e16d0ea9f2ade941fd71b"
 
 GUARDRAILS_TIER1 = {
     "../run_bot.bat": TRADINGBOT_ROOT / "run_bot.bat",

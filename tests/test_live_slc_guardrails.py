@@ -42,11 +42,27 @@ def test_guardrails_module_excluded_from_its_own_tier2_hash_set():
     assert not any("guardrails.py" in name for name in guardrails.GUARDRAILS_TIER1)
 
 
+def test_allowed_signers_excluded_from_tier2_for_the_same_circularity_reason():
+    """Phase 6 Step 1: guardrailing allowed_signers would make the
+    operator's first-ever edit to it (adding their real key) a re-baseline
+    requiring a signature verified against the very file being changed -
+    circular by construction. Its safety instead comes from
+    reauth_signature.verify_signature() failing closed on an
+    empty/missing/wrong file, so tampering with it can only ever restrict,
+    never loosen, what can be signed."""
+    assert not any("allowed_signers" in name for name in guardrails.GUARDRAILS_TIER2)
+    assert not any("allowed_signers" in name for name in guardrails.GUARDRAILS_TIER1)
+
+
+def test_reauth_signature_module_is_tier2_guardrailed():
+    assert "live_slc/reauth_signature.py" in guardrails.GUARDRAILS_TIER2
+
+
 def test_verify_deployment_baseline_passes_against_the_real_frozen_state():
     result = guardrails.verify_deployment_baseline()
     assert result["baseline_sha256"] == guardrails.EXPECTED_DEPLOYMENT_BASELINE_SHA256
     assert len(result["guardrails"]["tier1"]) == 9
-    assert len(result["guardrails"]["tier2"]) == 25  # +migrations.py, +split_detection.py (rev. 11), +run_hidden.vbs (activation), +check_schedule_health.py + its .bat wrapper (sleep-fix)
+    assert len(result["guardrails"]["tier2"]) == 27  # +migrations.py, +split_detection.py (rev. 11), +run_hidden.vbs (activation), +check_schedule_health.py + its .bat wrapper (sleep-fix), +reauth_signature.py + promotion.md (Phase 6)
 
 
 def test_run_hidden_vbs_present_in_tier2():
@@ -168,6 +184,27 @@ def test_submission_blocked_when_activation_proposal_hash_does_not_match(tmp_pat
         guardrails.assert_submission_preconditions(
             operational, observed_account_id="acct-1", daily_loss_breached=False,
         )
+
+
+def test_operational_preconditions_consults_the_signature_gate(monkeypatch):
+    """Phase 6 Step 1a: assert_operational_preconditions() must actually
+    call verify_baseline_is_signed() with the current baseline hash, not
+    just have that function exist unused elsewhere - proven here by
+    making it raise and confirming the error propagates from the real
+    call site, not a re-derivation of verify_baseline_is_signed()'s own
+    logic (already covered directly in test_live_slc_reauth_signature.py)."""
+    monkeypatch.setattr(guardrails.live_slc_settings, "SLC_EXPECTED_ACCOUNT_ID", "acct-1")
+    monkeypatch.setattr(
+        guardrails, "verify_deployment_baseline",
+        lambda: {"baseline_sha256": "fake-hash", "environment": {}},
+    )
+
+    def _raise(baseline_hash):
+        raise RuntimeError(f"signature gate hit for {baseline_hash}")
+
+    monkeypatch.setattr(guardrails, "verify_baseline_is_signed", _raise)
+    with pytest.raises(RuntimeError, match="signature gate hit for fake-hash"):
+        guardrails.assert_operational_preconditions(observed_account_id="acct-1")
 
 
 def test_closeout_gate_blocks_on_execution_or_closeout_file_drift(tmp_path, monkeypatch):

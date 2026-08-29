@@ -16,9 +16,12 @@ import live_slc.authorization as authorization
 import live_slc.guardrails as guardrails
 import live_slc.models as models
 import live_slc.run_slc_live as run_slc_live
+from live_slc import reauth_signature
 from live_slc.models import SlcOrder, SlcPosition, SlcReducerState, SlcSessionStat, get_live_slc_session
 from live_slc.reducer import Confirmation
 from sqlmodel import select
+
+from tests._slc_reauth_helpers import make_test_key, signed_reauth_kwargs
 
 
 def _seed_session_stat(session_date, *, engine_parity_check_passed=True):
@@ -274,13 +277,23 @@ def test_preflight_passes_engine_parity_with_142_bootstrapped_states_and_empty_b
 
 # -- dry_run cycle end to end --------------------------------------------------
 
-def _seed_paper_active_or_dry_run(target_status: str):
+def _seed_paper_active_or_dry_run(target_status: str, tmp_path=None):
     authorization.record_transition("not_authorized", "dry_run", "start")
     if target_status == "paper_active":
+        import tempfile
+        from pathlib import Path
+        key_dir = Path(tmp_path) if tmp_path is not None else Path(tempfile.mkdtemp())
+        key_path, allowed_signers_path, identity = make_test_key(key_dir)
+        reauth_signature.ALLOWED_SIGNERS_PATH = allowed_signers_path
+        sig_kwargs = signed_reauth_kwargs(
+            key_path=key_path, identity=identity, from_status="dry_run", to_status="paper_active",
+            guardrail_baseline_sha256="a" * 64, activation_proposal_sha256="b" * 64,
+            observed_account_id="acct-1",
+        )
         authorization.record_transition(
             "dry_run", "paper_active", "activate",
             guardrail_baseline_sha256="a" * 64, activation_proposal_sha256="b" * 64,
-            observed_account_id="acct-1",
+            observed_account_id="acct-1", **sig_kwargs,
         )
 
 

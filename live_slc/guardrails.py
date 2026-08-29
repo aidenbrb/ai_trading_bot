@@ -34,7 +34,10 @@ import json
 import sys
 from pathlib import Path
 
-from live_slc import authorization, process_lock, rule_freeze
+from sqlmodel import select
+
+from live_slc import authorization, process_lock, reauth_signature, rule_freeze
+from live_slc.models import SlcActivationEvent, get_live_slc_session
 from live_slc.settings import live_slc_settings
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -73,12 +76,33 @@ _LIVE_SLC_MODULE_NAMES = [
     "ranking.py", "risk.py", "execution.py", "closeout.py",
     "authorization.py", "run_slc_live.py", "migrations.py",
     "split_detection.py", "check_schedule_health.py",
+    "reauth_signature.py",  # Phase 6 Step 1
 ]
+
+# live_slc/allowed_signers is deliberately NEVER added here, for the same
+# structural reason guardrails.py excludes itself (see the note below):
+# if it were Tier-2 guardrailed, the operator's very first edit to it
+# (adding their real public key, replacing the empty placeholder) would
+# itself be a Tier-2 re-baseline requiring a valid signature - verified
+# against the allowed_signers file being changed. That's circular by
+# construction, not merely inconvenient. Its protection instead comes
+# from what it actually gates: an empty or wrong allowed_signers file
+# means NO signature can ever verify (reauth_signature.verify_signature()
+# fails closed on that), so tampering with it can only ever make the
+# system MORE restrictive, never less - there is no attack that adds a
+# forged key to this file without already having filesystem write access
+# indistinguishable from every other risk this project accepts by running
+# on a single operator-controlled machine.
 
 GUARDRAILS_TIER2 = {
     "utils/slc_signals.py": REPO_ROOT / "utils" / "slc_signals.py",
     "utils/market_calendar.py": REPO_ROOT / "utils" / "market_calendar.py",
     "config/universe.py": REPO_ROOT / "config" / "universe.py",
+    # Phase 6 Step 3: the promotion/kill-criteria document - frozen the
+    # same way the preregistration and its amendments are, so a future
+    # promotion decision can't be evaluated against silently-loosened
+    # criteria.
+    "research/slc_4h_5m_stock_v1_promotion.md": REPO_ROOT / "research" / "slc_4h_5m_stock_v1_promotion.md",
     "live_slc/requirements.lock": LIVE_SLC_ROOT / "requirements.lock",
     **{
         f"live_slc/{name}": LIVE_SLC_ROOT / name
@@ -148,6 +172,37 @@ def verify_deployment_baseline() -> dict:
     }
 
 
+def verify_baseline_is_signed(baseline_hash: str) -> SlcActivationEvent:
+    """Phase 6 Step 1a: read-time re-verification, run on every single
+    call (never cached) - a baseline is only trusted operationally if some
+    SlcActivationEvent pins it AND that event's own recorded signature
+    still cryptographically verifies right now. Deliberately re-verifies
+    the signature itself rather than trusting a boolean "was_valid" flag
+    stored at write time - that would trust the write path forever, which
+    is exactly what would let a directly-inserted, unsigned, or later-
+    corrupted row slip through unnoticed. Checks newest-first so the most
+    recent signed re-authorization for this baseline wins if more than
+    one legitimately exists."""
+    with get_live_slc_session() as session:
+        events = session.exec(
+            select(SlcActivationEvent)
+            .where(SlcActivationEvent.guardrail_baseline_sha256_at_transition == baseline_hash)
+            .order_by(SlcActivationEvent.occurred_at.desc())
+        ).all()
+    for event in events:
+        if not event.signed_payload or not event.signature_blob or not event.signer_identity:
+            continue  # legacy (pre-Phase-6) or directly-inserted unsigned row
+        if reauth_signature.verify_signature(
+            event.signed_payload, event.signature_blob, signer_identity=event.signer_identity,
+            allowed_signers_path=reauth_signature.ALLOWED_SIGNERS_PATH,
+        ):
+            return event
+    raise RuntimeError(
+        f"no signature-verified activation event pins the current guardrail baseline "
+        f"{baseline_hash!r} - operation blocked until a signed re-authorization is recorded"
+    )
+
+
 def check_running_environment(expected_environment: dict) -> list[str]:
     """Compare the ACTUAL running interpreter/packages against the baseline's
     recorded environment - hashing requirements.lock alone can't detect an
@@ -194,6 +249,7 @@ def assert_operational_preconditions(*, observed_account_id: str) -> dict:
     """
     rule_freeze.verify_rule_freeze()
     baseline = verify_deployment_baseline()
+    verify_baseline_is_signed(baseline["baseline_sha256"])
     if not live_slc_settings.SLC_EXPECTED_ACCOUNT_ID:
         raise RuntimeError("SLC_EXPECTED_ACCOUNT_ID is not set")
     if observed_account_id != live_slc_settings.SLC_EXPECTED_ACCOUNT_ID:

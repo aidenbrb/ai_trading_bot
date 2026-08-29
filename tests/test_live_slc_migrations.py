@@ -15,6 +15,7 @@ import uuid
 import pytest
 
 from live_slc.migrations import (
+    SCHEMA_VERSION,
     MigrationBlockedByDuplicates,
     MigrationBlockedByUnresolvableNaturalKey,
     migrate_live_slc_db,
@@ -92,7 +93,7 @@ def test_migration_backfills_natural_key_from_linked_signal(tmp_path):
     con.close()
 
     result = migrate_live_slc_db(db_path)
-    assert result.applied and result.from_version == 0 and result.to_version == 1
+    assert result.applied and result.from_version == 0 and result.to_version == SCHEMA_VERSION
 
     con2 = sqlite3.connect(db_path)
     row = con2.execute("SELECT level_id, confirmation_time FROM slc_positions WHERE id=?", (pos_id,)).fetchone()
@@ -175,7 +176,7 @@ def test_interrupted_migration_leaves_schema_genuinely_unchanged(tmp_path, monke
     # a clean second attempt (with the crash removed) then succeeds
     monkeypatch.undo()
     result = migrations.migrate_live_slc_db(db_path)
-    assert result.applied and result.to_version == 1
+    assert result.applied and result.to_version == SCHEMA_VERSION
     assert "level_id" in _columns(db_path, "slc_positions")
 
 
@@ -186,7 +187,7 @@ def test_second_migration_is_idempotent_and_verifies_actual_schema(tmp_path):
     assert first.applied
     second = migrate_live_slc_db(db_path)
     assert not second.applied  # version already current
-    assert second.from_version == second.to_version == 1
+    assert second.from_version == second.to_version == SCHEMA_VERSION
 
 
 def test_fresh_db_survives_init_live_slc_db_called_twice(tmp_path):

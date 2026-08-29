@@ -15,18 +15,27 @@ import math
 from pathlib import Path
 from typing import Optional
 
+import datetime as dt
+import secrets
+import subprocess
+
 from sqlmodel import select
 
-from live_slc import risk
+from live_slc import reauth_signature, risk
 from live_slc.models import (
     SlcActivationEvent,
     SlcDeploymentStatus,
+    SlcReauthNonce,
     SlcSessionStat,
     get_live_slc_session,
 )
 
 STRATEGY_VERSION = "slc_4h_5m_stock_v1"
-VALID_STATUSES = ("not_authorized", "dry_run", "paper_active", "suspended", "halted")
+# "live" added Phase 6 Step 1: no code path can reach it yet (nothing sets
+# EXECUTION_ENABLED for real-money SLC orders), but the signature gate's
+# scope explicitly covers "any transition to paper_active or live" and a
+# status the gate can't even name isn't a status it can meaningfully guard.
+VALID_STATUSES = ("not_authorized", "dry_run", "paper_active", "suspended", "halted", "live")
 
 # Restated in full (rev. 6 Step 9) rather than referencing the external
 # Codex plan, so the acceptance bar is self-contained here.
@@ -131,6 +140,92 @@ def evaluate_dry_run_session_gate(
     return failures
 
 
+def issue_reauth_nonce() -> str:
+    """Server-generated, stored as pending, before any payload is ever
+    shown to a human for signing (Phase 6 Step 1c). The nonce's own
+    created_at, not any client-supplied timestamp, is what the 24h
+    validity window in _verify_reauth_signature() is checked against."""
+    nonce = secrets.token_hex(16)
+    with get_live_slc_session() as session:
+        session.add(SlcReauthNonce(nonce=nonce))
+    return nonce
+
+
+def _current_git_commit_sha() -> str:
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"], capture_output=True, text=True, timeout=15, check=True,
+    )
+    return result.stdout.strip()
+
+
+def _verify_reauth_signature(
+    session, *, from_status: str, to_status: str, guardrail_baseline_sha256: Optional[str],
+    activation_proposal_sha256: Optional[str], observed_account_id: Optional[str],
+    signed_payload: Optional[str], signature_blob: Optional[str], signer_identity: Optional[str],
+    nonce: Optional[str], git_commit_sha: Optional[str], changed_guardrail_paths: Optional[list[str]],
+) -> None:
+    """Raises on any failure; returns (and marks the nonce consumed) only
+    on a fully valid, fresh, matching, cryptographically-verified
+    signature. Every field the payload claims is cross-checked against
+    what's actually being recorded - a signature is only as trustworthy
+    as the fields it was shown, and this refuses to trust the caller's
+    separate arguments over the signed text on faith."""
+    missing = [
+        name for name, value in (
+            ("signed_payload", signed_payload), ("signature_blob", signature_blob),
+            ("signer_identity", signer_identity), ("nonce", nonce),
+            ("git_commit_sha", git_commit_sha), ("guardrail_baseline_sha256", guardrail_baseline_sha256),
+        ) if not value
+    ]
+    if missing:
+        raise RuntimeError(f"signed re-authorization required but missing: {missing}")
+
+    nonce_row = session.get(SlcReauthNonce, nonce)
+    if nonce_row is None:
+        raise RuntimeError(f"unknown nonce {nonce!r} - must be issued via issue_reauth_nonce() first")
+    if nonce_row.consumed_at is not None:
+        raise RuntimeError(f"nonce {nonce!r} was already consumed at {nonce_row.consumed_at} - replay rejected")
+    now = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
+    age = now - nonce_row.created_at
+    if age > dt.timedelta(seconds=reauth_signature.NONCE_VALIDITY_SECONDS):
+        raise RuntimeError(f"nonce {nonce!r} expired: issued {age} ago, validity window is 24h")
+
+    fields = reauth_signature.parse_payload(signed_payload)
+    expected = {
+        "from_status": from_status,
+        "to_status": to_status,
+        "guardrail_baseline_sha256": guardrail_baseline_sha256,
+        "activation_proposal_sha256": activation_proposal_sha256 or "",
+        "observed_account_id": observed_account_id or "",
+        "git_commit_sha": git_commit_sha,
+        "changed_guardrail_paths": ",".join(sorted(changed_guardrail_paths or [])),
+        "nonce": nonce,
+    }
+    mismatched = [name for name, value in expected.items() if fields.get(name) != value]
+    if mismatched:
+        raise RuntimeError(
+            f"signed payload does not match the transition being recorded: {mismatched} "
+            f"(payload declared {[(name, fields.get(name)) for name in mismatched]}, "
+            f"expected {[(name, expected[name]) for name in mismatched]})"
+        )
+
+    actual_head = _current_git_commit_sha()
+    if git_commit_sha != actual_head:
+        raise RuntimeError(
+            f"signed payload's git_commit_sha {git_commit_sha!r} does not match "
+            f"the actual current HEAD {actual_head!r}"
+        )
+
+    if not reauth_signature.verify_signature(
+        signed_payload, signature_blob, signer_identity=signer_identity,
+        allowed_signers_path=reauth_signature.ALLOWED_SIGNERS_PATH,
+    ):
+        raise RuntimeError("signature verification failed (invalid, tampered, or unknown signer)")
+
+    nonce_row.consumed_at = now
+    session.add(nonce_row)
+
+
 def record_transition(
     from_status: str,
     to_status: str,
@@ -141,12 +236,27 @@ def record_transition(
     activation_proposal_sha256: Optional[str] = None,
     observed_account_id: Optional[str] = None,
     operator_note: str = "",
+    signed_payload: Optional[str] = None,
+    signature_blob: Optional[str] = None,
+    signer_identity: Optional[str] = None,
+    nonce: Optional[str] = None,
+    git_commit_sha: Optional[str] = None,
+    changed_guardrail_paths: Optional[list[str]] = None,
 ) -> SlcActivationEvent:
     """The only way SlcDeploymentStatus changes. Always explicit, always
     audited. A same-status transition (e.g. paper_active -> paper_active)
-    is valid and required whenever Tier 2 is deliberately re-frozen."""
+    is valid and required whenever Tier 2 is deliberately re-frozen.
+
+    Phase 6 Step 1: a human-only signature (signed_payload/signature_blob/
+    signer_identity/nonce/git_commit_sha/changed_guardrail_paths) is
+    required whenever this call pins a new guardrail_baseline_sha256 (any
+    Tier-1/Tier-2 re-baseline) OR to_status is paper_active/live -
+    regardless of whether guardrail_baseline_sha256 also changed. See
+    live_slc/reauth_signature.py for the payload format and verification
+    mechanism."""
     if to_status not in VALID_STATUSES:
         raise ValueError(f"invalid target status: {to_status!r}")
+    requires_signature = guardrail_baseline_sha256 is not None or to_status in ("paper_active", "live")
     with get_live_slc_session() as session:
         record = session.get(SlcDeploymentStatus, STRATEGY_VERSION)
         if record is None:
@@ -158,14 +268,23 @@ def record_transition(
                 f"cannot transition {from_status!r} -> {to_status!r}: "
                 f"current status is {record.status!r}"
             )
-        if to_status == "paper_active":
+        if to_status in ("paper_active", "live"):
             if not guardrail_baseline_sha256:
-                raise RuntimeError("paper_active requires a guardrail_baseline_sha256 to pin")
+                raise RuntimeError(f"{to_status} requires a guardrail_baseline_sha256 to pin")
             if not activation_proposal_sha256:
-                raise RuntimeError("paper_active requires an activation_proposal_sha256 to pin")
+                raise RuntimeError(f"{to_status} requires an activation_proposal_sha256 to pin")
             if not observed_account_id:
-                raise RuntimeError("paper_active requires an observed_account_id to pin")
-        import datetime as dt
+                raise RuntimeError(f"{to_status} requires an observed_account_id to pin")
+        if requires_signature:
+            _verify_reauth_signature(
+                session, from_status=from_status, to_status=to_status,
+                guardrail_baseline_sha256=guardrail_baseline_sha256,
+                activation_proposal_sha256=activation_proposal_sha256,
+                observed_account_id=observed_account_id,
+                signed_payload=signed_payload, signature_blob=signature_blob,
+                signer_identity=signer_identity, nonce=nonce, git_commit_sha=git_commit_sha,
+                changed_guardrail_paths=changed_guardrail_paths,
+            )
         record.status = to_status
         record.updated_at = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
         record.updated_by = "record_transition"
@@ -186,9 +305,21 @@ def record_transition(
             activation_proposal_sha256_at_transition=activation_proposal_sha256,
             observed_account_id=observed_account_id,
             operator_note=operator_note,
+            signed_payload=signed_payload if requires_signature else None,
+            signature_blob=signature_blob if requires_signature else None,
+            git_commit_sha=git_commit_sha if requires_signature else None,
+            changed_guardrail_paths_json=(
+                json.dumps(sorted(changed_guardrail_paths)) if changed_guardrail_paths else None
+            ),
+            nonce=nonce if requires_signature else None,
+            signer_identity=signer_identity if requires_signature else None,
         )
         session.add(event)
         session.flush()
+        if requires_signature:
+            nonce_row = session.get(SlcReauthNonce, nonce)
+            nonce_row.consumed_by_event_id = event.id
+            session.add(nonce_row)
         session.refresh(event)
         session.expunge(event)
         return event

@@ -1,0 +1,15 @@
+# live_slc re-authorization signers (Phase 6 Step 1).
+#
+# Empty by design: no line below this comment block yet, so NO signature
+# can verify successfully against this file - every re-baseline and every
+# paper_active/live transition is blocked until the operator adds their
+# real public key here.
+#
+# Format (one line, OpenSSH allowed_signers): <principal> <key-type> <base64-key>
+# Example, after generating a hardware-backed key on your own device:
+#   operator ssh-ed25519-sk AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAA...
+#
+# The private key never exists on this machine. Generate it on your own
+# FIDO2 hardware (ed25519-sk), then paste only the resulting public key
+# line below - this file is safe to commit; a public key cannot be used
+# to forge a signature.

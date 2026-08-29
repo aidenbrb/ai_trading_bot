@@ -2,6 +2,7 @@ import pandas as pd
 import pytest
 
 import live_slc.models as models
+from live_slc import reauth_signature
 from live_slc.authorization import (
     EXPECTED_SCHEDULED_CYCLES_PER_SESSION,
     MAX_CYCLE_SECONDS,
@@ -12,6 +13,7 @@ from live_slc.authorization import (
     record_transition,
 )
 from live_slc.models import SlcSessionStat, get_live_slc_session
+from tests._slc_reauth_helpers import make_test_key, signed_reauth_kwargs
 
 
 @pytest.fixture(autouse=True)
@@ -47,14 +49,22 @@ def test_initial_status_is_not_authorized():
     assert get_current_deployment_record().status == "not_authorized"
 
 
-def test_full_lifecycle_not_authorized_to_dry_run_to_paper_active():
+def test_full_lifecycle_not_authorized_to_dry_run_to_paper_active(tmp_path, monkeypatch):
+    key_path, allowed_signers_path, identity = make_test_key(tmp_path)
+    monkeypatch.setattr(reauth_signature, "ALLOWED_SIGNERS_PATH", allowed_signers_path)
+
     record_transition("not_authorized", "dry_run", "starting dry run")
     assert get_current_deployment_record().status == "dry_run"
 
+    sig_kwargs = signed_reauth_kwargs(
+        key_path=key_path, identity=identity, from_status="dry_run", to_status="paper_active",
+        guardrail_baseline_sha256="a" * 64, activation_proposal_sha256="b" * 64,
+        observed_account_id="acct-1",
+    )
     record_transition(
         "dry_run", "paper_active", "one session passed",
         guardrail_baseline_sha256="a" * 64, activation_proposal_sha256="b" * 64,
-        observed_account_id="acct-1",
+        observed_account_id="acct-1", **sig_kwargs,
     )
     record = get_current_deployment_record()
     assert record.status == "paper_active"
@@ -81,16 +91,30 @@ def test_paper_active_requires_all_three_trust_chain_values():
                            guardrail_baseline_sha256="a" * 64, activation_proposal_sha256="b" * 64)
 
 
-def test_same_status_reauthorization_event_is_valid_for_tier2_refreeze():
+def test_same_status_reauthorization_event_is_valid_for_tier2_refreeze(tmp_path, monkeypatch):
+    key_path, allowed_signers_path, identity = make_test_key(tmp_path)
+    monkeypatch.setattr(reauth_signature, "ALLOWED_SIGNERS_PATH", allowed_signers_path)
+
     record_transition("not_authorized", "dry_run", "start")
+    activate_kwargs = signed_reauth_kwargs(
+        key_path=key_path, identity=identity, from_status="dry_run", to_status="paper_active",
+        guardrail_baseline_sha256="a" * 64, activation_proposal_sha256="b" * 64,
+        observed_account_id="acct-1",
+    )
     record_transition("dry_run", "paper_active", "activate",
                        guardrail_baseline_sha256="a" * 64, activation_proposal_sha256="b" * 64,
-                       observed_account_id="acct-1")
+                       observed_account_id="acct-1", **activate_kwargs)
     # A deliberate live_slc code change requires a new baseline + a new event,
-    # even though status doesn't change.
+    # even though status doesn't change - and Phase 6 Step 1 requires this
+    # to be signed too (scope: "any Tier-1 or Tier-2 re-baseline").
+    refreeze_kwargs = signed_reauth_kwargs(
+        key_path=key_path, identity=identity, from_status="paper_active", to_status="paper_active",
+        guardrail_baseline_sha256="c" * 64, activation_proposal_sha256="b" * 64,
+        observed_account_id="acct-1", changed_guardrail_paths=["config/universe.py"],
+    )
     event = record_transition("paper_active", "paper_active", "tier2 re-freeze after a code change",
                                guardrail_baseline_sha256="c" * 64, activation_proposal_sha256="b" * 64,
-                               observed_account_id="acct-1")
+                               observed_account_id="acct-1", **refreeze_kwargs)
     assert event.from_status == event.to_status == "paper_active"
     assert get_current_deployment_record().live_baseline_sha256 == "c" * 64
 

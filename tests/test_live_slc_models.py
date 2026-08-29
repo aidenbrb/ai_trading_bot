@@ -20,7 +20,7 @@ def test_init_live_slc_db_creates_only_slc_tables_even_with_shared_app_models_im
     assert tables == {
         "slc_five_min_bars", "slc_reducer_state", "slc_zones", "slc_signal_records",
         "slc_orders", "slc_positions", "slc_trades", "slc_deployment_status",
-        "slc_activation_events", "slc_session_stats", "slc_cycle_runs",
+        "slc_activation_events", "slc_reauth_nonces", "slc_session_stats", "slc_cycle_runs",
         "slc_audit_events", "slc_schema_version",
     }
     assert "tickers" not in tables

@@ -275,6 +275,36 @@ class SlcActivationEvent(SQLModel, table=True):
     activation_proposal_sha256_at_transition: Optional[str] = None
     observed_account_id: Optional[str] = None
     operator_note: str = Field(default="")
+    # Phase 6 Step 1: human-only re-authorization signature (ed25519-sk via
+    # ssh-keygen -Y sign/-Y verify - see live_slc/reauth_signature.py).
+    # Required whenever a Tier-1/Tier-2 baseline is (re-)pinned or
+    # to_status is paper_active/live; NULL on every event that predates
+    # this scheme (2026-08-29 and earlier) - those are legacy, unsigned,
+    # and are exactly what the new read-time check in guardrails.py must
+    # refuse to trust once enforcement is armed.
+    signed_payload: Optional[str] = Field(default=None)
+    signature_blob: Optional[str] = Field(default=None)
+    git_commit_sha: Optional[str] = Field(default=None)
+    changed_guardrail_paths_json: Optional[str] = Field(default=None)
+    nonce: Optional[str] = Field(default=None, index=True)
+    signer_identity: Optional[str] = Field(default=None)
+
+
+class SlcReauthNonce(SQLModel, table=True):
+    """Phase 6 Step 1: server-issued, single-use nonces for re-authorization
+    signatures. issue_reauth_nonce() (authorization.py) creates a pending
+    row before any payload is ever shown to a human for signing;
+    record_transition() consumes it exactly once when a valid signature
+    referencing it is recorded. A nonce's created_at (server clock, never
+    client/payload-supplied) is the sole authority for the 24h validity
+    window - a payload's own embedded timestamp is for human-readable
+    audit only and is never itself trusted for freshness enforcement."""
+    __tablename__ = "slc_reauth_nonces"
+
+    nonce: str = Field(primary_key=True)
+    created_at: dt.datetime = Field(default_factory=_now)
+    consumed_at: Optional[dt.datetime] = None
+    consumed_by_event_id: Optional[str] = None
 
 
 class SlcSessionStat(SQLModel, table=True):
@@ -371,6 +401,7 @@ _LIVE_SLC_TABLES = [
     SlcTrade.__table__,
     SlcDeploymentStatus.__table__,
     SlcActivationEvent.__table__,
+    SlcReauthNonce.__table__,
     SlcSessionStat.__table__,
     SlcCycleRun.__table__,
     SlcAuditEvent.__table__,

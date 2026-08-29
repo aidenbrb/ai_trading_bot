@@ -49,7 +49,8 @@ def test_build_and_parse_payload_round_trips(tmp_path):
         from_status="dry_run", to_status="paper_active",
         guardrail_baseline_sha256="a" * 64, activation_proposal_sha256="b" * 64,
         observed_account_id="acct-1", git_commit_sha="c" * 40,
-        changed_guardrail_paths=["b.py", "a.py"], nonce="n1", timestamp_iso="2026-08-30T00:00:00+00:00",
+        changed_guardrail_paths=["b.py", "a.py"], baseline_file_relative_path="research/baseline.json",
+        nonce="n1", timestamp_iso="2026-08-30T00:00:00+00:00",
     )
     fields = reauth_signature.parse_payload(payload)
     assert fields["guardrail_baseline_sha256"] == "a" * 64
@@ -62,7 +63,8 @@ def test_verify_signature_true_for_a_genuine_signature(signer):
     payload = reauth_signature.build_payload(
         from_status="x", to_status="y", guardrail_baseline_sha256="a" * 64,
         activation_proposal_sha256=None, observed_account_id="acct-1",
-        git_commit_sha="c" * 40, changed_guardrail_paths=[], nonce="n1",
+        git_commit_sha="c" * 40, changed_guardrail_paths=[],
+        baseline_file_relative_path="research/baseline.json", nonce="n1",
         timestamp_iso="2026-08-30T00:00:00+00:00",
     )
     sig = reauth_signature.sign_for_test(payload, key_path)
@@ -232,17 +234,18 @@ def test_nonce_expired_beyond_24h_rejected(signer, monkeypatch):
 
 def test_read_time_check_rejects_a_directly_inserted_unsigned_row():
     """Bypassing record_transition() entirely (a raw INSERT) must not
-    fool assert_operational_preconditions()'s read-time check - it
-    re-verifies the signature itself, not merely trusting that a row
-    with the right baseline hash exists."""
+    fool resolve_active_baseline()'s read-time check - it re-verifies the
+    signature itself, not merely trusting that a row with a baseline hash
+    exists."""
     baseline_hash = "e" * 64
     with get_live_slc_session() as session:
         session.add(SlcActivationEvent(
             from_status="dry_run", to_status="paper_active", reason="direct DB insert, no signature",
             guardrail_baseline_sha256_at_transition=baseline_hash,
+            baseline_file_relative_path="research/fake.json",
         ))
     with pytest.raises(RuntimeError, match="no signature-verified activation event"):
-        guardrails.verify_baseline_is_signed(baseline_hash)
+        guardrails.resolve_active_baseline()
 
 
 def test_read_time_check_rejects_a_row_with_a_tampered_stored_signature(signer):
@@ -266,7 +269,7 @@ def test_read_time_check_rejects_a_row_with_a_tampered_stored_signature(signer):
         event.signed_payload = event.signed_payload.replace("a" * 64, "f" * 64)
         session.add(event)
     with pytest.raises(RuntimeError, match="no signature-verified activation event"):
-        guardrails.verify_baseline_is_signed("a" * 64)
+        guardrails.resolve_active_baseline()
 
 
 def test_read_time_check_accepts_a_genuinely_valid_signed_baseline(signer):
@@ -278,7 +281,7 @@ def test_read_time_check_accepts_a_genuinely_valid_signed_baseline(signer):
         observed_account_id="acct-1",
     )
     record_transition("dry_run", "paper_active", "activate", **_activate(), **sig_kwargs)
-    event = guardrails.verify_baseline_is_signed("a" * 64)
+    event = guardrails.resolve_active_baseline()
     assert event.guardrail_baseline_sha256_at_transition == "a" * 64
 
 
@@ -295,4 +298,4 @@ def test_read_time_check_rejects_a_legacy_pre_phase6_unsigned_event():
             operator_note="agent-executed per explicit user approval",
         ))
     with pytest.raises(RuntimeError, match="no signature-verified activation event"):
-        guardrails.verify_baseline_is_signed(baseline_hash)
+        guardrails.resolve_active_baseline()

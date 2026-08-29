@@ -47,15 +47,34 @@ def test_closeout_wrapper_documents_safe_second_offset():
 # which PATH manipulation cannot intercept.
 
 def test_every_wrapper_captures_and_forwards_the_real_exit_code():
+    """Phase 6 Step 2: run_slc_preflight.bat/run_slc_cycle.bat now invoke
+    python.exe TWICE - once for the independent Tier-1 verifier, once for
+    the actual live_slc launch - so "the first python.exe line" is no
+    longer necessarily "the" invocation whose exit code matters for the
+    wrapper's own final exit code. Every python.exe invocation must still
+    capture its own exit code on the immediately-following line (into
+    SOME variable - verify_rc for the verifier, rc for the main launch);
+    specifically the FINAL python.exe invocation (the one whose result the
+    wrapper ultimately reports) must capture into "rc", matching the
+    trailing `exit /b %rc%`."""
     for script in ALL_WRAPPERS:
         text = script.read_text(encoding="utf-8")
         assert re.search(r'set\s+"rc=%ERRORLEVEL%"', text), f"{script.name} missing rc capture"
         lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
         assert lines[-1] == "exit /b %rc%", f"{script.name} must end with exit /b %rc%"
-        # rc must be captured on the line immediately after the python.exe
-        # invocation - not after some later, unrelated command.
-        python_line_idx = next(i for i, ln in enumerate(lines) if "python.exe" in ln.lower())
-        assert 'set "rc=%ERRORLEVEL%"' in lines[python_line_idx + 1]
+        python_line_indices = [i for i, ln in enumerate(lines) if "python.exe" in ln.lower()]
+        assert python_line_indices, f"{script.name} has no python.exe invocation"
+        # Every python.exe invocation captures ITS OWN exit code on the
+        # very next line - never left unchecked, never captured several
+        # lines later after some unrelated command.
+        for idx in python_line_indices:
+            assert re.match(r'set\s+"\w+=%ERRORLEVEL%"', lines[idx + 1]), (
+                f"{script.name}: python.exe invocation at line {idx} has no immediate exit-code capture"
+            )
+        # The LAST python.exe invocation is the one whose result the
+        # wrapper ultimately reports - it must capture into "rc"
+        # specifically, matching the trailing exit /b %rc%.
+        assert 'set "rc=%ERRORLEVEL%"' in lines[python_line_indices[-1] + 1]
 
 
 def test_run_hidden_vbs_forwards_exit_code_in_isolation(tmp_path):

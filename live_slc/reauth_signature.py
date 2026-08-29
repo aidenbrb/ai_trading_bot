@@ -44,6 +44,7 @@ def build_payload(
     observed_account_id: str,
     git_commit_sha: str,
     changed_guardrail_paths: list[str],
+    baseline_file_relative_path: str,
     nonce: str,
     timestamp_iso: str,
 ) -> str:
@@ -52,7 +53,10 @@ def build_payload(
     what they're about to sign (or `git show <sha>`) never has to trust an
     out-of-band claim about what a hash means. changed_guardrail_paths is
     sorted here (not by the caller) so payload construction is itself
-    deterministic regardless of caller iteration order."""
+    deterministic regardless of caller iteration order. baseline_file_
+    relative_path is the repo-relative path of the dated baseline JSON
+    this signature pins - explicit in the signed text so a human signing
+    can see exactly which file their signature will make authoritative."""
     lines = [
         f"namespace: {SIGNATURE_NAMESPACE}",
         f"from_status: {from_status}",
@@ -62,6 +66,7 @@ def build_payload(
         f"observed_account_id: {observed_account_id}",
         f"git_commit_sha: {git_commit_sha}",
         f"changed_guardrail_paths: {','.join(sorted(changed_guardrail_paths))}",
+        f"baseline_file_relative_path: {baseline_file_relative_path}",
         f"nonce: {nonce}",
         f"timestamp: {timestamp_iso}",
     ]

@@ -36,7 +36,7 @@ from dataclasses import dataclass
 from sqlalchemy import UniqueConstraint, create_engine, event
 from sqlmodel import SQLModel
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 
 
 class MigrationBlockedByDuplicates(RuntimeError):

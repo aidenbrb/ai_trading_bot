@@ -42,11 +42,20 @@ def test_v1_registration_unchanged():
     assert "71 weekend trades" in record.reason
 
 
-def test_strategy_registry_file_is_byte_identical_to_the_verified_baseline():
+def test_strategy_registry_file_is_byte_identical_to_the_most_recent_baseline():
     """Direct regression guard for the incident itself: utils/strategy_
-    registry.py's on-disk bytes must match the hash live_slc's frozen
-    Tier-1 baseline (and backtest/run_slc_backtest.py's own baseline)
-    expect, independent of whichever guardrail test files happen to run."""
+    registry.py's on-disk bytes must match the hash recorded in the most
+    recently captured dated baseline JSON, independent of whichever
+    guardrail test files happen to run.
+
+    Phase 6 (circularity fix): guardrails.py no longer names one baseline
+    file as a hardcoded constant - the active one is resolved from a
+    signed SlcActivationEvent, which may not exist yet (e.g. immediately
+    after generating a new baseline, before the operator has signed it).
+    This test reads the latest dated file directly instead, since its
+    purpose - catching an accidental edit to strategy_registry.py since
+    the last baseline capture - doesn't depend on that baseline having
+    been signed yet."""
     import live_slc.guardrails as guardrails
     # Confirmed Tier-1 membership directly, rather than assuming the key name.
     assert any(
@@ -60,6 +69,10 @@ def test_strategy_registry_file_is_byte_identical_to_the_verified_baseline():
     with open(path, "rb") as f:
         actual_hash = hashlib.sha256(f.read()).hexdigest()
     import json
-    baseline = json.loads(guardrails.DEPLOYMENT_BASELINE.read_text(encoding="utf-8"))
+    baseline_files = sorted(
+        (guardrails.REPO_ROOT / "research").glob("slc_4h_5m_stock_v1_live_deployment_baseline_*.json")
+    )
+    latest_baseline_path = baseline_files[-1]
+    baseline = json.loads(latest_baseline_path.read_text(encoding="utf-8"))
     key = next(k for k in baseline["guardrails"]["tier1"] if k.endswith("strategy_registry.py"))
     assert actual_hash == baseline["guardrails"]["tier1"][key]

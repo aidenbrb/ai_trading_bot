@@ -288,6 +288,17 @@ class SlcActivationEvent(SQLModel, table=True):
     changed_guardrail_paths_json: Optional[str] = Field(default=None)
     nonce: Optional[str] = Field(default=None, index=True)
     signer_identity: Optional[str] = Field(default=None)
+    # Phase 6 Step 1 (circularity fix): the repo-relative path of the
+    # dated baseline JSON file this event pins. Previously guardrails.py
+    # hardcoded a single "current" path/hash as literal module constants -
+    # meaning every re-baseline changed guardrails.py's own bytes, making
+    # it impossible for guardrails.py to ever safely be included in its
+    # own GUARDRAILS_TIER1 (a stable input can't depend on the value it's
+    # about to produce). Storing the active path here instead means
+    # guardrails.py's source never needs to change on a re-baseline - the
+    # active baseline is DB state (resolve_active_baseline()), not
+    # compiled-in state.
+    baseline_file_relative_path: Optional[str] = Field(default=None)
 
 
 class SlcReauthNonce(SQLModel, table=True):

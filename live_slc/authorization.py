@@ -163,6 +163,7 @@ def _verify_reauth_signature(
     activation_proposal_sha256: Optional[str], observed_account_id: Optional[str],
     signed_payload: Optional[str], signature_blob: Optional[str], signer_identity: Optional[str],
     nonce: Optional[str], git_commit_sha: Optional[str], changed_guardrail_paths: Optional[list[str]],
+    baseline_file_relative_path: Optional[str],
 ) -> None:
     """Raises on any failure; returns (and marks the nonce consumed) only
     on a fully valid, fresh, matching, cryptographically-verified
@@ -175,6 +176,7 @@ def _verify_reauth_signature(
             ("signed_payload", signed_payload), ("signature_blob", signature_blob),
             ("signer_identity", signer_identity), ("nonce", nonce),
             ("git_commit_sha", git_commit_sha), ("guardrail_baseline_sha256", guardrail_baseline_sha256),
+            ("baseline_file_relative_path", baseline_file_relative_path),
         ) if not value
     ]
     if missing:
@@ -199,6 +201,7 @@ def _verify_reauth_signature(
         "observed_account_id": observed_account_id or "",
         "git_commit_sha": git_commit_sha,
         "changed_guardrail_paths": ",".join(sorted(changed_guardrail_paths or [])),
+        "baseline_file_relative_path": baseline_file_relative_path,
         "nonce": nonce,
     }
     mismatched = [name for name, value in expected.items() if fields.get(name) != value]
@@ -242,6 +245,7 @@ def record_transition(
     nonce: Optional[str] = None,
     git_commit_sha: Optional[str] = None,
     changed_guardrail_paths: Optional[list[str]] = None,
+    baseline_file_relative_path: Optional[str] = None,
 ) -> SlcActivationEvent:
     """The only way SlcDeploymentStatus changes. Always explicit, always
     audited. A same-status transition (e.g. paper_active -> paper_active)
@@ -284,6 +288,7 @@ def record_transition(
                 signed_payload=signed_payload, signature_blob=signature_blob,
                 signer_identity=signer_identity, nonce=nonce, git_commit_sha=git_commit_sha,
                 changed_guardrail_paths=changed_guardrail_paths,
+                baseline_file_relative_path=baseline_file_relative_path,
             )
         record.status = to_status
         record.updated_at = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
@@ -313,6 +318,7 @@ def record_transition(
             ),
             nonce=nonce if requires_signature else None,
             signer_identity=signer_identity if requires_signature else None,
+            baseline_file_relative_path=baseline_file_relative_path if requires_signature else None,
         )
         session.add(event)
         session.flush()

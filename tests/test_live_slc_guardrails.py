@@ -8,7 +8,28 @@ from pathlib import Path
 import pytest
 
 import live_slc.guardrails as guardrails
+import live_slc.models as models
 import backtest.run_slc_backtest as backtest_runner
+from live_slc import reauth_signature
+from live_slc.authorization import record_transition
+from tests._slc_reauth_helpers import make_test_key, write_signed_baseline_event
+
+
+@pytest.fixture(autouse=True)
+def _isolated_db(tmp_path, monkeypatch):
+    """Phase 6: verify_deployment_baseline()/resolve_active_baseline() now
+    read SlcActivationEvent from the DB - this file never isolated its DB
+    before (pure file-hash checks didn't need to), which would otherwise
+    make these tests read/write the REAL production live_slc.db."""
+    monkeypatch.setattr(models, "LIVE_SLC_DB_PATH", tmp_path / "test.db")
+    models.init_live_slc_db()
+
+
+@pytest.fixture
+def signer(tmp_path, monkeypatch):
+    key_path, allowed_signers_path, identity = make_test_key(tmp_path)
+    monkeypatch.setattr(reauth_signature, "ALLOWED_SIGNERS_PATH", allowed_signers_path)
+    return key_path, allowed_signers_path, identity
 
 
 def test_scripts_slc_live_does_not_affect_backtest_runner_glob():
@@ -25,21 +46,29 @@ def test_scripts_slc_live_does_not_affect_backtest_runner_glob():
     assert not any("slc_live" in name for name in hashes)
 
 
-def test_tier1_matches_existing_slc_backtest_baseline_exactly():
-    """Zero drift across the 9 bot-wide guardrail files, independent of
-    everything else in live_slc - cross-checked against the SLC backtest
-    runner's own independently-computed hashes."""
+def test_tier1_diverges_from_the_backtest_runner_by_exactly_guardrails_py():
+    """Phase 6: live_slc/guardrails.py is now Tier-1 guardrailed (the
+    circularity-fix - see the module-level note in guardrails.py). This is
+    a deliberate, one-file divergence from backtest/run_slc_backtest.py's
+    separate hash set - that module doesn't import or depend on
+    live_slc.guardrails at all, so it has no reason to protect it. Every
+    OTHER Tier-1 file must still match exactly."""
     live_hashes = guardrails.guardrail_hashes()["tier1"]
     backtest_hashes = backtest_runner._guardrail_hashes()
-    assert live_hashes == backtest_hashes
+    assert set(live_hashes) - set(backtest_hashes) == {"live_slc/guardrails.py"}
+    shared = {name: value for name, value in live_hashes.items() if name != "live_slc/guardrails.py"}
+    assert shared == backtest_hashes
 
 
-def test_guardrails_module_excluded_from_its_own_tier2_hash_set():
-    """guardrails.py cannot hash itself (the value it hashes changes the
-    moment the resulting hash is written back into itself) - the tests
-    below prove the exclusion is deliberate, not an oversight."""
+def test_guardrails_module_is_tier1_guardrailed_and_excluded_from_tier2():
+    """Phase 6 circularity fix: guardrails.py no longer hardcodes a
+    path/hash to "the current baseline" as literal module constants (that
+    was the actual source of the old self-reference problem - see the
+    module-level note above GUARDRAILS_TIER1) - its bytes are now stable
+    across a re-baseline, so it can safely be included in its own
+    GUARDRAILS_TIER1. Still excluded from Tier-2 (it was never there)."""
+    assert "live_slc/guardrails.py" in guardrails.GUARDRAILS_TIER1
     assert not any("guardrails.py" in name for name in guardrails.GUARDRAILS_TIER2)
-    assert not any("guardrails.py" in name for name in guardrails.GUARDRAILS_TIER1)
 
 
 def test_allowed_signers_excluded_from_tier2_for_the_same_circularity_reason():
@@ -58,11 +87,29 @@ def test_reauth_signature_module_is_tier2_guardrailed():
     assert "live_slc/reauth_signature.py" in guardrails.GUARDRAILS_TIER2
 
 
-def test_verify_deployment_baseline_passes_against_the_real_frozen_state():
+def test_verify_deployment_baseline_passes_against_a_freshly_signed_baseline(tmp_path, signer):
+    """Phase 6: verify_deployment_baseline() now requires resolving a
+    signature-verified event first - can no longer be checked "against the
+    real frozen state" directly (the real production live_slc.db has no
+    signed event yet, by design, until the operator's first real signing).
+    Builds its own fully self-contained signed scenario instead, matching
+    the CURRENT real guardrail_hashes() so the drift comparison genuinely
+    passes."""
+    key_path, allowed_signers_path, identity = signer
+    baseline_path = tmp_path / "baseline.json"
+    current = guardrails.guardrail_hashes()
+    write_signed_baseline_event(
+        key_path=key_path, identity=identity, baseline_path=baseline_path,
+        guardrails_dict=current,
+    )
     result = guardrails.verify_deployment_baseline()
-    assert result["baseline_sha256"] == guardrails.EXPECTED_DEPLOYMENT_BASELINE_SHA256
-    assert len(result["guardrails"]["tier1"]) == 9
-    assert len(result["guardrails"]["tier2"]) == 27  # +migrations.py, +split_detection.py (rev. 11), +run_hidden.vbs (activation), +check_schedule_health.py + its .bat wrapper (sleep-fix), +reauth_signature.py + promotion.md (Phase 6)
+    assert result["guardrails"] == current
+    assert len(result["guardrails"]["tier1"]) == 10  # Phase 6: +live_slc/guardrails.py
+    assert len(result["guardrails"]["tier2"]) == 28  # +migrations.py, +split_detection.py (rev. 11), +run_hidden.vbs (activation), +check_schedule_health.py + its .bat wrapper (sleep-fix), +reauth_signature.py + promotion.md + verify_tier1_independent.py (Phase 6)
+
+
+def test_verify_tier1_independent_script_is_tier2_guardrailed():
+    assert "scripts/slc_live/verify_tier1_independent.py" in guardrails.GUARDRAILS_TIER2
 
 
 def test_run_hidden_vbs_present_in_tier2():
@@ -78,39 +125,40 @@ def test_schedule_health_check_and_its_wrapper_present_in_tier2():
     assert "scripts/slc_live/run_slc_schedule_health.bat" in guardrails.GUARDRAILS_TIER2
 
 
-def test_tier2_drift_detected_on_a_signal_side_file(tmp_path, monkeypatch):
-    """Mutating a signal-side Tier-2 file must be detected as drift."""
-    fake_baseline = tmp_path / "baseline.json"
+def test_tier2_drift_detected_on_a_signal_side_file(tmp_path, signer):
+    """Mutating a signal-side Tier-2 file must be detected as drift - the
+    signed baseline claims a hash for live_slc/reducer.py that the actual
+    current file no longer matches."""
+    key_path, allowed_signers_path, identity = signer
+    baseline_path = tmp_path / "baseline.json"
     hashes = guardrails.guardrail_hashes()
-    import json
-    fake_baseline.write_text(json.dumps({
-        "guardrails": {
+    write_signed_baseline_event(
+        key_path=key_path, identity=identity, baseline_path=baseline_path,
+        guardrails_dict={
             "tier1": hashes["tier1"],
             "tier2": {**hashes["tier2"], "live_slc/reducer.py": "0" * 64},
         },
-    }), encoding="utf-8")
-    monkeypatch.setattr(guardrails, "DEPLOYMENT_BASELINE", fake_baseline)
-    monkeypatch.setattr(guardrails, "EXPECTED_DEPLOYMENT_BASELINE_SHA256", guardrails._sha256(fake_baseline))
+    )
     with pytest.raises(RuntimeError, match="guardrail drift"):
         guardrails.verify_deployment_baseline()
 
 
-def test_baseline_file_tampering_detected():
-    original = guardrails._sha256(guardrails.DEPLOYMENT_BASELINE)
-    assert original == guardrails.EXPECTED_DEPLOYMENT_BASELINE_SHA256
-    tampered_expected = "0" * 64
-    import live_slc.guardrails as g
-
-    class _Tampered:
-        pass
-
-    old = g.EXPECTED_DEPLOYMENT_BASELINE_SHA256
-    try:
-        g.EXPECTED_DEPLOYMENT_BASELINE_SHA256 = tampered_expected
-        with pytest.raises(RuntimeError, match="baseline file hash mismatch"):
-            g.verify_deployment_baseline()
-    finally:
-        g.EXPECTED_DEPLOYMENT_BASELINE_SHA256 = old
+def test_baseline_file_tampering_detected(tmp_path, signer):
+    """The baseline file's actual on-disk content no longer matches the
+    hash the signed event pinned (e.g. edited after signing) - must
+    block, not silently trust the file."""
+    key_path, allowed_signers_path, identity = signer
+    baseline_path = tmp_path / "baseline.json"
+    current = guardrails.guardrail_hashes()
+    write_signed_baseline_event(
+        key_path=key_path, identity=identity, baseline_path=baseline_path,
+        guardrails_dict=current,
+    )
+    # Tamper with the file AFTER it was signed - its hash no longer
+    # matches guardrail_baseline_sha256_at_transition.
+    baseline_path.write_text('{"guardrails": {"tier1": {}, "tier2": {}}, "environment": {}}', encoding="utf-8")
+    with pytest.raises(RuntimeError, match="baseline file hash mismatch"):
+        guardrails.verify_deployment_baseline()
 
 
 def test_missing_guardrail_file_raises(tmp_path, monkeypatch):
@@ -186,41 +234,42 @@ def test_submission_blocked_when_activation_proposal_hash_does_not_match(tmp_pat
         )
 
 
-def test_operational_preconditions_consults_the_signature_gate(monkeypatch):
-    """Phase 6 Step 1a: assert_operational_preconditions() must actually
-    call verify_baseline_is_signed() with the current baseline hash, not
-    just have that function exist unused elsewhere - proven here by
-    making it raise and confirming the error propagates from the real
-    call site, not a re-derivation of verify_baseline_is_signed()'s own
-    logic (already covered directly in test_live_slc_reauth_signature.py)."""
+def test_operational_preconditions_consults_the_baseline_resolution_gate(monkeypatch):
+    """Phase 6: assert_operational_preconditions() must actually call
+    verify_deployment_baseline() - which now embeds signature resolution
+    via resolve_active_baseline() as its first step (no longer a separate
+    verify_baseline_is_signed() call, now merged - see guardrails.py's
+    module docstring on verify_deployment_baseline()). Proven by making
+    verify_deployment_baseline() raise and confirming the error
+    propagates from the real call site (the underlying resolution logic
+    is already covered directly in test_live_slc_reauth_signature.py)."""
     monkeypatch.setattr(guardrails.live_slc_settings, "SLC_EXPECTED_ACCOUNT_ID", "acct-1")
-    monkeypatch.setattr(
-        guardrails, "verify_deployment_baseline",
-        lambda: {"baseline_sha256": "fake-hash", "environment": {}},
-    )
 
-    def _raise(baseline_hash):
-        raise RuntimeError(f"signature gate hit for {baseline_hash}")
+    def _raise():
+        raise RuntimeError("signature gate hit")
 
-    monkeypatch.setattr(guardrails, "verify_baseline_is_signed", _raise)
-    with pytest.raises(RuntimeError, match="signature gate hit for fake-hash"):
+    monkeypatch.setattr(guardrails, "verify_deployment_baseline", _raise)
+    with pytest.raises(RuntimeError, match="signature gate hit"):
         guardrails.assert_operational_preconditions(observed_account_id="acct-1")
 
 
-def test_closeout_gate_blocks_on_execution_or_closeout_file_drift(tmp_path, monkeypatch):
+def test_closeout_gate_blocks_on_execution_or_closeout_file_drift(tmp_path, signer, monkeypatch):
     """Drift in execution.py or closeout.py THEMSELVES must still block -
     those files' own hashes are explicitly part of the minimal closeout
     gate (the paired negative case to the test above)."""
+    key_path, allowed_signers_path, identity = signer
     monkeypatch.setattr(guardrails.live_slc_settings, "ALPACA_API_KEY", "key")
     monkeypatch.setattr(guardrails.live_slc_settings, "ALPACA_SECRET_KEY", "secret")
     monkeypatch.setattr(guardrails.live_slc_settings, "SLC_EXPECTED_ACCOUNT_ID", "acct-1")
 
-    import json
-    baseline = json.loads(guardrails.DEPLOYMENT_BASELINE.read_text(encoding="utf-8"))
-    baseline["guardrails"]["tier2"]["live_slc/execution.py"] = "0" * 64
-    fake_baseline = tmp_path / "baseline.json"
-    fake_baseline.write_text(json.dumps(baseline), encoding="utf-8")
-    monkeypatch.setattr(guardrails, "DEPLOYMENT_BASELINE", fake_baseline)
-    monkeypatch.setattr(guardrails, "EXPECTED_DEPLOYMENT_BASELINE_SHA256", guardrails._sha256(fake_baseline))
+    hashes = guardrails.guardrail_hashes()
+    baseline_path = tmp_path / "baseline.json"
+    write_signed_baseline_event(
+        key_path=key_path, identity=identity, baseline_path=baseline_path,
+        guardrails_dict={
+            "tier1": hashes["tier1"],
+            "tier2": {**hashes["tier2"], "live_slc/execution.py": "0" * 64},
+        },
+    )
     with pytest.raises(RuntimeError, match="closeout blocked"):
         guardrails.assert_closeout_preconditions(observed_account_id="acct-1")

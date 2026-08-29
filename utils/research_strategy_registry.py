@@ -30,26 +30,45 @@ CRYPTO_XSEC_MOMENTUM_STRATEGY_VERSION = "crypto_xsec_momentum_v1"
 
 RESEARCH_REGISTRY = {
     CRYPTO_DAILY_STRATEGY_VERSION: StrategyRegistration(
-        CRYPTO_DAILY_STRATEGY_VERSION, "crypto", "swing", False, "research",
+        CRYPTO_DAILY_STRATEGY_VERSION, "crypto", "swing", False, "archived",
         (
-            "New daily-bar variant added alongside crypto_trend_momentum_v1 "
-            "(unmodified) after a review found v1's SMA20/50/200 trend "
-            "classification runs on hourly bars, not the daily periods the "
-            "names imply. Not yet evaluated through the evidence gate - "
-            "execution_eligible stays False until a comparison run passes "
-            "qualification on its own merits."
+            "ARCHIVED 2026-08-29 (Phase 3 verdict) - no persistent edge. "
+            "In-sample (2022-01-01 to 2024-06-30) looked promising for the "
+            "sma50_rising entry mode (Sharpe 0.520, best of 3 entry modes), "
+            "but out-of-sample (2024-07-01 to 2026-08-09) with those same "
+            "frozen parameters: Sharpe -0.054 (vs. BTC buy-and-hold's 0.261 "
+            "over the identical window), profit factor 0.94, and 4 of 5 OOS "
+            "half-years negative - not one bad stretch, a persistent decay. "
+            "A regime-filter-alone control benchmark (Phase 3 Step 3) further "
+            "showed this family's raw return mostly traces to the shared "
+            "BTC-SMA20 regime filter, not this strategy's own RSI/MACD/relvol "
+            "gates. Full findings, tables, and the walk-forward methodology: "
+            "the Crypto Evidence Ledger, PHASE 3 section "
+            "(https://claude.ai/code/artifact/d034bcaa-80f8-4e79-a355-1bc62d6d5efc). "
+            "Do not revive without reading that section first - the in-sample "
+            "numbers alone are not sufficient justification; they're exactly "
+            "what looked good before OOS testing was done."
         ),
     ),
     CRYPTO_XSEC_MOMENTUM_STRATEGY_VERSION: StrategyRegistration(
-        CRYPTO_XSEC_MOMENTUM_STRATEGY_VERSION, "crypto", "swing", False, "research",
+        CRYPTO_XSEC_MOMENTUM_STRATEGY_VERSION, "crypto", "swing", False, "archived",
         (
-            "Cross-sectional momentum variant, evaluated alongside "
-            "crypto_trend_daily_v1 through the same evidence-gate comparison "
-            "(Phase 2 Step 5). Best cell (lookback_30, weekend_rebalance) "
-            "reached only 4/13 qualification checks on the full universe. "
-            "Not yet evaluated through the evidence gate for promotion - "
-            "execution_eligible stays False until a comparison run passes "
-            "qualification on its own merits."
+            "ARCHIVED 2026-08-29 (Phase 3 verdict) - no persistent edge. "
+            "In-sample (2022-01-01 to 2024-06-30), lookback_30 (N=3, 10-symbol "
+            "universe) reached Sharpe 0.212. Out-of-sample (2024-07-01 to "
+            "2026-08-09) with those frozen parameters, the headline numbers "
+            "look like a pass (Sharpe 0.564, profit factor 1.31) but both are "
+            "a single-half-year artifact: 2024H2 alone contributes +$33,681 "
+            "net P&L; every other OOS half-year, summed, is -$11,596. Max "
+            "drawdown (-26.6%), positive-quarter rate (55.6%, just under the "
+            "60% bar), bootstrap lower bound (-0.171), and trailing-12mo "
+            "(-$23,639) all fail regardless. The sensitivity grid (Phase 3 "
+            "Step 6) found no plateau at all - results across lookback x N "
+            "were genuinely erratic, with several untested cells beating the "
+            "selected one's in-sample Sharpe, a signal-vs-noise warning. Full "
+            "findings: the Crypto Evidence Ledger, PHASE 3 section "
+            "(https://claude.ai/code/artifact/d034bcaa-80f8-4e79-a355-1bc62d6d5efc). "
+            "Do not revive without reading that section first."
         ),
     ),
 }

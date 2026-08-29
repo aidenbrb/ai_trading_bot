@@ -25,9 +25,11 @@ from __future__ import annotations
 
 import uuid
 from datetime import date, datetime
+from types import SimpleNamespace
 from utils.timeutil import utcnow
 from typing import Optional
 
+import pandas as pd
 from sqlmodel import select
 
 from config.settings import settings
@@ -179,6 +181,110 @@ def run(
         "failed":  failed,
         "skipped": skipped,
     }
+
+
+# -- Daily-bar indicator fetch (research use only - not wired into run()) ------
+#
+# Added after a Phase 1 review found the existing hourly path's SMA20/50/200
+# trend calculation actually runs on 20/50/200 HOURLY bars (~0.8/2.1/8.3
+# calendar days), not the daily periods the names imply. This gives a live
+# equivalent of backtest/whole_bot_engine.py's fetch_daily_crypto_frames() +
+# build_daily_crypto_indicator_frames() for the upcoming daily-timeframe
+# strategies (crypto_trend_daily_v1, crypto_xsec_momentum_v1). Deliberately
+# NOT called from run() above: run() writes Strategy rows that feed the live
+# risk/execution gating for the already-registered v1 strategy, and this
+# function has no business touching that path while the new strategies are
+# still research-only (REGISTRY execution_eligible=False). Data source is
+# yfinance (matching _btc_macro_check's existing daily-fetch precedent
+# above), not Alpaca (the backtest's exclusive source) - so this is the
+# same indicator MATH as the backtest (both ultimately call
+# utils.indicators.compute_all()/trend_label()), on a different, real-time
+# data source. Daily boundary is UTC midnight, same convention as the
+# backtest path.
+
+def _fetch_daily_ohlcv_frame(symbol: str, *, period: str = "2y"):
+    """Real daily OHLCV via yfinance, normalized to the UTC-midnight daily
+    boundary (same convention as the backtest's native Alpaca daily bars).
+    Returns None if unavailable or under 200 rows (not enough for SMA200)."""
+    import yfinance as yf
+
+    try:
+        raw = yf.Ticker(symbol).history(period=period, interval="1d")
+    except Exception:
+        return None
+    if raw.empty or len(raw) < 200:
+        return None
+
+    raw = raw.rename(columns={
+        "Open": "open", "High": "high", "Low": "low",
+        "Close": "close", "Volume": "volume",
+    })
+    if raw.index.tz is not None:
+        raw.index = raw.index.tz_convert("UTC").tz_localize(None)
+    raw.index = raw.index.normalize()  # UTC-midnight daily boundary
+    df = raw[["open", "high", "low", "close", "volume"]].dropna()
+    return df if len(df) >= 200 else None
+
+
+def fetch_daily_indicator(symbol: str, *, period: str = "2y") -> Optional[dict]:
+    """Compute the same indicator set as utils.indicators.compute_all()
+    (SMA20/50/200, RSI14, MACD, ATR14, relative volume, trend label) from
+    real daily OHLCV - the live-side counterpart to the backtest's daily
+    indicator frame. Returns None if data is unavailable or too short for a
+    valid SMA200."""
+    from utils.indicators import compute_all
+
+    df = _fetch_daily_ohlcv_frame(symbol, period=period)
+    if df is None:
+        return None
+    values = compute_all(df)
+    if values["sma_200"] is None:
+        return None
+    return values
+
+
+def evaluate_crypto_trend_daily_v1(
+    symbol: str, *, entry_mode: str = "strict_stack", min_rr: float = 2.0, period: str = "2y",
+):
+    """Live-side evaluation of utils.strategy_signals.crypto_trend_daily_v1
+    against real daily OHLCV - research use only (see the module note above
+    fetch_daily_indicator: never wired into run(), the new strategy is
+    still execution_eligible=False in the registry). Returns None only when
+    daily data itself is unavailable/too short; otherwise returns the
+    SignalDecision (passed or rejected - callers distinguish via
+    .passed, matching every other strategy_signals function's contract)."""
+    from utils.indicators import compute_all, sma
+    from utils.strategy_signals import (
+        CRYPTO_DAILY_DONCHIAN_LOOKBACK,
+        CRYPTO_DAILY_SMA50_RISING_LOOKBACK,
+        crypto_trend_daily_v1,
+    )
+
+    df = _fetch_daily_ohlcv_frame(symbol, period=period)
+    if df is None:
+        return None
+    values = compute_all(df)
+    if values["sma_200"] is None:
+        return None
+
+    indicator = SimpleNamespace(
+        trend=values["trend"], rsi_14=values["rsi_14"], macd_hist=values["macd_hist"],
+        rel_volume=values["rel_volume"], atr_14=values["atr_14"],
+        sma_20=values["sma_20"], sma_50=values["sma_50"],
+    )
+
+    sma_50_series = sma(df["close"], 50)
+    prior_idx = len(sma_50_series) - 1 - CRYPTO_DAILY_SMA50_RISING_LOOKBACK
+    indicator.sma_50_prior = (
+        float(sma_50_series.iloc[prior_idx])
+        if prior_idx >= 0 and pd.notna(sma_50_series.iloc[prior_idx]) else None
+    )
+
+    window = df["high"].iloc[-1 - CRYPTO_DAILY_DONCHIAN_LOOKBACK:-1]
+    indicator.high_20 = float(window.max()) if len(window) == CRYPTO_DAILY_DONCHIAN_LOOKBACK else None
+
+    close = float(df["close"].iloc[-1])
+    return crypto_trend_daily_v1(symbol, indicator, close, min_rr=min_rr, entry_mode=entry_mode)
 
 
 # -- BTC macro filter ----------------------------------------------------------

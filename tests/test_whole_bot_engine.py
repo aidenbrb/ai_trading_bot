@@ -1,4 +1,5 @@
 from datetime import date, datetime, timedelta
+from types import SimpleNamespace
 
 import numpy as np
 import pandas as pd
@@ -10,10 +11,16 @@ from backtest.whole_bot_engine import (
     BASELINE_COST,
     Candidate,
     ResearchPortfolio,
+    _daily_candidate,
+    _daily_snapshot,
     _indicator_object,
     _snapshot,
     _transaction_cost,
+    build_daily_crypto_calendar,
+    build_daily_crypto_indicator_frames,
     completed_bar_cutoff,
+    daily_completed_bar_cutoff,
+    daily_decision_time_utc,
     decision_time_utc,
     indicator_frame,
     simulate_order_outcome,
@@ -506,3 +513,205 @@ def test_expiration_sessions_changes_the_cache_key():
         outcome_simulator=_unfilled, expiration_sessions=5,
     )
     assert len(outcome_cache) == 2
+
+
+# -- Daily-bar crypto timeframe (added alongside the existing hourly path) --
+
+def test_existing_hourly_candidate_helper_still_defaults_timeframe_hourly():
+    """Regression guard: adding Candidate.timeframe must not change any
+    existing call site's output - default value preserves it."""
+    c = _candidate()
+    assert c.timeframe == "hourly"
+
+
+def test_daily_decision_time_is_shortly_after_utc_midnight():
+    assert daily_decision_time_utc(date(2026, 6, 1)) == datetime(2026, 6, 1, 0, 5)
+
+
+def test_daily_completed_bar_cutoff_is_the_prior_calendar_day():
+    assert daily_completed_bar_cutoff(date(2026, 6, 1)) == datetime(2026, 5, 31, 0, 0)
+
+
+def _daily_frame(rows):
+    """rows: list of (date, close, sma20, sma50, sma200, rsi, macd_hist, atr, relvol)."""
+    idx = pd.to_datetime([r[0] for r in rows])
+    return pd.DataFrame({
+        "close":      [r[1] for r in rows],
+        "sma_20":     [r[2] for r in rows],
+        "sma_50":     [r[3] for r in rows],
+        "sma_200":    [r[4] for r in rows],
+        "rsi_14":     [r[5] for r in rows],
+        "macd_hist":  [r[6] for r in rows],
+        "atr_14":     [r[7] for r in rows],
+        "rel_volume": [r[8] for r in rows],
+        "trend":      ["UPTREND"] * len(rows),
+    }, index=idx)
+
+
+def test_daily_snapshot_requires_exact_prior_day_bar_no_staleness_window():
+    frame = _daily_frame([
+        ("2026-05-30", 100.0, 90, 80, 70, 60, 1.0, 2.0, 1.5),
+        ("2026-05-31", 101.0, 91, 81, 71, 61, 1.1, 2.1, 1.6),
+        # 2026-06-01 (the decision day itself) deliberately absent/incomplete
+    ])
+    row = _daily_snapshot(frame, date(2026, 6, 1))
+    assert row is not None and row["close"] == 101.0
+
+    # A gap on the required prior day (bar missing entirely) - no fallback
+    # to an older bar, unlike the hourly path's 2h staleness tolerance.
+    gapped = _daily_frame([("2026-05-30", 100.0, 90, 80, 70, 60, 1.0, 2.0, 1.5)])
+    assert _daily_snapshot(gapped, date(2026, 6, 1)) is None
+
+
+def test_daily_snapshot_none_when_required_indicator_missing():
+    frame = _daily_frame([("2026-05-31", 101.0, 91, 81, 71, 61, 1.1, 2.1, 1.6)])
+    frame.loc[frame.index[-1], "sma_200"] = float("nan")
+    assert _daily_snapshot(frame, date(2026, 6, 1)) is None
+
+
+def test_daily_candidate_uses_daily_decision_time_and_one_day_bar_span():
+    frame = _daily_frame([("2026-05-31", 101.0, 91, 81, 71, 61, 1.1, 2.1, 1.6)])
+    row = frame.iloc[-1]
+    decision = SimpleNamespace(
+        strategy_version="crypto_trend_daily_v1", entry=101.0, stop=95.0,
+        target=115.0, conviction_score=80,
+    )
+    c = _daily_candidate("BTC-USD", row, date(2026, 6, 1), decision)
+    assert c.market == "crypto"
+    assert c.timeframe == "daily"
+    assert c.decision_time == datetime(2026, 6, 1, 0, 5)
+    assert c.signal_bar_end == datetime(2026, 6, 1, 0, 0)  # bar_start + 1 day
+
+
+def _fake_daily_signal_fn(threshold_close=1_000_000.0):
+    """Passes only when close < threshold - lets tests control which
+    symbol/day combinations produce a candidate without depending on the
+    real gate math (already covered by tests/test_strategy_signals.py)."""
+    def fn(symbol, indicator, close, *, min_rr):
+        if close < threshold_close:
+            return SimpleNamespace(
+                passed=True, conviction_score=80, entry=close,
+                stop=close * 0.9, target=close * 1.2, strategy_version="fake_daily_v1",
+            )
+        return SimpleNamespace(passed=False, conviction_score=0)
+    return fn
+
+
+def test_build_daily_crypto_calendar_coverage_and_exclusions():
+    days = pd.date_range("2026-01-01", "2026-01-10", freq="D")
+    # BTC: full history, always usable.
+    btc_daily = _daily_frame([(str(d.date()), 100.0, 90, 80, 70, 60, 1.0, 2.0, 1.5) for d in days])
+    # ETH: missing the bar for 2026-01-05 (a genuine data gap).
+    eth_rows = [(str(d.date()), 50.0, 45, 40, 35, 60, 1.0, 1.0, 1.5)
+                for d in days if str(d.date()) != "2026-01-05"]
+    eth_daily = _daily_frame(eth_rows)
+    daily_ind = {"BTC-USD": btc_daily, "ETH-USD": eth_daily}
+
+    # Hourly BTC frame, used only for the reused _btc_macro_ok() gate - a
+    # steadily rising close so "current > 20-day average" is genuinely
+    # True (bullish), not just non-None. >=20 days of daily-resamplable
+    # history before the test range starts.
+    hourly_idx = pd.date_range("2025-12-01", "2026-01-10", freq="h")
+    hourly_btc = pd.DataFrame({
+        "open": np.linspace(80.0, 120.0, len(hourly_idx)),
+        "high": np.linspace(81.0, 121.0, len(hourly_idx)),
+        "low": np.linspace(79.0, 119.0, len(hourly_idx)),
+        "close": np.linspace(80.0, 120.0, len(hourly_idx)),
+        "volume": 1000.0,
+    }, index=hourly_idx)
+    hourly_frames = {"BTC-USD": hourly_btc}
+
+    calendar, meta = build_daily_crypto_calendar(
+        daily_ind, hourly_frames, date(2026, 1, 2), date(2026, 1, 6),
+        _fake_daily_signal_fn(),
+    )
+    # 2 symbols x 5 days = 10 attempted; ETH's 2026-01-06 decision needs the
+    # 2026-01-05 bar, which is the injected gap -> exactly 1 exclusion.
+    assert meta["coverage"]["attempted"] == 10
+    assert meta["coverage"]["usable"] == 9
+    reasons = {e["reason"] for e in meta["exclusions"]}
+    assert reasons == {"no completed prior-day bar or BTC macro history"}
+    # Every usable day produced a candidate (fake signal fn always passes).
+    total_candidates = sum(len(v) for v in calendar.values())
+    assert total_candidates == 9
+    assert all(c.timeframe == "daily" for v in calendar.values() for c in v)
+
+
+def test_build_daily_crypto_calendar_respects_pre_inception_warmup():
+    days = pd.date_range("2026-01-05", "2026-01-10", freq="D")  # starts mid-range
+    late_symbol = _daily_frame(
+        [(str(d.date()), 10.0, 9, 8, 7, 60, 1.0, 0.5, 1.5) for d in days]
+    )
+    daily_ind = {"NEW-USD": late_symbol}
+    hourly_idx = pd.date_range("2025-12-01", "2026-01-10", freq="h")
+    hourly_frames = {"BTC-USD": pd.DataFrame({
+        "open": 100.0, "high": 101.0, "low": 99.0, "close": 100.0, "volume": 1000.0,
+    }, index=hourly_idx)}
+
+    calendar, meta = build_daily_crypto_calendar(
+        daily_ind, hourly_frames, date(2026, 1, 2), date(2026, 1, 10),
+        _fake_daily_signal_fn(),
+    )
+    # Days before the symbol's own first usable bar (2026-01-05) are
+    # pre-inception, not "attempted" at all - only 2026-01-06 through
+    # 2026-01-10 (5 days) should be attempted.
+    assert meta["coverage"]["attempted"] == 5
+
+
+# -- _daily_indicator_object: sma_50_prior / high_20 for crypto_trend_daily_v1 --
+
+def test_daily_indicator_object_computes_sma50_prior_and_high20():
+    from backtest.whole_bot_engine import _daily_indicator_object
+
+    # 25 daily bars: sma_50 column deliberately linear so "10 bars ago" is
+    # unambiguous; high column deliberately spikes on day index 3 (within
+    # the 20-bar lookback window, excluding the current/last bar).
+    idx = pd.date_range("2026-01-01", periods=25, freq="D")
+    frame = pd.DataFrame({
+        "close": 100.0,
+        "sma_20": 95.0, "sma_50": np.arange(25, dtype=float), "sma_200": 70.0,
+        "rsi_14": 60.0, "macd_hist": 1.0, "atr_14": 2.0, "rel_volume": 1.5,
+        "high": [200.0 if i == 3 else 100.0 for i in range(25)],
+        "trend": "UPTREND",
+    }, index=idx)
+    row = frame.iloc[-1]  # index position 24
+    obj = _daily_indicator_object(frame, row)
+
+    # sma_50 at position 24-10=14 -> value 14.0
+    assert obj.sma_50_prior == 14.0
+    # high over positions [24-20, 24) = [4, 24) - the spike at position 3
+    # falls OUTSIDE this window, so high_20 must be 100.0, not 200.0.
+    assert obj.high_20 == 100.0
+
+
+def test_daily_indicator_object_none_when_insufficient_lookback():
+    from backtest.whole_bot_engine import _daily_indicator_object
+
+    idx = pd.date_range("2026-01-01", periods=5, freq="D")  # far fewer than 20/10 bars
+    frame = pd.DataFrame({
+        "close": 100.0, "sma_20": 95.0, "sma_50": 90.0, "sma_200": 70.0,
+        "rsi_14": 60.0, "macd_hist": 1.0, "atr_14": 2.0, "rel_volume": 1.5,
+        "high": 100.0, "trend": "UPTREND",
+    }, index=idx)
+    row = frame.iloc[-1]
+    obj = _daily_indicator_object(frame, row)
+    assert obj.sma_50_prior is None
+    assert obj.high_20 is None
+
+
+def test_daily_indicator_object_high20_excludes_the_current_bar():
+    """A breakout must be measured against PRIOR bars only - if the
+    current bar's own high were included in the window, every new local
+    high would trivially "break out" against itself."""
+    from backtest.whole_bot_engine import _daily_indicator_object
+
+    idx = pd.date_range("2026-01-01", periods=25, freq="D")
+    highs = [100.0] * 24 + [500.0]  # today's bar is the all-time spike
+    frame = pd.DataFrame({
+        "close": 100.0, "sma_20": 95.0, "sma_50": 90.0, "sma_200": 70.0,
+        "rsi_14": 60.0, "macd_hist": 1.0, "atr_14": 2.0, "rel_volume": 1.5,
+        "high": highs, "trend": "UPTREND",
+    }, index=idx)
+    row = frame.iloc[-1]
+    obj = _daily_indicator_object(frame, row)
+    assert obj.high_20 == 100.0  # not 500.0

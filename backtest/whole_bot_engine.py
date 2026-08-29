@@ -24,6 +24,8 @@ from config.universe import CRYPTO_SET
 from utils.indicators import adx, atr, macd, relative_volume, rsi, sma, trend_label
 from utils.market_calendar import session_for, trading_days_between
 from utils.strategy_signals import (
+    CRYPTO_DAILY_DONCHIAN_LOOKBACK,
+    CRYPTO_DAILY_SMA50_RISING_LOOKBACK,
     CRYPTO_STRATEGY_VERSION,
     STOCK_STRATEGY_VERSION,
     crypto_trend_momentum_v1,
@@ -80,6 +82,12 @@ class Candidate:
     target: float
     conviction: int
     atr: float
+    # "hourly" (default, preserves every existing call site's output
+    # unchanged) or "daily" - lets exit simulation later dispatch on the
+    # timeframe the entry strategy actually used, instead of always
+    # consulting the hourly indicator frame (see daily crypto additions
+    # below and monitor_node's own live-side equivalent).
+    timeframe: str = "hourly"
 
 
 @dataclass
@@ -285,6 +293,192 @@ def _candidate(symbol: str, market: str, row: pd.Series, day: date, decision) ->
         conviction=int(decision.conviction_score),
         atr=float(row["atr_14"]),
     )
+
+
+# -- Daily-bar crypto timeframe -----------------------------------------------
+#
+# Added alongside the existing hourly path (which is left completely
+# unmodified above) after a Phase 1 review found every "SMA20/50/200" trend
+# calculation in the hourly path actually runs on 20/50/200 HOURLY bars
+# (~0.8/2.1/8.3 calendar days), not the daily periods the names imply. These
+# functions give crypto_trend_daily_v1/crypto_xsec_momentum_v1 a genuine
+# daily-bar indicator frame - fetched natively as "Day" bars (Alpaca does not
+# build these by resampling its own hourly bars, so this avoids inheriting
+# the hourly path's ~51% coverage gaps), not resampled from the gappy hourly
+# frame. Daily boundary is UTC midnight throughout, confirmed empirically:
+# Alpaca's native crypto "Day" bars are indexed exactly at UTC 00:00 per
+# calendar date (verified 2026-08-28 against real BTC-USD data).
+
+DAILY_CRYPTO_DECISION_TIME_UTC = time(0, 5)  # just after the UTC daily close
+DAILY_WARMUP_DAYS = 220  # >= 200 (SMA200) plus a buffer, in CALENDAR days
+
+
+def daily_decision_time_utc(day: date) -> datetime:
+    """The decision instant for a daily-timeframe crypto strategy: shortly
+    after `day`'s own UTC close, so the bar dated `day` (see
+    daily_completed_bar_cutoff) is the most recent complete one available."""
+    return datetime.combine(day, DAILY_CRYPTO_DECISION_TIME_UTC)
+
+
+def daily_completed_bar_cutoff(day: date) -> datetime:
+    """The most recent COMPLETE daily bar at a decision made just after
+    `day`'s own UTC close is the bar dated `day - 1` (it covers
+    [day-1 00:00, day 00:00) UTC, which just finished)."""
+    return datetime.combine(day - timedelta(days=1), time.min)
+
+
+def _daily_snapshot(frame: pd.DataFrame, day: date):
+    """Daily equivalent of _snapshot(): 'usable' means a bar dated exactly
+    day-1 exists with every required indicator populated. No staleness
+    window is needed - unlike the hourly path's 2-hour gap check, a
+    completed daily bar either exists at its own native resolution or it
+    doesn't."""
+    if frame is None or frame.empty:
+        return None
+    cutoff = daily_completed_bar_cutoff(day)
+    if cutoff not in frame.index:
+        return None
+    row = frame.loc[cutoff]
+    required = ("sma_20", "sma_50", "sma_200", "rsi_14", "macd_hist", "atr_14", "rel_volume")
+    if any(pd.isna(row[name]) for name in required):
+        return None
+    return row
+
+
+def _daily_candidate(symbol: str, row: pd.Series, day: date, decision) -> Candidate:
+    bar_start = row.name.to_pydatetime() if hasattr(row.name, "to_pydatetime") else row.name
+    return Candidate(
+        symbol=symbol,
+        market="crypto",  # unchanged - existing sizing/cost-model/mode-dispatch
+                           # logic already branches on market=="stock" vs else,
+                           # so daily crypto candidates flow through it correctly
+                           # without any of that logic needing to change.
+        strategy_version=decision.strategy_version,
+        decision_time=daily_decision_time_utc(day),
+        signal_bar_end=bar_start + timedelta(days=1),
+        entry=float(decision.entry),
+        stop=float(decision.stop),
+        target=float(decision.target),
+        conviction=int(decision.conviction_score),
+        atr=float(row["atr_14"]),
+        timeframe="daily",
+    )
+
+
+def fetch_daily_crypto_frames(
+    symbols: list[str],
+    start_date: date,
+    end_date: date,
+    fetch_crypto: Callable = get_crypto_research_bars_multi,
+) -> dict[str, pd.DataFrame]:
+    """Native daily crypto bars (not resampled from hourly), with a
+    DAILY_WARMUP_DAYS calendar-day warmup so SMA200 is populated from the
+    first day of the actual test range."""
+    start = datetime.combine(start_date - timedelta(days=DAILY_WARMUP_DAYS), time.min)
+    end = datetime.combine(end_date + timedelta(days=1), time.min)
+    raw = fetch_crypto(symbols, start, end, amount=1, unit="Day")
+    return {symbol: _normalise_frame(df) for symbol, df in raw.items()}
+
+
+def build_daily_crypto_indicator_frames(
+    daily_bars: dict[str, pd.DataFrame], *, include_adx: bool = False
+) -> dict[str, pd.DataFrame]:
+    """Same vectorized indicator computation as indicator_frame() (reused
+    unchanged - it was already timeframe-agnostic), just fed daily bars."""
+    return {symbol: indicator_frame(df, include_adx=include_adx) for symbol, df in daily_bars.items()}
+
+
+def _daily_indicator_object(frame: pd.DataFrame, row: pd.Series):
+    """_indicator_object(row) plus the two extra fields crypto_trend_daily_v1
+    consults only for its non-default entry_mode values (see that function's
+    own docstring for their exact definitions). Populated unconditionally -
+    cheap to compute, and harmless for entry_mode="strict_stack" (the
+    default), which never reads them."""
+    obj = _indicator_object(row)
+    pos = frame.index.get_loc(row.name)
+
+    sma_50_prior = None
+    prior_pos = pos - CRYPTO_DAILY_SMA50_RISING_LOOKBACK
+    if prior_pos >= 0:
+        prior_val = frame.iloc[prior_pos]["sma_50"]
+        if pd.notna(prior_val):
+            sma_50_prior = float(prior_val)
+    obj.sma_50_prior = sma_50_prior
+
+    high_20 = None
+    window_start = pos - CRYPTO_DAILY_DONCHIAN_LOOKBACK
+    if window_start >= 0:
+        window = frame.iloc[window_start:pos]["high"]
+        if not window.empty and window.notna().any():
+            high_20 = float(window.max())
+    obj.high_20 = high_20
+
+    return obj
+
+
+def build_daily_crypto_calendar(
+    daily_ind: dict[str, pd.DataFrame],
+    hourly_crypto_frames: dict[str, pd.DataFrame],
+    start_date: date,
+    end_date: date,
+    crypto_signal_fn: Callable,
+    *,
+    min_rr: float = 2.0,
+) -> tuple[dict[date, list[Candidate]], dict]:
+    """Daily-timeframe equivalent of build_signal_calendar(), kept fully
+    separate (not merged into it) so the existing hourly calendar and its
+    output are completely unaffected. `hourly_crypto_frames` is reused only
+    for the BTC macro gate (_btc_macro_ok already computes a genuine daily
+    resample from it - that check was never the hourly-mislabeled-as-daily
+    problem this addition exists to fix, so it's reused as-is rather than
+    rebuilt against the new native daily frame)."""
+    required = ("sma_20", "sma_50", "sma_200", "rsi_14", "macd_hist", "atr_14", "rel_volume")
+    first_usable = {}
+    for symbol, frame in daily_ind.items():
+        valid = frame.dropna(subset=required) if not frame.empty else frame
+        first_usable[symbol] = valid.index[0] if not valid.empty else None
+
+    calendar: dict[date, list[Candidate]] = {}
+    attempted = 0
+    usable = 0
+    exclusions: list[dict] = []
+
+    day = start_date
+    while day <= end_date:
+        candidates: list[Candidate] = []
+        macro = _btc_macro_ok(hourly_crypto_frames, day)
+        for symbol, frame in daily_ind.items():
+            first = first_usable[symbol]
+            cutoff = daily_completed_bar_cutoff(day)
+            if first is not None and cutoff < first:
+                exclusions.append({"date": day, "symbol": symbol, "market": "crypto",
+                                   "reason": "pre-inception or indicator warmup"})
+                continue
+            attempted += 1
+            row = _daily_snapshot(frame, day)
+            if row is None or macro is None:
+                exclusions.append({"date": day, "symbol": symbol, "market": "crypto",
+                                   "reason": "no completed prior-day bar or BTC macro history"})
+                continue
+            usable += 1
+            if symbol != "BTC-USD" and not macro:
+                continue
+            decision = crypto_signal_fn(
+                symbol, _daily_indicator_object(frame, row), float(row["close"]), min_rr=min_rr
+            )
+            if decision.passed and (decision.conviction_score or 0) >= 70:
+                candidates.append(_daily_candidate(symbol, row, day, decision))
+
+        candidates.sort(key=lambda c: (-c.conviction, c.symbol))
+        calendar[day] = candidates
+        day += timedelta(days=1)
+
+    coverage = {
+        "attempted": attempted,
+        "usable": usable,
+        "coverage_rate": usable / attempted if attempted else None,
+    }
+    return calendar, {"coverage": coverage, "exclusions": exclusions}
 
 
 def load_research_data(

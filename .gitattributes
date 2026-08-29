@@ -1,0 +1,14 @@
+# Disable ALL line-ending conversion, repo-wide.
+#
+# This machine's git has core.autocrlf=true (system-level setting, not
+# something this repo controls). That setting silently rewrites LF<->CRLF
+# on every `git add`/`git checkout`, which just corrupted a byte-for-byte
+# hash-based guardrail check: live_slc/guardrails.py and
+# backtest/run_slc_backtest.py both hash-verify certain files (including
+# utils/strategy_registry.py) against a frozen baseline, and `git checkout
+# HEAD -- utils/strategy_registry.py` silently reintroduced CRLF into a
+# file whose committed blob was LF, breaking the ALREADY-LIVE SLC paper-
+# trading system's own safety gate with no actual content change. `-text`
+# tells git to treat every path as binary for line-ending purposes, so
+# add/commit/checkout never touch bytes, regardless of core.autocrlf.
+* -text

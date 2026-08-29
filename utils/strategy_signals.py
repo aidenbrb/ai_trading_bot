@@ -283,6 +283,155 @@ def crypto_trend_momentum_v1(
     return _pass(CRYPTO_STRATEGY_VERSION, bracket, score, thesis)
 
 
+# -- crypto_trend_daily_v1 -----------------------------------------------------
+#
+# Added alongside crypto_trend_momentum_v1 above (which is completely
+# unmodified - not one line above this comment was touched) after a Phase 1
+# review found v1's SMA20/50/200 trend classification actually runs on
+# 20/50/200 HOURLY bars (~0.8/2.1/8.3 calendar days), not the daily periods
+# the names imply. This is the daily-bar equivalent: same RSI/MACD/relvol/
+# ATR-bracket gates and thresholds (CRYPTO_RSI_LOW/HIGH, CRYPTO_MIN_REL_VOLUME,
+# CRYPTO_ATR_STOP_MULT/TARGET_MULT - all reused unchanged, not reimplemented),
+# but every input comes from a genuine daily-bar frame (see
+# backtest/whole_bot_engine.py's build_daily_crypto_calendar and
+# nodes/crypto_strategy_node.py's fetch_daily_indicator) and Gate 2 (trend/
+# structure) is selectable via entry_mode. Deliberately NOT implemented by
+# calling crypto_trend_momentum_v1() and patching the result - "strict_stack"
+# needs to be a fully independent evaluation against daily indicator values,
+# not a delegation to the hourly function, so a future edit to v1 can never
+# silently change this strategy's behavior.
+
+CRYPTO_DAILY_STRATEGY_VERSION = "crypto_trend_daily_v1"
+CRYPTO_DAILY_ENTRY_MODES = ("strict_stack", "sma50_rising", "donchian")
+CRYPTO_DAILY_SMA50_RISING_LOOKBACK = 10  # bars (days)
+CRYPTO_DAILY_DONCHIAN_LOOKBACK = 20      # bars (days), prior bars only - excludes today
+
+
+def crypto_trend_daily_v1(
+    symbol: str,
+    indicator: IndicatorLike,
+    close: float,
+    *,
+    min_rr: float,
+    entry_mode: str = "strict_stack",
+) -> SignalDecision:
+    """Daily-bar counterpart to crypto_trend_momentum_v1. `indicator` must
+    carry the same fields IndicatorLike does (all computed from a daily
+    frame, not hourly), plus two optional fields consulted only by the
+    non-default entry_mode values:
+      - sma_50_prior: SMA-50 value CRYPTO_DAILY_SMA50_RISING_LOOKBACK bars
+        ago (used only by entry_mode="sma50_rising").
+      - high_20: highest daily high over the CRYPTO_DAILY_DONCHIAN_LOOKBACK
+        bars strictly BEFORE today's bar - i.e. a breakout is close >
+        the high of the prior 20 days, not including today itself (used
+        only by entry_mode="donchian").
+    Both default to None via getattr() if absent, which rejects the signal
+    for that mode rather than raising - callers that only ever use
+    entry_mode="strict_stack" (the default) never need to supply them.
+
+    Exits are unchanged across all three modes in this phase (Phase 2 Step 2
+    scope: entry gate only)."""
+    if entry_mode not in CRYPTO_DAILY_ENTRY_MODES:
+        raise ValueError(f"unknown entry_mode: {entry_mode!r} (expected one of {CRYPTO_DAILY_ENTRY_MODES})")
+
+    if entry_mode == "strict_stack":
+        if indicator.trend != "UPTREND":
+            return _reject(
+                CRYPTO_DAILY_STRATEGY_VERSION,
+                f"trend={indicator.trend} (need UPTREND: price>SMA20>SMA50>SMA200, daily) [strict_stack]",
+            )
+    elif entry_mode == "sma50_rising":
+        sma_50 = indicator.sma_50
+        sma_50_prior = getattr(indicator, "sma_50_prior", None)
+        if sma_50 is None or close <= sma_50:
+            sma_str = f"{sma_50:.4f}" if sma_50 is not None else "N/A"
+            return _reject(
+                CRYPTO_DAILY_STRATEGY_VERSION,
+                f"close {close:.4f} <= SMA50 {sma_str} [sma50_rising]",
+            )
+        if sma_50_prior is None or sma_50 <= sma_50_prior:
+            prior_str = f"{sma_50_prior:.4f}" if sma_50_prior is not None else "N/A"
+            return _reject(
+                CRYPTO_DAILY_STRATEGY_VERSION,
+                f"SMA50 {sma_50:.4f} not above its value {CRYPTO_DAILY_SMA50_RISING_LOOKBACK} "
+                f"bars ago ({prior_str}) [sma50_rising]",
+            )
+    else:  # donchian
+        high_20 = getattr(indicator, "high_20", None)
+        if high_20 is None or close <= high_20:
+            high_str = f"{high_20:.4f}" if high_20 is not None else "N/A"
+            return _reject(
+                CRYPTO_DAILY_STRATEGY_VERSION,
+                f"close {close:.4f} did not break above the prior "
+                f"{CRYPTO_DAILY_DONCHIAN_LOOKBACK}-day high ({high_str}) [donchian]",
+            )
+
+    rsi = indicator.rsi_14
+    if rsi is None or not (CRYPTO_RSI_LOW <= rsi <= CRYPTO_RSI_HIGH):
+        rsi_str = f"{rsi:.1f}" if rsi is not None else "N/A"
+        return _reject(
+            CRYPTO_DAILY_STRATEGY_VERSION,
+            f"RSI {rsi_str} outside {CRYPTO_RSI_LOW}-{CRYPTO_RSI_HIGH} momentum zone",
+        )
+
+    macd_h = indicator.macd_hist
+    if macd_h is None or macd_h <= 0:
+        mh_str = f"{macd_h:.6f}" if macd_h is not None else "N/A"
+        return _reject(
+            CRYPTO_DAILY_STRATEGY_VERSION,
+            f"MACD histogram {mh_str} <= 0 (bearish momentum)",
+        )
+
+    rel_vol = indicator.rel_volume
+    if rel_vol is None or rel_vol < CRYPTO_MIN_REL_VOLUME:
+        rv_str = f"{rel_vol:.2f}x" if rel_vol is not None else "N/A"
+        return _reject(
+            CRYPTO_DAILY_STRATEGY_VERSION,
+            f"Relative volume {rv_str} < {CRYPTO_MIN_REL_VOLUME}x (no volume confirmation)",
+        )
+
+    atr = indicator.atr_14 or (close * 0.025)
+    try:
+        bracket = rounded_long_bracket(
+            close=close,
+            atr=atr,
+            stop_atr=CRYPTO_ATR_STOP_MULT,
+            target_atr=CRYPTO_ATR_TARGET_MULT,
+            min_rr=min_rr,
+            tick_size=0.00000001,
+        )
+    except (TypeError, ValueError) as exc:
+        return _reject(
+            CRYPTO_DAILY_STRATEGY_VERSION,
+            f"Invalid ATR bracket; signal rejected ({exc})",
+        )
+    score = 65
+    if rsi >= 62:
+        score += 8
+    if rel_vol >= 1.6:
+        score += 8
+    if macd_h > close * 0.0005:
+        score += 6
+    if (
+        indicator.sma_20
+        and indicator.sma_50
+        and (indicator.sma_20 - indicator.sma_50) / indicator.sma_50 > 0.02
+    ):
+        score += 5
+    score = min(score, 92)
+
+    thesis = (
+        f"Daily-bar crypto trend-momentum setup on {symbol} [{entry_mode}]: "
+        f"RSI={rsi:.1f} in momentum zone ({CRYPTO_RSI_LOW}-{CRYPTO_RSI_HIGH}), "
+        f"MACD histogram={macd_h:.6f} (positive), "
+        f"volume {rel_vol:.1f}x average (confirmed breakout). "
+        f"ATR-based stop {CRYPTO_ATR_STOP_MULT}x ATR at {bracket['stop']:.4f}, "
+        f"target {CRYPTO_ATR_TARGET_MULT}x ATR at {bracket['target']:.4f}, "
+        f"R:R={bracket['rr']:.2f}."
+    )
+    return _pass(CRYPTO_DAILY_STRATEGY_VERSION, bracket, score, thesis)
+
+
 def _reject(version: str, reason: str) -> SignalDecision:
     return SignalDecision(False, reason, version)
 

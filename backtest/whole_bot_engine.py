@@ -1353,4 +1353,11 @@ def _xsec_close_trade(pos: _XsecPosition, exit_date: date, exit_price: float, re
         "transaction_cost": transaction_cost,
         "net_pnl": net,
         "pnl_r": net / risk_amount if risk_amount else None,
+        # Aliases so whole_bot_metrics.summarize_run() (built against
+        # simulate_portfolio()'s trade-dict shape) can consume these
+        # trades unchanged, without reimplementing Sharpe/drawdown/
+        # profit-factor/qualification math for this strategy.
+        "status": "closed",
+        "exit_time": exit_date,
+        "fill_price": pos.entry_price,
     }

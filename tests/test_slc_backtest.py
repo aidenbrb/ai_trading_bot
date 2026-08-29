@@ -64,6 +64,14 @@ def test_deployment_baseline_detects_drift_before_run(tmp_path, monkeypatch):
     )
     monkeypatch.setattr(runner, "GUARDRAILS", {"../run_bot.bat": run_bot})
     monkeypatch.setattr(runner, "DEPLOYMENT_BASELINE", baseline)
+    # verify_deployment_baseline()'s success path computes
+    # DEPLOYMENT_BASELINE.relative_to(REPO_ROOT) for the returned
+    # baseline_path - tmp_path (pytest's per-test temp dir) is never under
+    # the real REPO_ROOT, so that call raises ValueError unless REPO_ROOT
+    # is also repointed here. REPO_ROOT is read only in that one line (not
+    # used to build GUARDRAILS, which is separately monkeypatched above),
+    # so this is safe and doesn't change what the test actually exercises.
+    monkeypatch.setattr(runner, "REPO_ROOT", tmp_path)
     monkeypatch.setattr(
         runner, "EXPECTED_DEPLOYMENT_BASELINE_SHA256", runner._sha256(baseline)
     )

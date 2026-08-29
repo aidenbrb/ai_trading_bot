@@ -411,6 +411,61 @@ def test_position_and_trade_session_counters_are_idempotent():
     assert len(trades) == 1
 
 
+# -- Phase 6 Step 4: pnl_r must be computed, not hardcoded to 0.0 -----------
+
+def test_mark_position_closed_computes_pnl_r_for_a_long():
+    confirmation = _confirmation(direction="long")
+    position_id = run_slc_live._open_position(
+        confirmation, qty=10, entry_price=100.0, stop_price=98.5,
+        target_price=103.0, entry_order_id="entry-long-r",
+    )
+    run_slc_live._mark_position_closed(
+        position_id, exit_price=99.5, exit_reason="test_flatten", exit_order_id="exit-long-r",
+    )
+    with models.get_live_slc_session() as session:
+        from sqlmodel import select
+        trade = session.exec(select(models.SlcTrade).where(models.SlcTrade.position_id == position_id)).first()
+    # gross_per_share = 99.5 - 100.0 = -0.5; initial_risk = |100.0 - 98.5| = 1.5
+    assert trade.pnl_r == pytest.approx(-0.5 / 1.5)
+    assert not trade.exit_reason.endswith("_pnl_r_unknown")
+
+
+def test_mark_position_closed_computes_pnl_r_for_a_short():
+    confirmation = _confirmation(symbol="MSFT", direction="short", level_id="supply:x")
+    position_id = run_slc_live._open_position(
+        confirmation, qty=5, entry_price=200.0, stop_price=204.0,
+        target_price=192.0, entry_order_id="entry-short-r",
+    )
+    run_slc_live._mark_position_closed(
+        position_id, exit_price=194.0, exit_reason="test_flatten", exit_order_id="exit-short-r",
+    )
+    with models.get_live_slc_session() as session:
+        from sqlmodel import select
+        trade = session.exec(select(models.SlcTrade).where(models.SlcTrade.position_id == position_id)).first()
+    # gross_per_share = 200.0 - 194.0 = 6.0; initial_risk = |200.0 - 204.0| = 4.0
+    assert trade.pnl_r == pytest.approx(6.0 / 4.0)
+
+
+def test_mark_position_closed_flags_pnl_r_unknown_on_non_positive_risk():
+    """Degenerate case the pre-registration says should never happen for a
+    position that was actually opened (entry requires positive risk) -
+    must fail closed to a flagged 0.0, never crash or fabricate a
+    plausible-looking nonzero R."""
+    confirmation = _confirmation(symbol="ZERO", direction="long", level_id="demand:zero")
+    position_id = run_slc_live._open_position(
+        confirmation, qty=10, entry_price=100.0, stop_price=100.0,  # zero risk
+        target_price=103.0, entry_order_id="entry-zero-risk",
+    )
+    run_slc_live._mark_position_closed(
+        position_id, exit_price=99.5, exit_reason="test_flatten", exit_order_id="exit-zero-risk",
+    )
+    with models.get_live_slc_session() as session:
+        from sqlmodel import select
+        trade = session.exec(select(models.SlcTrade).where(models.SlcTrade.position_id == position_id)).first()
+    assert trade.pnl_r == 0.0
+    assert trade.exit_reason == "test_flatten_pnl_r_unknown"
+
+
 def test_ambiguous_submission_failure_never_becomes_confirmed_rejected(monkeypatch):
     """rev. 11 review point 2: a network/timeout failure during
     submit_order() must be ambiguous_submission, never confirmed_rejected

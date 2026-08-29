@@ -496,14 +496,14 @@ def _mark_position_closed(
         session.add(row)
         session.flush()
         session.refresh(row)
-        symbol, direction, entry_price, qty, session_date = (
-            row.symbol, row.direction, row.entry_price, row.qty, row.session_date,
+        symbol, direction, entry_price, qty, session_date, stop_price = (
+            row.symbol, row.direction, row.entry_price, row.qty, row.session_date, row.stop_price,
         )
         position_snapshot = row
     _write_trade_from_closed_position(
         position_id=position_id, symbol=symbol, direction=direction, entry_price=entry_price,
         qty=qty, session_date=session_date, exit_price=exit_price, exit_reason=exit_reason,
-        exit_order_id=exit_order_id, exit_time=resolved_exit_time,
+        exit_order_id=exit_order_id, exit_time=resolved_exit_time, stop_price=stop_price,
     )
     return position_snapshot
 
@@ -2285,10 +2285,28 @@ def run_closeout_stage() -> dict:
     }
 
 
+def _compute_pnl_r(direction: str, entry_price: float, exit_price: float, stop_price: Optional[float]) -> tuple[float, bool]:
+    """Returns (pnl_r, was_computed). Initial risk is |entry - stop|,
+    matching the same R convention the research/backtest path uses
+    (gross_per_share / initial_risk - see tests/test_slc_backtest.py's
+    _outcome() helper). Falls back to 0.0 with was_computed=False only
+    when stop_price is missing or non-positive risk - a degenerate case
+    the pre-registration says should never happen for a position that
+    was actually opened (entry requires positive risk), but this must not
+    crash or fabricate a plausible-looking nonzero number for it."""
+    gross_per_share = (exit_price - entry_price) if direction == "long" else (entry_price - exit_price)
+    if stop_price is None:
+        return 0.0, False
+    initial_risk = abs(entry_price - stop_price)
+    if initial_risk <= 0:
+        return 0.0, False
+    return gross_per_share / initial_risk, True
+
+
 def _write_trade_from_closed_position(
     *, position_id: str, symbol: str, direction: str, entry_price: float, qty: float,
     session_date, exit_price, exit_reason: str, exit_order_id: Optional[str] = None,
-    exit_time=None,
+    exit_time=None, stop_price: Optional[float] = None,
 ) -> None:
     """exit_price must be the close order's ACTUAL fill price (found via
     review: this previously always used the position's theoretical
@@ -2298,10 +2316,16 @@ def _write_trade_from_closed_position(
     reported breakeven, never a fabricated win/loss) only in the
     degenerate case where no real fill price could be determined at
     all - explicitly flagged via exit_reason, never silently treated as
-    a real number."""
+    a real number. pnl_r (Phase 6 Step 4 fix) is computed from the
+    position's own stop_price the same way - previously hardcoded to 0.0
+    unconditionally, which silently discarded the R-multiple for every
+    real paper trade; the degenerate case is flagged the same way."""
     if exit_price is None:
         exit_price = entry_price
         exit_reason = f"{exit_reason}_exit_price_unknown"
+    pnl_r, r_computed = _compute_pnl_r(direction, entry_price, exit_price, stop_price)
+    if not r_computed:
+        exit_reason = f"{exit_reason}_pnl_r_unknown"
     wrote_trade = False
     gross = (
         (exit_price - entry_price) if direction == "long" else (entry_price - exit_price)
@@ -2315,7 +2339,7 @@ def _write_trade_from_closed_position(
             position_id=position_id, symbol=symbol, direction=direction,
             entry_price=entry_price, exit_price=exit_price,
             exit_time=exit_time or _utc_now_naive().to_pydatetime(), exit_reason=exit_reason,
-            exit_order_id=exit_order_id, qty=qty, gross_pnl=gross, net_pnl=gross, pnl_r=0.0,
+            exit_order_id=exit_order_id, qty=qty, gross_pnl=gross, net_pnl=gross, pnl_r=pnl_r,
             session_date=session_date,
         ))
         wrote_trade = True

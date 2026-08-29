@@ -148,7 +148,84 @@ def summarize_run(
     }
 
 
-def qualify_strategy(baseline: dict, stressed: dict, coverage_rate: float | None) -> dict:
+MIN_OOS_CLOSED_TRADES = 30
+MIN_PLATEAU_NEIGHBORS = 4
+MIN_NEIGHBOR_CLOSED_TRADES = 30
+PLATEAU_NEIGHBOR_MEDIAN_FRACTION = 0.75
+
+
+def _walk_forward_checks(walk_forward: dict) -> dict[str, bool]:
+    """Phase 5 Step 4 (approved amendment b): both checks additionally
+    require >= MIN_OOS_CLOSED_TRADES OOS closed trades - a nominal OOS
+    Sharpe/profit-factor pass on a handful of trades is not evidence,
+    matching this project's Phase 3 finding that an OOS pass built on too
+    few trades can be a single-period artifact rather than a real result."""
+    oos_trades = walk_forward.get("oos_closed_trades") or 0
+    enough_trades = oos_trades >= MIN_OOS_CLOSED_TRADES
+    oos_sharpe = walk_forward.get("oos_sharpe")
+    oos_benchmark_sharpe = walk_forward.get("oos_benchmark_sharpe")
+    oos_profit_factor = walk_forward.get("oos_profit_factor")
+    return {
+        "walk_forward_oos_sharpe_beats_benchmark": (
+            enough_trades
+            and oos_sharpe is not None
+            and oos_benchmark_sharpe is not None
+            and oos_sharpe >= oos_benchmark_sharpe
+        ),
+        "walk_forward_oos_profit_factor_at_least_1_0": (
+            enough_trades
+            and oos_profit_factor is not None
+            and oos_profit_factor >= 1.0
+        ),
+    }
+
+
+def _sensitivity_plateau_check(sensitivity: dict) -> bool:
+    """Phase 5 Step 4 (approved amendment a): plateau check anchored to the
+    selected cell, not a ratio that breaks down near zero/negative Sharpe -
+    passes iff the evaluable neighbors' median Sharpe is at least
+    PLATEAU_NEIGHBOR_MEDIAN_FRACTION of the selected cell's own Sharpe.
+
+    Only in-grid neighbors are evaluable (an edge/corner selected cell has
+    fewer than 4 in-grid neighbors and fails outright - a plateau claim
+    needs a real surrounding grid, not extrapolation past its edge). A
+    neighbor with fewer than MIN_NEIGHBOR_CLOSED_TRADES trades is not
+    dropped from the evaluable count ("missing") - its thin sample fails
+    the whole check outright ("failing"), since folding an unreliable
+    Sharpe into the median would silently launder a low-confidence result
+    into a passing plateau claim."""
+    selected_sharpe = sensitivity["selected_sharpe"]
+    evaluable = [n for n in sensitivity["neighbors"] if n.get("in_grid")]
+    if len(evaluable) < MIN_PLATEAU_NEIGHBORS:
+        return False
+    if any((n.get("closed_trades") or 0) < MIN_NEIGHBOR_CLOSED_TRADES for n in evaluable):
+        return False
+    neighbor_sharpes = [n["sharpe"] for n in evaluable if n.get("sharpe") is not None]
+    if len(neighbor_sharpes) < MIN_PLATEAU_NEIGHBORS:
+        return False
+    median_neighbor_sharpe = float(np.median(neighbor_sharpes))
+    return median_neighbor_sharpe >= PLATEAU_NEIGHBOR_MEDIAN_FRACTION * selected_sharpe
+
+
+def qualify_strategy(
+    baseline: dict,
+    stressed: dict,
+    coverage_rate: float | None,
+    *,
+    walk_forward: dict | None = None,
+    sensitivity: dict | None = None,
+) -> dict:
+    """walk_forward and sensitivity are optional (Phase 5 Step 4) - omitting
+    either (the default) reproduces every pre-existing call site and every
+    historical qualification run's shape exactly, with none of the 3 new
+    checks present. Passing them adds:
+      walk_forward: {"oos_closed_trades": int, "oos_sharpe": float|None,
+                      "oos_benchmark_sharpe": float|None,
+                      "oos_profit_factor": float|None}
+      sensitivity: {"selected_sharpe": float, "neighbors": [
+                      {"in_grid": bool, "sharpe": float|None,
+                       "closed_trades": int}, ...]}
+    """
     checks = {
         "closed_trades_at_least_100": baseline["closed_count"] >= 100,
         "data_coverage_at_least_95pct": coverage_rate is not None and coverage_rate >= 0.95,
@@ -181,6 +258,10 @@ def qualify_strategy(baseline: dict, stressed: dict, coverage_rate: float | None
             and baseline["max_symbol_profit_contribution"] <= 0.25
         ),
     }
+    if walk_forward is not None:
+        checks.update(_walk_forward_checks(walk_forward))
+    if sensitivity is not None:
+        checks["sensitivity_plateau_within_25pct_of_neighbor_median"] = _sensitivity_plateau_check(sensitivity)
     failed = [name for name, passed in checks.items() if not passed]
     return {"passed": not failed, "checks": checks, "failed_checks": failed}
 

@@ -1,0 +1,14 @@
+{
+  "strategy_version": "etf_momentum_v1",
+  "frozen_at_utc": "2026-08-30T00:00:00Z",
+  "document": {
+    "path": "research/etf_momentum_v1_preregistration.md",
+    "sha256": "b2934ead96f780c552ff4502e1e201ca43c125fd04a1adb8459352090a0f0d68"
+  },
+  "frozen_inputs": {
+    "backtest/whole_bot_metrics.py": "d4c7a842729d34a1515115b6ff12e877ba36e55485a81e82e6733b85b389b86a",
+    "backtest/whole_bot_engine.py": "d1119341401e009ed8fe035dff7d08b7b17130d170b8200c269e15cf821ea361"
+  },
+  "frozen_inputs_note": "whole_bot_engine.py is hashed at its PRE-implementation state - the exact simulate_xsec_momentum_portfolio() this strategy's engine reuse (Section 7) was built against. This strategy's own new code is added to that same file after this freeze and is not itself a frozen input.",
+  "governance": "Append-immutable. Rule changes require a new version or separately hashed amendment. Data snapshot manifest (backtest/data/etf_momentum_v1/manifest.json) is a separate, later-generated artifact - its own SHA-256 is reported alongside this document's hash per Section 4/10, not embedded here at freeze time since the snapshot is fetched after this freeze."
+}

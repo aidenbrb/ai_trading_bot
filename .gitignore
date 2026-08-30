@@ -19,6 +19,7 @@ logs/
 
 # Large regenerable caches
 backtest/cache/
+backtest/data/etf_momentum_v1/*.parquet
 
 # Test scratch / temp directories left behind by prior sessions
 .pytest_cache/

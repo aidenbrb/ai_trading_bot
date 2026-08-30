@@ -1,12 +1,18 @@
 """Deterministic, research-only simulator for the stock and crypto v1 rules.
 
-Only Alpaca market-data clients are used.  This module must never import
-``alpaca.trading`` or any execution node.
+Only Alpaca market-data clients are used, with one stated exception:
+etf_momentum_v1 (see the section below) is sourced from a pre-fetched
+yfinance snapshot (backtest/etf_momentum_snapshot.py) instead, per its
+preregistration Section 3 - this module still never calls yfinance or
+Alpaca itself, only consumes pre-loaded pandas data passed in by the
+caller. This module must never import ``alpaca.trading`` or any execution
+node.
 """
 from __future__ import annotations
 
 import math
 import time as wall_time
+from collections import Counter
 from dataclasses import asdict, dataclass
 from datetime import date, datetime, time, timedelta, timezone
 from types import SimpleNamespace
@@ -1360,4 +1366,289 @@ def _xsec_close_trade(pos: _XsecPosition, exit_date: date, exit_price: float, re
         "status": "closed",
         "exit_time": exit_date,
         "fill_price": pos.entry_price,
+    }
+
+
+# == etf_momentum_v1 =========================================================
+#
+# Cross-sectional momentum with a per-slot absolute-momentum filter against
+# BIL, monthly rebalance, equal-weight, no stop-loss. See
+# research/etf_momentum_v1_preregistration.md Section 7 for the itemized
+# list of what is genuinely new here versus reused from
+# simulate_xsec_momentum_portfolio() above (monthly cadence instead of
+# weekly, no stop instead of a catastrophic ATR stop, per-slot BIL
+# substitution instead of a binary macro gate, equal-weight instead of
+# vol-targeting, stock_bps_per_leg cost instead of crypto_bps_per_leg).
+#
+# Data is passed in as pre-loaded adjusted-close Series (from
+# backtest.etf_momentum_snapshot.load_snapshot()) - this module never reads
+# the snapshot itself, matching the pattern above of engine functions
+# consuming already-loaded data.
+#
+# TRUE monthly rebalance: every open position is closed and every target
+# slot is reopened fresh at every rebalance day, regardless of whether the
+# held symbol changed - this is the standard academic-momentum-paper
+# convention (weights reset to target every period) and the more literal
+# reading of "hold top N equal-...-weighted... Monthly rebalance" than a
+# membership-change-only reconstitution would be. It also means each
+# closed trade is exactly one month's holding of one slot, giving a clean,
+# deterministic trade-count basis for the qualification gate.
+
+
+@dataclass(frozen=True)
+class EtfMomentumConfig:
+    lookback_months: int = 12
+    skip_last_month: int = 0
+    top_n: int = 3
+
+
+@dataclass
+class _EtfPosition:
+    symbol: str
+    entry_date: date
+    entry_price: float
+    quantity: float
+    entry_notional: float
+
+
+def _etf_month_end_series(daily_close: pd.Series) -> pd.Series:
+    """Last available close in each calendar month, indexed by
+    pandas Period[M]."""
+    series = daily_close.dropna().copy()
+    series.index = pd.PeriodIndex(series.index, freq="M")
+    return series.groupby(level=0).last()
+
+
+def _etf_trailing_return(
+    month_end: pd.Series, as_of_month: pd.Period, lookback_months: int, skip_last_month: int,
+) -> Optional[float]:
+    """as_of_month is the rebalance month M (the month whose first trading
+    day is the rebalance date). Endpoint is the most recently COMPLETED
+    month as of that rebalance: M-1, or M-1-skip_last_month when
+    skip_last_month=1 excludes the most recent completed month entirely.
+    None if either endpoint bar is unavailable (preregistration Section 2:
+    late-starting members are excluded from ranking, never given a
+    placeholder return)."""
+    endpoint = as_of_month - 1 - skip_last_month
+    start = endpoint - lookback_months
+    if endpoint not in month_end.index or start not in month_end.index:
+        return None
+    end_price = month_end.loc[endpoint]
+    start_price = month_end.loc[start]
+    if pd.isna(end_price) or pd.isna(start_price) or start_price <= 0:
+        return None
+    return float(end_price / start_price - 1.0)
+
+
+def _etf_rebalance_days(reference_index: pd.DatetimeIndex, start_date: date, end_date: date) -> list[date]:
+    """First trading day of each calendar month within [start_date,
+    end_date], derived from `reference_index` (the strategy uses SPY's own
+    snapshot index - full coverage across the whole window - rather than a
+    separate NYSE calendar, so the rebalance calendar can never disagree
+    with what the snapshot actually has data for)."""
+    mask = (reference_index.date >= start_date) & (reference_index.date <= end_date)
+    filtered = reference_index[mask]
+    if len(filtered) == 0:
+        return []
+    periods = filtered.to_period("M")
+    frame = pd.DataFrame({"trading_date": filtered.date}, index=periods)
+    first_days = frame.groupby(level=0)["trading_date"].min()
+    return sorted(first_days.tolist())
+
+
+def _etf_transaction_cost(pos: _EtfPosition, exit_price: float, cost: ResearchCost) -> float:
+    entry_notional = pos.quantity * pos.entry_price
+    exit_notional = pos.quantity * exit_price
+    return (entry_notional + exit_notional) * cost.stock_bps_per_leg / 10_000.0
+
+
+def _etf_close_trade(pos: _EtfPosition, exit_date: date, exit_price: float, reason: str, cost: ResearchCost) -> dict:
+    gross = pos.quantity * (exit_price - pos.entry_price)
+    transaction_cost = _etf_transaction_cost(pos, exit_price, cost)
+    net = gross - transaction_cost
+    return {
+        "symbol": pos.symbol,
+        "market": "stock",
+        "strategy_version": "etf_momentum_v1",
+        "timeframe": "monthly",
+        "entry_date": pos.entry_date,
+        "exit_date": exit_date,
+        "entry_price": pos.entry_price,
+        "exit_price": exit_price,
+        "quantity": pos.quantity,
+        "exit_reason": reason,
+        "gross_pnl": gross,
+        "transaction_cost": transaction_cost,
+        "net_pnl": net,
+        # preregistration Section 8's pnl_r resolution: no stop exists on
+        # this engine, so pnl_r is normalized by entry notional, not a
+        # stop-distance risk amount.
+        "pnl_r": net / pos.entry_notional if pos.entry_notional else None,
+        # Aliases so whole_bot_metrics.summarize_run() can consume these
+        # trades unchanged - same pattern as _xsec_close_trade() above.
+        "status": "closed",
+        "exit_time": exit_date,
+        "fill_price": pos.entry_price,
+    }
+
+
+def rank_etf_universe(
+    adjusted_close: dict[str, pd.Series], as_of_month: pd.Period, config: EtfMomentumConfig,
+) -> tuple[list[tuple[str, float]], Optional[float]]:
+    """Returns (ranked [(symbol, trailing_return), ...] descending, then
+    alphabetical on ties; BIL's own trailing return over the same window).
+    BIL is included in `ranked` like any other universe member - it is not
+    special-cased out of the ranking pool (preregistration Section 1, item
+    1)."""
+    month_end_cache = {
+        symbol: _etf_month_end_series(series) for symbol, series in adjusted_close.items()
+    }
+    ranked: list[tuple[str, float]] = []
+    for symbol in sorted(adjusted_close.keys()):
+        ret = _etf_trailing_return(
+            month_end_cache[symbol], as_of_month, config.lookback_months, config.skip_last_month,
+        )
+        if ret is not None:
+            ranked.append((symbol, ret))
+    ranked.sort(key=lambda item: (-item[1], item[0]))
+    bil_return = _etf_trailing_return(
+        month_end_cache["BIL"], as_of_month, config.lookback_months, config.skip_last_month,
+    ) if "BIL" in month_end_cache else None
+    return ranked, bil_return
+
+
+def resolve_etf_target_weights(
+    ranked: list[tuple[str, float]], bil_return: Optional[float], config: EtfMomentumConfig,
+) -> dict[str, float]:
+    """Top config.top_n by rank; any slot whose member's trailing return is
+    below BIL's goes to BIL instead (preregistration Section 1, item 3).
+    A slot with no rankable candidate at all (fewer than top_n members have
+    enough history) also goes to BIL. BIL's weight accumulates across
+    however many slots resolve to it - it is a target-WEIGHT dict, not a
+    fixed list of distinct positions, so multiple slots landing on BIL
+    combine into one larger BIL weight rather than colliding."""
+    top = ranked[: config.top_n]
+    resolved = Counter()
+    for symbol, trailing_return in top:
+        if bil_return is not None and trailing_return < bil_return:
+            resolved["BIL"] += 1
+        else:
+            resolved[symbol] += 1
+    missing_slots = config.top_n - len(top)
+    if missing_slots > 0:
+        resolved["BIL"] += missing_slots
+    return {symbol: count / config.top_n for symbol, count in resolved.items()}
+
+
+def simulate_etf_momentum_portfolio(
+    adjusted_close: dict[str, pd.Series],
+    start_date: date,
+    end_date: date,
+    starting_equity: float,
+    cost: ResearchCost,
+    config: EtfMomentumConfig = EtfMomentumConfig(),
+) -> dict:
+    """Monthly cross-sectional rebalance, no intra-month monitoring (no
+    stop exists - see module note above). `adjusted_close`:
+    {ticker: pd.Series of adjusted close, DatetimeIndex}, at minimum
+    covering the universe including "BIL" and a full-coverage reference
+    ("SPY") for the rebalance-day calendar."""
+    if "SPY" not in adjusted_close:
+        raise ValueError("adjusted_close must include SPY as the full-coverage rebalance-day reference")
+    if "BIL" not in adjusted_close:
+        raise ValueError("adjusted_close must include BIL as the absolute-momentum filter reference")
+
+    rebalance_days = set(_etf_rebalance_days(adjusted_close["SPY"].index, start_date, end_date))
+
+    cash = starting_equity
+    open_positions: dict[str, _EtfPosition] = {}
+    trades: list[dict] = []
+    rejected: list[dict] = []
+    daily_equity: list[dict] = []
+
+    day = start_date
+    while day <= end_date:
+        timestamp = pd.Timestamp(day)
+
+        if day in rebalance_days:
+            as_of_month = pd.Period(day, freq="M")
+            ranked, bil_return = rank_etf_universe(adjusted_close, as_of_month, config)
+            target_weights = resolve_etf_target_weights(ranked, bil_return, config)
+
+            # Close every currently open position (true monthly rebalance -
+            # see module note above).
+            for symbol in list(open_positions.keys()):
+                series = adjusted_close[symbol]
+                if timestamp not in series.index or pd.isna(series.loc[timestamp]):
+                    rejected.append({"date": day, "symbol": symbol, "reason": "no_bar_for_rebalance_exit"})
+                    continue
+                pos = open_positions.pop(symbol)
+                exit_price = float(series.loc[timestamp])
+                trade = _etf_close_trade(pos, day, exit_price, "monthly_rebalance", cost)
+                trades.append(trade)
+                cash += pos.entry_notional + trade["net_pnl"]
+
+            equity = cash  # everything closed above; cash == equity here
+
+            # Open every target slot fresh.
+            for symbol, weight in sorted(target_weights.items()):
+                series = adjusted_close.get(symbol)
+                if series is None or timestamp not in series.index or pd.isna(series.loc[timestamp]):
+                    rejected.append({"date": day, "symbol": symbol, "reason": "no_bar_for_rebalance_entry"})
+                    continue
+                price = float(series.loc[timestamp])
+                target_notional = equity * weight
+                notional = min(target_notional, cash)
+                quantity = math.floor(notional / price * 1_000_000_000) / 1_000_000_000
+                if quantity <= 0:
+                    rejected.append({"date": day, "symbol": symbol, "reason": "insufficient_cash_or_quantity"})
+                    continue
+                entry_notional = quantity * price
+                cash -= entry_notional
+                open_positions[symbol] = _EtfPosition(
+                    symbol=symbol, entry_date=day, entry_price=price,
+                    quantity=quantity, entry_notional=entry_notional,
+                )
+
+        # Daily mark-to-market.
+        unrealized = 0.0
+        for symbol, pos in open_positions.items():
+            series = adjusted_close.get(symbol)
+            if series is not None and timestamp in series.index and not pd.isna(series.loc[timestamp]):
+                unrealized += pos.quantity * (float(series.loc[timestamp]) - pos.entry_price)
+        equity_today = cash + sum(p.entry_notional for p in open_positions.values()) + unrealized
+        daily_equity.append({"date": day, "equity": equity_today})
+
+        day += timedelta(days=1)
+
+    # Force-close whatever remains open at end of test, at the nearest
+    # available price at or before end_date.
+    final_equity = cash
+    end_timestamp = pd.Timestamp(end_date)
+    for symbol, pos in open_positions.items():
+        series = adjusted_close.get(symbol)
+        available = series.loc[:end_timestamp].dropna() if series is not None else pd.Series(dtype=float)
+        exit_price = float(available.iloc[-1]) if not available.empty else pos.entry_price
+        trade = _etf_close_trade(pos, end_date, exit_price, "end_of_test", cost)
+        trades.append(trade)
+        final_equity += pos.entry_notional + trade["net_pnl"]
+    if daily_equity:
+        daily_equity[-1]["equity"] = final_equity
+
+    return {
+        "mode": "etf_momentum",
+        "strategy_version": "etf_momentum_v1",
+        # Not a ResearchPortfolio - this engine uses none of that dataclass's
+        # fields (Section 5: risk_per_trade/max_new_trades_per_day/
+        # daily_loss_limit don't apply to a monthly rebalanced portfolio).
+        # A fixed label here only satisfies summarize_run()'s expectation
+        # that a "portfolio" key exists.
+        "portfolio": "etf_momentum_equal_weight",
+        "cost_model": cost.name,
+        "config": asdict(config),
+        "trades": trades,
+        "rejected": rejected,
+        "missing_outcomes": [],
+        "daily_equity": daily_equity,
+        "final_equity": final_equity,
     }

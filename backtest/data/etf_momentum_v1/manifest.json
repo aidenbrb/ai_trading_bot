@@ -1,0 +1,244 @@
+{
+  "fetched_at_utc": "2026-08-30T20:59:07.149948+00:00",
+  "files": {
+    "BIL_adjusted.parquet": "e83a0b09d4b3abc332752aeddb2921d962b63c26b1c5b6a9aed63c72f15f9b7b",
+    "BIL_raw.parquet": "742b89627082de5089d73b654270e21c9da2c5bdf9e36bbae01ed19351f212e3",
+    "DBC_adjusted.parquet": "6083a83e582bb904de8160d3ca2df3113ac3665115d7456e3d7874d94a6adb55",
+    "DBC_raw.parquet": "8cec7be48e9405a9bb78a85d6fd03a265cecc29fbd43779e02a70de2c25e1679",
+    "EEM_adjusted.parquet": "120ff6f9baa9bd4601d36d7445671be05caa2a55b9b89d04e2ff82db763534bd",
+    "EEM_raw.parquet": "0b8e3f1d199e5c7fc6d0652bd400f86fdcea3149396a64ef27370e2941289b48",
+    "EFA_adjusted.parquet": "91fe0f7f4d9519fdeb7588e1556da36b59c288dca8782fa8193d4070c026f008",
+    "EFA_raw.parquet": "064e3fd9946ff1c11d229a8be79fdbb0552cb8e9c35ccc3f7f347603f586b100",
+    "GLD_adjusted.parquet": "20389b74360d8eda1b85d1a77b30b2d7baa319d66996846ba4a4f0a4e0a5d50c",
+    "GLD_raw.parquet": "68e66090417d58a33d5197a0799afaac5f943ac71ec23b07e7f382969a19d2a4",
+    "IEF_adjusted.parquet": "537be2132d44f7295a5ca3c9dccb41f2419806caf40cb7181feacabdc6cb9a97",
+    "IEF_raw.parquet": "c7c7f4b05be48b6264ceb9d5d3903c755f9a6f25ebdad233b265d7bee1ca6779",
+    "IWM_adjusted.parquet": "42d402e2117a5261db4f3618294521d9a7def52c5e819a32c058dd7f2355a6b3",
+    "IWM_raw.parquet": "eaf9be6fa28d02ebe646405eca0ca5baf141774281b42f01c01237a6e40fed8b",
+    "QQQ_adjusted.parquet": "fdab53f406afcfb479c99b5e788f96dead1e04380f40d6e8788d4bc3662ac8ed",
+    "QQQ_raw.parquet": "9ca522c40ecd596a0ae7815532bcb0c0724de1df826591204398343b8e06417d",
+    "SPY_adjusted.parquet": "42c575a88c7b06504bf19abee65c7d57890ff3be3ccf04ed1882f5097b3ad6e4",
+    "SPY_raw.parquet": "8074f44c97f48acd93e3af3593f5ed6addd0260e13accb2c4a654f087ae26a09",
+    "TLT_adjusted.parquet": "863c313d379356d8d351ec6879316b20abd4685037cf487ddde24977dc72fd0d",
+    "TLT_raw.parquet": "fc950d6d691bdc5d9b0f72de5c610d7c08a53bd16441e1348dfa37448470d08d",
+    "XLB_adjusted.parquet": "1178d8d2ee9f7378f07e4282dfd4b5923be5198a49404e284ff60eac4a0da339",
+    "XLB_raw.parquet": "202acc2f90f8ea6db21a5ec5fc1965862ceeacb6f61d03c500d2600dd8bff7b6",
+    "XLC_adjusted.parquet": "be973b00351d530b09de296d69606a1cb1eac575a83beb279a07ce3039e86d57",
+    "XLC_raw.parquet": "58fb040b26a6fc31424749551abdc4b68883ce35e58e02f341171488bf6d8f0e",
+    "XLE_adjusted.parquet": "4849de8fb988bd258d58d448fd439cdbc2404c29cf1fc8988746b3194a84d01e",
+    "XLE_raw.parquet": "c7d16caa0ad83d8dfb1c4ab0eb1155d767df72822dbb84e0b2125526d25b1067",
+    "XLF_adjusted.parquet": "a049d6c427e476101b3e985c63b13f5712c4c90daeac61a41ed5c8445d9acffb",
+    "XLF_raw.parquet": "a7a73c17fe45d652b0d67a3683c6a876b59b43345f9d14e29d935cdc8662e63c",
+    "XLI_adjusted.parquet": "067f54cef38379ce808cad55c0b3a31dabbd3b86b69b8c6b2151279b597ed45c",
+    "XLI_raw.parquet": "8acd7e1692e6254f3c194c3a8ed16821b4198a2fbebc13b99eda709954bf0a7b",
+    "XLK_adjusted.parquet": "fb3e05485cf99bd267be3e6996c48006df2c40c80ca42f1a640a5bffa0c24761",
+    "XLK_raw.parquet": "8f948110cb9c64646fa899a60bd8b6790e76604bbb771d109d7b597ab8db3ea8",
+    "XLP_adjusted.parquet": "ec3802ff2d0daee472cc492a6cdbbc8a7651dab05a028773d08654f153aafe5b",
+    "XLP_raw.parquet": "322bfb22d1119f21e05dadd3feb9ea0c1421379d9a6f7f20297be04971e9c198",
+    "XLRE_adjusted.parquet": "50902a2c86c4a64f0f90b9c78c040dcd1e931c7ac1b49609146979010cdafa79",
+    "XLRE_raw.parquet": "c83110a6027c785cf4cbffbbe0a7e86f64848f577b498effc188896e5dd989d5",
+    "XLU_adjusted.parquet": "ff2ddf354e7f3c2ff6bc99ce10dee5bac83a9c4357cc2df54ef3c50dcbd1ed38",
+    "XLU_raw.parquet": "336187a9af340ff2b23b340a7842e1277cec5675dd6b5eb865a4fc7d49fac68c",
+    "XLV_adjusted.parquet": "2f7ec1cd9ccf36aaa0c27e4b54049dc6e85b4378a14cedb898abf6026bd90074",
+    "XLV_raw.parquet": "e4e37a7e8999af783d74fc5b80e272759f453f7375ed496037c09b0730f63efb",
+    "XLY_adjusted.parquet": "a999f4bcf320c8574ea3fb066629489ebf9a378dcaf09b5ad886f4b54c35b2cc",
+    "XLY_raw.parquet": "b30f201f8c151115b55b7fbee2fa5a6f89e2dcdcecb644df4f5d11c7e57f651f"
+  },
+  "per_ticker": {
+    "BIL": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "DBC": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "EEM": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "EFA": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "GLD": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "IEF": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "IWM": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "QQQ": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "SPY": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "TLT": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "XLB": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "XLC": {
+      "adjusted_rows": 2040,
+      "first_bar": "2018-06-19",
+      "last_bar": "2026-07-31",
+      "raw_rows": 2040,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "XLE": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "XLF": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "XLI": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "XLK": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "XLP": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "XLRE": {
+      "adjusted_rows": 2718,
+      "first_bar": "2015-10-08",
+      "last_bar": "2026-07-31",
+      "raw_rows": 2718,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "XLU": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "XLV": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    },
+    "XLY": {
+      "adjusted_rows": 4822,
+      "first_bar": "2007-06-01",
+      "last_bar": "2026-07-31",
+      "raw_rows": 4822,
+      "requested_end": "2026-08-01",
+      "requested_start": "2007-06-01"
+    }
+  },
+  "requested_end": "2026-08-01",
+  "requested_start": "2007-06-01",
+  "strategy_version": "etf_momentum_v1",
+  "tickers": [
+    "SPY",
+    "XLB",
+    "XLC",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLRE",
+    "XLU",
+    "XLV",
+    "XLY",
+    "QQQ",
+    "IWM",
+    "EFA",
+    "EEM",
+    "IEF",
+    "TLT",
+    "GLD",
+    "DBC",
+    "BIL"
+  ],
+  "yfinance_version": "1.5.1"
+}

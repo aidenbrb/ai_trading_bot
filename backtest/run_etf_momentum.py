@@ -185,6 +185,19 @@ def main() -> dict:
         "oos_profit_factor": oos_summary["profit_factor"],
     }
 
+    # -- Step 3b: supplementary zero-cost OOS run (cost-free Sharpe ceiling) ----
+    # Not part of the 16-check gate (which uses baseline cost for checks
+    # 14-15 per the frozen document) - purely informational, run once
+    # alongside the baseline OOS run above using the same frozen selected
+    # cell, never a separate qualification attempt.
+    oos_zero_result = simulate_etf_momentum_portfolio(
+        adjusted_close, OUT_OF_SAMPLE_START, OUT_OF_SAMPLE_END, STARTING_EQUITY, COSTS["zero"], selected,
+    )
+    oos_zero_summary = summarize_run(
+        oos_zero_result, starting_equity=STARTING_EQUITY, start_date=OUT_OF_SAMPLE_START,
+        end_date=OUT_OF_SAMPLE_END, benchmark=oos_bench,
+    )
+
     # -- Step 4: IS-only neighbor cells for check 16 ------------------------------
     neighbor_rows = []
     selected_is_row = next(row for row in grid_results if row["config"] == asdict(selected))
@@ -243,6 +256,29 @@ def main() -> dict:
         "turnover": turnover,
         "full_summaries": full_summaries,
         "oos_summary": oos_summary,
+        "oos_zero_cost_summary": oos_zero_summary,
+        "zero_cost_ceiling": {
+            "note": (
+                "Not part of the 16-check gate (checks 14-15 use baseline cost "
+                "per the frozen document). Supplementary: the best-case Sharpe "
+                "if trading were entirely free, both full-window and OOS, using "
+                "the same frozen selected cell - reported to settle whether "
+                "transaction costs (vs. the underlying signal) are what causes "
+                "the Sharpe-based check failures."
+            ),
+            "full_window_sharpe": full_summaries["zero"]["sharpe"],
+            "oos_sharpe": oos_zero_summary["sharpe"],
+            "full_window_benchmark_sharpe": full_bench["sharpe"],
+            "oos_benchmark_sharpe": oos_bench["sharpe"],
+            "full_window_trails_benchmark": (
+                full_summaries["zero"]["sharpe"] is not None and full_bench["sharpe"] is not None
+                and full_summaries["zero"]["sharpe"] < full_bench["sharpe"]
+            ),
+            "oos_trails_benchmark": (
+                oos_zero_summary["sharpe"] is not None and oos_bench["sharpe"] is not None
+                and oos_zero_summary["sharpe"] < oos_bench["sharpe"]
+            ),
+        },
         "walk_forward": walk_forward,
         "sensitivity": sensitivity,
         "benchmark_full": full_bench,
@@ -272,7 +308,10 @@ def main() -> dict:
     _csv(output / "trades__zero.csv", full_results["zero"]["trades"])
     _csv(output / "trades__stressed.csv", full_results["stressed"]["trades"])
     _csv(output / "oos_trades__baseline.csv", oos_result["trades"])
+    _csv(output / "oos_trades__zero.csv", oos_zero_result["trades"])
     _csv(output / "daily_equity__baseline.csv", full_results["baseline"]["daily_equity"])
+    _csv(output / "daily_equity__zero.csv", full_results["zero"]["daily_equity"])
+    _csv(output / "daily_equity__oos_zero.csv", oos_zero_result["daily_equity"])
     _csv(output / "daily_equity__oos_baseline.csv", oos_result["daily_equity"])
     _csv(output / "grid_results.csv", grid_results)
 
@@ -282,6 +321,12 @@ def main() -> dict:
     print(f"\nQUALIFICATION {'PASS' if qualification['passed'] else 'FAIL'}")
     print(f"selected cell: {asdict(selected)}")
     print(f"failed checks: {qualification['failed_checks']}")
+    print(f"zero-cost ceiling: full={report['zero_cost_ceiling']['full_window_sharpe']} "
+          f"(benchmark {report['zero_cost_ceiling']['full_window_benchmark_sharpe']}, "
+          f"trails={report['zero_cost_ceiling']['full_window_trails_benchmark']}) "
+          f"OOS={report['zero_cost_ceiling']['oos_sharpe']} "
+          f"(benchmark {report['zero_cost_ceiling']['oos_benchmark_sharpe']}, "
+          f"trails={report['zero_cost_ceiling']['oos_trails_benchmark']})")
     print(f"output: {output}")
     return report
 

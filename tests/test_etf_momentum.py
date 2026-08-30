@@ -238,6 +238,40 @@ def test_pnl_r_is_net_pnl_over_entry_notional_not_a_stop_distance():
     assert "stop" not in trade  # no stop field exists on this engine's trade dict at all
 
 
+def test_result_mode_is_stock_only_so_sharpe_uses_252_trading_day_annualization():
+    """Regression test: simulate_etf_momentum_portfolio() must report
+    mode="stock_only" so summarize_run() annualizes with periods=252
+    (trading days), not its periods=365 default (calendar days, meant for
+    crypto). This was a real bug found after the first qualification run -
+    it inflated every reported Sharpe/Sortino by sqrt(365/252) =~ 1.204x."""
+    days = pd.bdate_range("2020-01-01", "2020-06-01")
+    aaa = pd.Series([100.0 if d < pd.Timestamp("2020-02-03") else 110.0 for d in days], index=days)
+    adjusted_close = {"SPY": pd.Series(100.0, index=days), "BIL": pd.Series(100.0, index=days), "AAA": aaa}
+    result = simulate_etf_momentum_portfolio(
+        adjusted_close, date(2020, 2, 3), date(2020, 6, 1), 100_000.0, COSTS["zero"],
+        EtfMomentumConfig(lookback_months=1, skip_last_month=0, top_n=1),
+    )
+    assert result["mode"] == "stock_only"
+
+    benchmark = {"symbol": "SPY", "sharpe": 0.0, "total_return": 0.0, "max_drawdown": 0.0}
+    summary = summarize_run(
+        result, starting_equity=100_000.0, start_date=date(2020, 2, 3), end_date=date(2020, 6, 1),
+        benchmark=benchmark,
+    )
+    # Cross-check: recompute Sharpe directly from the same equity curve with
+    # an explicit periods=252 and confirm it matches summarize_run()'s own
+    # value - proving the annualization constant it actually used was 252,
+    # not the 365 that produced the original bug.
+    from backtest.whole_bot_metrics import _sharpe
+    equity = pd.Series(
+        [row["equity"] for row in result["daily_equity"]],
+        index=pd.to_datetime([row["date"] for row in result["daily_equity"]]),
+    )
+    returns = equity.pct_change().fillna(0.0)
+    expected_252 = _sharpe(returns.to_numpy(), 252)
+    assert summary["sharpe"] == pytest.approx(expected_252)
+
+
 def test_summarize_run_and_qualify_strategy_are_denominator_agnostic_for_pnl_r():
     """Nothing in the shared metrics path assumes pnl_r came from a
     stop-distance - it must consume the entry-notional-based pnl_r this

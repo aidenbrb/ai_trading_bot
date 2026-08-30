@@ -1636,7 +1636,16 @@ def simulate_etf_momentum_portfolio(
         daily_equity[-1]["equity"] = final_equity
 
     return {
-        "mode": "etf_momentum",
+        # "stock_only", not a distinct "etf_momentum" label: this is what
+        # whole_bot_metrics.summarize_run() checks to select periods=252
+        # (trading-day annualization) over its periods=365 default. ETFs
+        # trade on the same daily equity-market calendar as SLC's
+        # stock_only strategy - annualizing Sharpe/Sortino with the
+        # crypto-style 365-day constant here was a real bug (found and
+        # fixed after the first qualification run), inflating every Sharpe
+        # figure by sqrt(365/252) =~ 1.204x. Corrected before the frozen
+        # document's one-shot qualification run was accepted as final.
+        "mode": "stock_only",
         "strategy_version": "etf_momentum_v1",
         # Not a ResearchPortfolio - this engine uses none of that dataclass's
         # fields (Section 5: risk_per_trade/max_new_trades_per_day/

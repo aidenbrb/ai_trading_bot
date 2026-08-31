@@ -1661,3 +1661,239 @@ def simulate_etf_momentum_portfolio(
         "daily_equity": daily_equity,
         "final_equity": final_equity,
     }
+
+
+# == etf_reversal_v1 =========================================================
+#
+# Short-term RSI(2) mean reversion, long-only, next-open fills, no stop.
+# Neither simulate_portfolio() (intraday stop/target order-lifecycle
+# machinery, no counterpart here) nor simulate_etf_momentum_portfolio()
+# (fixed monthly rebalance to target weights, not daily ranked signals) fit
+# this shape - see research/etf_reversal_v1_preregistration.md Section 6.
+# A new, purpose-built simulator, reusing only utils.indicators.rsi()/sma(),
+# ResearchCost, and the summarize_run()/qualify_strategy() trade-dict shape.
+#
+# State machine, per preregistration Section 4: a signal computed from day
+# T's close is frozen and fills at day T+1's open, unconditionally (no
+# re-validation at the fill bar). Missing-bar handling is asymmetric: a
+# missing T+1 bar drops a queued ENTRY permanently (logged, never retried);
+# a missing T+1 bar for a queued EXIT leaves the position open and lets
+# every exit condition re-evaluate fresh at the next available close - never
+# stuck. Exits fill before entries each morning (frees both slots and cash
+# before entry sizing reads either).
+
+
+@dataclass(frozen=True)
+class EtfReversalConfig:
+    entry_threshold: float = 10.0
+    exit_threshold: float = 65.0
+    max_hold: int = 5   # trading days, counted per preregistration Section 4
+                         # (the fill day is day 1)
+
+
+@dataclass
+class _ReversalPosition:
+    symbol: str
+    entry_fill_date: date
+    entry_fill_index: int   # position in the trading-day reference list
+    entry_price: float
+    quantity: float
+    entry_notional: float
+
+
+def _reversal_transaction_cost(quantity: float, entry_price: float, exit_price: float, cost: ResearchCost) -> float:
+    return (quantity * entry_price + quantity * exit_price) * cost.stock_bps_per_leg / 10_000.0
+
+
+def _reversal_close_trade(pos: _ReversalPosition, exit_date: date, exit_price: float, reason: str, cost: ResearchCost) -> dict:
+    gross = pos.quantity * (exit_price - pos.entry_price)
+    transaction_cost = _reversal_transaction_cost(pos.quantity, pos.entry_price, exit_price, cost)
+    net = gross - transaction_cost
+    return {
+        "symbol": pos.symbol,
+        "market": "stock",
+        "strategy_version": "etf_reversal_v1",
+        "timeframe": "daily",
+        "entry_date": pos.entry_fill_date,
+        "exit_date": exit_date,
+        "entry_price": pos.entry_price,
+        "exit_price": exit_price,
+        "quantity": pos.quantity,
+        "exit_reason": reason,
+        "gross_pnl": gross,
+        "transaction_cost": transaction_cost,
+        "net_pnl": net,
+        # preregistration Section 9: no stop on this engine either, so
+        # pnl_r is normalized by entry notional (etf_momentum_v1's
+        # amendment, carried over unchanged).
+        "pnl_r": net / pos.entry_notional if pos.entry_notional else None,
+        "status": "closed",
+        "exit_time": exit_date,
+        "fill_price": pos.entry_price,
+    }
+
+
+def _reversal_reindex(frame: pd.DataFrame, reference_index: pd.DatetimeIndex) -> pd.DataFrame:
+    """Aligns one symbol's OHLC frame to the shared trading-day reference
+    index (SPY's own index) - a symbol with no row for a given reference
+    day (pre-inception, or a genuine data gap) gets NaN there, which the
+    day loop treats uniformly as "no data available" rather than raising."""
+    return frame.reindex(reference_index)
+
+
+def simulate_etf_reversal_portfolio(
+    adjusted: dict[str, pd.DataFrame],
+    start_date: date,
+    end_date: date,
+    starting_equity: float,
+    cost: ResearchCost,
+    config: EtfReversalConfig = EtfReversalConfig(),
+    max_positions: int = 5,
+) -> dict:
+    """adjusted: {symbol: DataFrame with at least Open/Close columns,
+    DatetimeIndex}, must include "SPY" as the full-coverage trading-day
+    reference calendar (preregistration Section 6)."""
+    if "SPY" not in adjusted:
+        raise ValueError("adjusted must include SPY as the trading-day reference")
+    symbols = sorted(adjusted.keys())
+
+    reference_index = adjusted["SPY"].index
+    trading_days = [ts for ts in reference_index if start_date <= ts.date() <= end_date]
+
+    aligned = {symbol: _reversal_reindex(adjusted[symbol], reference_index) for symbol in symbols}
+    rsi2 = {symbol: rsi(aligned[symbol]["Close"], period=2) for symbol in symbols}
+    sma200 = {symbol: sma(aligned[symbol]["Close"], period=200) for symbol in symbols}
+
+    cash = starting_equity
+    open_positions: dict[str, _ReversalPosition] = {}
+    trades: list[dict] = []
+    rejected: list[dict] = []
+    daily_equity: list[dict] = []
+
+    pending_exits: dict[str, str] = {}
+    pending_entries: list[str] = []
+
+    for i, ts in enumerate(trading_days):
+        day = ts.date()
+
+        # -- Phase A: fill yesterday's signals at TODAY's open, exits first --
+        exits_to_process = pending_exits
+        pending_exits = {}
+        for symbol, reason in exits_to_process.items():
+            pos = open_positions.get(symbol)
+            if pos is None:
+                continue
+            open_price = aligned[symbol]["Open"].get(ts)
+            if open_price is None or pd.isna(open_price):
+                # Missing bar: exit does NOT fill. Position stays open;
+                # Phase C below re-evaluates its exit conditions fresh from
+                # today's close, same as any other held position.
+                continue
+            del open_positions[symbol]
+            trade = _reversal_close_trade(pos, day, float(open_price), reason, cost)
+            trades.append(trade)
+            cash += pos.entry_notional + trade["net_pnl"]
+
+        entries_to_process = pending_entries
+        pending_entries = []
+        if entries_to_process:
+            equity_at_open = cash + sum(
+                pos.quantity * float(aligned[pos.symbol]["Open"].get(ts))
+                if aligned[pos.symbol]["Open"].get(ts) is not None and not pd.isna(aligned[pos.symbol]["Open"].get(ts))
+                else pos.entry_notional
+                for pos in open_positions.values()
+            )
+            for symbol in entries_to_process:
+                open_price = aligned[symbol]["Open"].get(ts)
+                if open_price is None or pd.isna(open_price):
+                    rejected.append({"date": day, "symbol": symbol, "reason": "missing_bar_entry_fill"})
+                    continue
+                price = float(open_price)
+                free_cash = cash
+                if free_cash <= 0:
+                    rejected.append({"date": day, "symbol": symbol, "reason": "insufficient_free_cash"})
+                    continue
+                notional = min(equity_at_open / max_positions, free_cash)
+                quantity = math.floor(notional / price * 1_000_000_000) / 1_000_000_000
+                if quantity <= 0:
+                    rejected.append({"date": day, "symbol": symbol, "reason": "insufficient_cash_or_quantity"})
+                    continue
+                entry_notional = quantity * price
+                cash -= entry_notional
+                open_positions[symbol] = _ReversalPosition(
+                    symbol=symbol, entry_fill_date=day, entry_fill_index=i,
+                    entry_price=price, quantity=quantity, entry_notional=entry_notional,
+                )
+
+        # -- Phase B: mark equity at TODAY's close (trading-day-only series) --
+        unrealized = 0.0
+        for symbol, pos in open_positions.items():
+            close_price = aligned[symbol]["Close"].get(ts)
+            if close_price is not None and not pd.isna(close_price):
+                unrealized += pos.quantity * (float(close_price) - pos.entry_price)
+        equity = cash + sum(p.entry_notional for p in open_positions.values()) + unrealized
+        daily_equity.append({"date": day, "equity": equity})
+
+        # -- Phase C: compute TODAY's close signals, queue for TOMORROW's open --
+        new_exits: dict[str, str] = {}
+        for symbol, pos in open_positions.items():
+            close_price = aligned[symbol]["Close"].get(ts)
+            sma_val = sma200[symbol].get(ts)
+            rsi_val = rsi2[symbol].get(ts)
+            if close_price is None or pd.isna(close_price) or pd.isna(sma_val) or pd.isna(rsi_val):
+                continue   # can't evaluate an exit condition without today's indicators
+            days_held = i - pos.entry_fill_index + 1
+            if float(close_price) < float(sma_val):
+                new_exits[symbol] = "trend_exit"
+            elif float(rsi_val) > config.exit_threshold:
+                new_exits[symbol] = "target_exit"
+            elif days_held >= config.max_hold:
+                new_exits[symbol] = "time_exit"
+        pending_exits = new_exits
+
+        projected_free_slots = max_positions - (len(open_positions) - len(new_exits))
+        candidates: list[tuple[str, float]] = []
+        if projected_free_slots > 0:
+            for symbol in symbols:
+                if symbol in open_positions:
+                    continue
+                close_price = aligned[symbol]["Close"].get(ts)
+                sma_val = sma200[symbol].get(ts)
+                rsi_val = rsi2[symbol].get(ts)
+                if close_price is None or pd.isna(close_price) or pd.isna(sma_val) or pd.isna(rsi_val):
+                    continue
+                if float(rsi_val) < config.entry_threshold and float(close_price) > float(sma_val):
+                    candidates.append((symbol, float(rsi_val)))
+        candidates.sort(key=lambda item: (item[1], item[0]))   # lowest RSI(2) first, ties alphabetical
+        admitted = candidates[:projected_free_slots] if projected_free_slots > 0 else []
+        for symbol, _ in candidates[len(admitted):]:
+            rejected.append({"date": day, "symbol": symbol, "reason": "insufficient_capacity"})
+        pending_entries = [symbol for symbol, _ in admitted]
+
+    # End of test: force-close everything still open, at the last available close.
+    final_equity = cash
+    last_day = trading_days[-1].date() if trading_days else start_date
+    last_ts = trading_days[-1] if trading_days else None
+    for symbol, pos in open_positions.items():
+        available = aligned[symbol]["Close"].loc[:last_ts].dropna() if last_ts is not None else pd.Series(dtype=float)
+        exit_price = float(available.iloc[-1]) if not available.empty else pos.entry_price
+        trade = _reversal_close_trade(pos, last_day, exit_price, "end_of_test", cost)
+        trades.append(trade)
+        final_equity += pos.entry_notional + trade["net_pnl"]
+    if daily_equity:
+        daily_equity[-1]["equity"] = final_equity
+
+    return {
+        # "stock_only" for summarize_run()'s periods=252 Sharpe annualization
+        # (etf_momentum_v1's fixed bug, carried forward correctly from the start).
+        "mode": "stock_only",
+        "strategy_version": "etf_reversal_v1",
+        "portfolio": "etf_reversal_five_slot",
+        "cost_model": cost.name,
+        "config": asdict(config),
+        "trades": trades,
+        "rejected": rejected,
+        "missing_outcomes": [],
+        "daily_equity": daily_equity,
+        "final_equity": final_equity,
+    }

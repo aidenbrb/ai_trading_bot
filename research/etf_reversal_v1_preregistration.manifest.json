@@ -1,0 +1,20 @@
+{
+  "strategy_version": "etf_reversal_v1",
+  "frozen_at_utc": "2026-08-30T00:00:00Z",
+  "document": {
+    "path": "research/etf_reversal_v1_preregistration.md",
+    "sha256": "b6ad1ad501410ac9c2a6c8fc68d3494bcf4ddfc74f274761e65264581f12fadb"
+  },
+  "reused_data_snapshot": {
+    "path": "backtest/data/etf_momentum_v1/manifest.json",
+    "sha256": "c56f02f2cad8647f40813b6b012db660e37e559e67d7b90b0b35fc744a8b303b",
+    "note": "Reused unchanged from etf_momentum_v1 - no new fetch (preregistration Section 3)."
+  },
+  "frozen_inputs": {
+    "backtest/whole_bot_metrics.py": "d4c7a842729d34a1515115b6ff12e877ba36e55485a81e82e6733b85b389b86a",
+    "backtest/whole_bot_engine.py": "f2274b51bdddb64f3d9cf5123392039976aed16951b990e3d20443a9756fbe7d",
+    "utils/indicators.py": "cd4680f9f828b76909084eaf692ed7b690e186fbbb7997ca8201780f54960f3b"
+  },
+  "frozen_inputs_note": "backtest/whole_bot_engine.py is hashed at its PRE-implementation state (post etf_momentum_v1's mode=stock_only bugfix, commit df282b2) - the exact codebase this strategy's new engine (preregistration Section 6) is built against. This strategy's own new code is added to that same file after this freeze and is not itself a frozen input.",
+  "governance": "Append-immutable. Rule changes require a new version or separately hashed amendment."
+}
